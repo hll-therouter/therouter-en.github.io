@@ -1,0 +1,30 @@
+---
+layout: default
+permalink: /doc
+---
+<!-- Main Container -->
+<div id="banners"></div>
+<div class="container">
+  {% for post in site.posts %}
+  <a href="{{ post.url }}" title="{{ post.title }}">
+  <div class="doc-list">
+      {% if post.author %}
+        <font color="#aaaaaa"> {{ post.author }} 创作于 {{ post.date | date: "%Y-%m-%d" }} </font>
+      {% else %}
+        <font color="#aaaaaa">{% if page.author %} {{ page.author }} {% else %} TheRouter官方 {% endif %} 创作于 {{ post.date | date: "%Y-%m-%d" }} </font>
+      {% endif %}
+      <br>
+      <h2 class="blog-title">
+        {{ post.title }}
+      </h2>
+      <font color="#666666"> {{ post.description }} </font>
+      <br>
+      {% if post.tag %}
+        <span class="label label-default">{{ post.tag }}</span> 
+      {% endif %}     
+    </div>
+    </a>
+    <hr>
+  {% endfor %}
+</div>
+<!--End Main Container -->

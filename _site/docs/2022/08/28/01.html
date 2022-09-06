@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+  <!-- meta data & title -->
+  <meta charset="utf-8">
+  <title>页面跳转能力介绍</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。">
+  <meta name="author" content="TheRouter">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/animate.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/prism.css">
+
+  <script type="text/javascript" src="http://localhost:4000/js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</head>
+  <div class="container">
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <img src="http://localhost:4000/assets/img/logo/logo4.png" width="170px">
+    </a>
+
+    <ul class="nav nav-pills">
+      
+      <li class="nav-item">
+        
+          <a href="/" class="nav-link header-color" aria-current="page">首页</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          
+            <a href="/doc" class="nav-link active header-color">文档</a>
+           
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/docs/2022/08/24/01" class="nav-link header-color">发帖</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/about" class="nav-link header-color">关于</a>
+         
+      </li>
+      <li class="nav-item"><a href="https://github.com/HuolalaTech/hll-wp-therouter-android" class="nav-link header-color">GitHub</a></li>
+    </ul>
+  </header>
+</div>
+
+
+<!-- End Header -->
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-1.10.2.min.js"></script>
+<script src="http://localhost:4000/js/wow.min.js"></script>
+<script>
+  new WOW().init();
+</script>
+
+  <body>
+  	
+  		<h2 class="blog-title" align="center">页面跳转能力介绍</h2>
+  	
+    <br>
+    <!-- Main Container -->
+<div class="container">
+	<div class="blog-post">
+		<p>路由可用于处理页面跳转  </p>
+
+<ul>
+<li>支持 <code>Activity</code> 和 <code>Fragment</code><br></li>
+<li>支持<code>path</code>与页面多对一关系或一对一关系<br></li>
+<li>页面<code>Path</code>支持正则表达式声明<br></li>
+<li>支持 <code>json</code> 格式路由表导出<br></li>
+<li>支持动态下发 <code>json</code> 路由表<br></li>
+<li>支持任意<code>object</code>跨模块传递（无需序列化，且能保证对象类型）<br></li>
+<li>支持页面跳转拦截处理<br></li>
+<li>支持自定义页面参数解析方式（例如将json解析为对象）<br></li>
+<li>支持使用路由跳转到第三方SDK中的<code>Activity(Fragment)</code><br></li>
+</ul>
+
+<h3>1.0 路由表</h3>
+
+<h4>1.1 声明路由项</h4>
+
+<p>如果一个页面（支持 Activity、Fragment）允许被路由打开，则需要使用注解 @Route 声明路由项，每个页面允许声明多个路由项，也就是一对多的能力，极大降低多端路由统一时的业务影响面。</p>
+
+<p><strong>参数释义</strong>  </p>
+
+<ul>
+<li><strong>path</strong>: 路由path 【必传】。<br>
+建议是一个url。path内支持使用正则表达式（为了匹配效率，正则必须包含反双斜杠\），允许多个path对应同一个Activity(Fragment)。</li>
+<li><strong>action</strong>:  自定义事件【可选】。
+一般用来打开目标页面后做一个执行动作，例如自定义页面弹出广告弹窗</li>
+<li><strong>description</strong>:  页面描述【可选】。
+会被记录到路由表中，方便后期排查的时候知道每个path或Activity是什么业务</li>
+<li><strong>params</strong>:  页面参数【可选】。
+自动写入intent中，允许写在路由表中动态下发修改默认值，或通过路由跳转时代码传入。</li>
+</ul>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Route</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"http://therouter.com/home"</span><span class="o">,</span> <span class="n">action</span> <span class="o">=</span> <span class="s">"action://scheme.com"</span><span class="o">,</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s">"第二个页面"</span><span class="o">,</span> <span class="n">params</span> <span class="o">=</span> <span class="o">{</span><span class="s">"hello"</span><span class="o">,</span> <span class="s">"world"</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HomeActivity</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div>
+<h4>1.2 路由表生成规则</h4>
+
+<p>如果两条路由的path、目标className完全相同，则认为是同一条路由，<strong>不会考虑参数是否相同</strong>。  </p>
+
+<p>路由表生成规则：编译期按照如下顺序取<strong>并集</strong>。<br>
+覆盖规则：根据如下顺序，如果相同，后者可以覆盖前者的路由表规则。  </p>
+
+<ol>
+<li>编译期解析注解生成路由表</li>
+<li>首先取 <code>业务模块 aar</code> 中的路由表</li>
+<li>再取 <code>主app module</code> 代码中的路由表</li>
+<li>最后取 <code>assets/RouteMap.json</code> 文件中声明的路由表。
+
+<ul>
+<li>如果编译期没有这个文件，会生成一份默认路由表放在这个目录内；如果有，会将路由表合并</li>
+<li>路由表生成时可配置是否启用检查路由合法性，判断目标页面是否存在，(warning/error)级别</li>
+</ul></li>
+<li>运行时线上动态下发的路由表
+
+<ul>
+<li>路由表允许线上动态下发，将覆盖本地路由表，详见 【1.3 远端下发路由表】<br></li>
+</ul></li>
+</ol>
+
+<h4>1.3 远端下发路由表</h4>
+
+<p>TheRouter项目每次编译后，会在apk内生成一份路由表，默认路径为：<code>/assets/therouter/routeMap.json</code>   </p>
+
+<p>同时这份路由表也支持远端动态下发，例如远端可以针对不同的APP版本，下发不同的路由表达到配置目的。因此有两种推荐的方式可供使用方选择：  </p>
+
+<ol>
+<li>将打包系统与配置系统打通，每次新版本APP打包后自动将assets/目录中的配置文件上传到配置系统，下发给对应版本APP 。优点在于全自动不会出错。</li>
+<li>配置系统无法打通，线上手动下发需要修改的路由项，因为 TheRouter 会自动用最新下发的路由项覆盖包内的路由项。优点在于精确，且流量资源占用小。<br></li>
+</ol>
+
+<p><strong>注：一旦你设置了自定义的InitTask，原框架内路由表初始化任务将不再执行，你需要自己处理找不到路由表时的兜底逻辑</strong>，一种建议的处理方式见如下代码。 </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 此代码 必须 在 Application.super.onCreate() 之前调用</span>
+<span class="n">RouteMap</span><span class="o">.</span><span class="na">setInitTask</span><span class="o">(</span><span class="k">new</span> <span class="n">RouterMapInitTask</span><span class="o">()</span> <span class="o">{</span>
+    <span class="cm">/** 
+     * 此方法执行在异步
+     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">asyncInitRouteMap</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 此处为纯业务逻辑，每家公司远端配置方案可能都不一样</span>
+        <span class="c1">// 不建议每次都请求网络，否则请求网络的过程中，路由表是空的，可能造成APP无法跳转页面</span>
+        <span class="c1">// 最好是优先加载本地，然后开异步线程加载远端配置</span>
+        <span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">Connfig</span><span class="o">.</span><span class="na">doHttp</span><span class="o">(</span><span class="s">"routeMap"</span><span class="o">);</span>
+        <span class="c1">// 建议加一个判断，如果远端配置拉取失败，使用包内配置做兜底方案，否则可能造成路由表异常</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">TextUtils</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">(</span><span class="n">json</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">List</span><span class="o">&lt;</span><span class="n">RouteItem</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">().</span><span class="na">fromJson</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="k">new</span> <span class="n">TypeToken</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">RouteItem</span><span class="o">&gt;&gt;()</span> <span class="o">{</span>
+            <span class="o">}.</span><span class="na">getType</span><span class="o">());</span>
+            <span class="c1">// 建议远端下发路由表差异部分，用远端包覆盖本地更合理</span>
+            <span class="n">RouteMap</span><span class="o">.</span><span class="na">addRouteMap</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// 在异步执行TheRouter内部兜底路由表</span>
+            <span class="n">initRouteMap</span><span class="o">()</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</code></pre></div>
+<h4>1.4  为第三方库添加路由表</h4>
+
+<p>共有两种方式  </p>
+
+<ol>
+<li>配置文件添加：在本地 assets/RouteMap.json 文件中声明第三方页面的路由表。</li>
+<li>代码运行时添加：</li>
+</ol>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/**
+ * @params path 路由Path
+ * @params className 第三方页面的Activity或Fragment完整类名
+ * @params action 要向页面传入的动作，如果没有传空字符串
+ * @params description  第三方页面的文档描述
+ */</span>
+<span class="n">addRouteItem</span><span class="o">(</span><span class="n">RouteItem</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">className</span><span class="o">,</span> <span class="n">action</span><span class="o">,</span> <span class="n">description</span><span class="o">))</span>
+</code></pre></div>
+<h4>1.5 编译期配置</h4>
+
+<p>路由表中如果声明了一个不存在的Activity，通常是因为旧代码删除时忘记清理路由表了，这里可选报错或警告，提供参考。<br>
+可在<code>local.properties</code>配置编译期属性（warning输出日志，error直接报错）  </p>
+
+<ul>
+<li>路由表中声明了不存在的<code>Activity</code>检查 <code>CHECK_ROUTE_MAP=warning</code> warning/error可选</li>
+</ul>
+
+<h3>2.0 页面跳转使用方式</h3>
+
+<h4>2.1 路由跳转</h4>
+
+<p>传入的参数可以是 <code>String</code> 和8种基本数据类型、也可以是<code>Bundle</code>、<code>Serializable</code>、
+<code>Parcelable</code>对象，跟 <code>Intent</code> 传值规则一致。  </p>
+
+<p>同时也支持为本次跳转的 <code>Intent</code> 添加<code>Flag/Uri/ClipData/identifier</code>等业务特殊参数。  </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 传入参数可以通过注解 @Autowired 解析成任意类型，如果是对象建议传json</span>
+<span class="c1">// context 参数如果不传或传 null，会自动使用 application 替换</span>
+<span class="n">TheRouter</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s">"http://therouter.com/home"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withInt</span><span class="o">(</span><span class="s">"key1"</span><span class="o">,</span> <span class="mi">12345678</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withString</span><span class="o">(</span><span class="s">"key2"</span><span class="o">,</span> <span class="s">"参数"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withBoolean</span><span class="o">(</span><span class="s">"key3"</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withSerializable</span><span class="o">(</span><span class="s">"key4"</span><span class="o">,</span> <span class="n">object</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withObject</span><span class="o">(</span><span class="s">"object"</span><span class="o">,</span> <span class="n">any</span><span class="o">)</span> <span class="c1">// 与上一个方法不同，这个方法可以传递任意对象，但是接收的地方对象类型请保证一致</span>
+        <span class="o">.</span><span class="na">navigation</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+
+        <span class="c1">// 如果传入 requestCode，默认使用startActivityForResult启动Activity</span>
+        <span class="o">.</span><span class="na">navigation</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="mi">123</span><span class="o">);</span>
+
+        <span class="c1">// 如果要打开的是fragment，需要使用</span>
+        <span class="o">.</span><span class="na">createFragment</span><span class="o">();</span>
+</code></pre></div>
+<h4>2.2 延迟路由跳转</h4>
+
+<p>延迟跳转主要应用场景有两种：  </p>
+
+<ul>
+<li><strong>第一种</strong>：初始化时期，如果路由表的量非常巨大时。这种情况在别的路由框架上要么会白屏一段时间，要么直接丢弃这次跳转。在TheRouter中，框架会暂存当前的跳转动作，在路由表初始化完成后立刻执行跳转。<br></li>
+<li><strong>第二种</strong>：从Android 8.0开始，Activity 不能在后台启动页面，这对于业务判断造成了很大的影响。由于可能会有前台 Service 的情况，不能单纯以 Activity 生命周期判断前后台。在TheRouter中，框架允许业务自定义前后台规则，如果为后台情况，可以将跳转动作暂存，当进入前台后再恢复跳转。<br></li>
+</ul>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 暂存的动作可以有多个，会在恢复时按顺序执行</span>
+<span class="n">TheRouter</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s">"http://therouter.com/home"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withInt</span><span class="o">(</span><span class="s">"key1"</span><span class="o">,</span> <span class="mi">12345678</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">padding</span><span class="o">()</span><span class="c1">// 暂存当前跳转动作</span>
+        <span class="o">.</span><span class="na">navigation</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+
+<span class="c1">// 恢复</span>
+<span class="n">sendPendingNavigator</span><span class="o">();</span> <span class="c1">//toplevel方法，无需类名调用，Java请通过NavigatorKt类名调用</span>
+</code></pre></div>
+<h4>2.3 路由参数接收</h4>
+
+<p>使用注解接收对象时，必须调用TheRouter.inject(this);建议直接在 Base 中统一调用。<br>
+接收有两种形式：  </p>
+
+<ul>
+<li>通过注解自动接收，默认支持 String 和8种基本数据类型，也支持自定义对象的解析</li>
+<li>通过代码从 intent 中获取</li>
+</ul>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Route</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"http://therouter.com/home"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HomeActivity</span> <span class="kd">extends</span> <span class="n">BaseActivity</span> <span class="o">{</span>
+    <span class="c1">// 允许解析成8种基本数据类型或对应封装类</span>
+    <span class="nd">@Autowired</span>
+    <span class="kt">int</span> <span class="n">key1</span><span class="o">;</span>
+
+    <span class="c1">// String类型可以自动解析，除了String和8种基本类型封装类以外，</span>
+    <span class="c1">// 其他的Object需要自定义解析规则，自定义方式见下文高级功能介绍 2.3 节内容</span>
+    <span class="nd">@Autowired</span>
+    <span class="n">String</span> <span class="n">key2</span><span class="o">;</span>
+
+    <span class="c1">// 如果没有声明 name，则使用变量名作为 Intent 解析的key</span>
+    <span class="nd">@Autowired</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"key3"</span><span class="o">)</span>
+    <span class="n">String</span> <span class="n">user</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="c1">// 使用注解接收对象时，必须调用这一句，建议直接在 Base 中统一调用。</span>
+        <span class="n">TheRouter</span><span class="o">.</span><span class="na">inject</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="c1">// 当然如果不嫌麻烦，也是允许自己手动解析的，但是只能解析成String，因为传的时候都是以String类型传递</span>
+        <span class="n">String</span> <span class="n">key1</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="na">getIntent</span><span class="o">().</span><span class="na">getStringExtra</span><span class="o">(</span><span class="s">"key1"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<h4>2.4 对象参数接收</h4>
+
+<p>页面跳转间如果要对象，有两种方式：  </p>
+
+<ul>
+<li>第一种：先将对象序列化为json，将json传递以后，自定义解析器反序列化为对象，参考<code>自定义 @Autowired 解析</code><br></li>
+<li>第二种：直接传递，在直接传递时需要注意对象类型，接收的地方不要出现强转错误
+对象参数只能使用注解接收。使用注解接收对象时，必须调用<code>TheRouter.inject(this);</code>建议直接在 <code>Base</code> 中统一调用。<br></li>
+</ul>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">TheRouter</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s">"http://therouter.com/home"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withString</span><span class="o">(</span><span class="s">"user_info_object"</span><span class="o">,</span> <span class="n">json</span><span class="o">)</span> <span class="c1">// 传递json对象</span>
+        <span class="o">.</span><span class="na">withObject</span><span class="o">(</span><span class="s">"user_object"</span><span class="o">,</span> <span class="n">any</span><span class="o">)</span> <span class="c1">// 这个方法可以传递任意对象，但是接收的地方对象类型请保证一致</span>
+        <span class="o">.</span><span class="na">navigation</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+
+<span class="nd">@Route</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"http://therouter.com/home"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HomeActivity</span> <span class="kd">extends</span> <span class="n">BaseActivity</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="n">User</span> <span class="n">user_info_object</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">User</span> <span class="n">user_object</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="c1">// 使用注解接收对象时，必须调用这一句，建议直接在 Base 中统一调用。</span>
+        <span class="n">TheRouter</span><span class="o">.</span><span class="na">inject</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<h4>2.5 自定义 @Autowired 解析</h4>
+
+<p>页面跳转间如果要对象，需要先将对象序列化为json，将json传递以后再反序列化为对象<br>
+通过 <code>@Autowired</code> 注解可以自定义将 json 解析为对象注入  </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">TheRouter</span><span class="o">.</span><span class="na">addAutowiredParser</span><span class="o">(</span><span class="k">new</span> <span class="n">MyAutowiredParser</span><span class="o">());</span>
+</code></pre></div>
+<p>具体<code>Parser类</code>定义可参考代码<code>DefaultUrlParser</code>类  </p>
+
+<h3>3.0 路由跳转自定义处理器</h3>
+
+<p>框架内置四种自定义处理器可供业务场景定制，用于在路由跳转过程中，以切面的方式统一修改路由落地页参数信息。  </p>
+
+<h4>3.1 Path 修改器</h4>
+
+<p><strong>应用场景</strong>：用于修复客户端上路由 path 错误问题。  </p>
+
+<p>例如：相对路径转绝对路径，或由于服务端下发的链接无法固定https或http，但客户端代码写死了 https 的 path，就可以用这种方式统一。<br>
+<strong>注</strong>：<em>必须在 TheRouter.build() 方法调用前添加处理器，否则处理器前的所有path不会被修改</em>。  </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Navigator</span><span class="o">.</span><span class="na">addNavigatorPathFixHandle</span><span class="o">(</span><span class="k">new</span> <span class="n">NavigatorPathFixHandle</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">fix</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">"http://"</span><span class="o">,</span> <span class="s">"https://"</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">path</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"www.kymjs.com"</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">path</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"/"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="s">"https://www.kymjs.com"</span> <span class="o">+</span> <span class="n">path</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">path</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="cm">/**
+     * 数字越大，优先级越高，
+     * 优先级方法通常情况下不需要重写，除非你真的有什么特殊场景会用到
+     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPriority</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="mi">5</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</code></pre></div>
+<h4>3.2 页面替换器</h4>
+
+<p><strong>应用场景</strong>：需要将某些<code>path</code>指定为新链接的时候使用。 也可以用在修复链接的场景，但是与 <code>path 修改器</code>不同的是，修改器通常是为了解决通用性的问题，替换器只在页面跳转时才会生效，更多是用来解决特性问题。   </p>
+
+<p>例如模块化的时候，首页壳模板组件中开发了一个<code>SplashActivity</code>广告组件作为应用的<code>MainActivity</code>，在闪屏广告结束的时候自动跳转业务首页页面。 
+但是每个业务不同，首页页面的 <code>Path</code> 也不相同，而不希望让每个业务线自己去改这个首页壳模板组件，此时就可以组件中先写占位符<code>https://kymjs.com/splash/to/home</code>，让接入方通过 <code>Path</code> 替换器解决。<br>
+<strong>注</strong>：<em>必须在 TheRouter.build().navigation() 方法调用前添加处理器，否则处理器前的所有跳转不会被替换</em>。  </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Navigator</span><span class="o">.</span><span class="na">addPathReplaceInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="n">PathReplaceInterceptor</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">replace</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="s">"https://kymjs.com/splash/to/home"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">path</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="s">"https://kymjs.com/business/home"</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">path</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</code></pre></div>
+<h4>3.3 路由替换器</h4>
+
+<p><strong>应用场景</strong>：常用在未登录不能使用的页面上。例如访问用户钱包页面，在钱包页声明的时候，可以在路由表上声明本页面是需要登录的，在路由跳转过程中，如果落地页是需要登录的，则先替换路由到登录页，同时将原落地页信息作为参数传给登录页，登录流程处理完成后可以继续执行之前的路由操作。  </p>
+
+<p>路由替换器的拦截点更靠后，主要用于框架已经从路由表中根据 path 找到路由以后，对找到的路由做操作。     </p>
+
+<p>这种逻辑在所有页面跳转前写不太合适，以前的做法通常是在落地页写逻辑判断用户是否具有权限，但其实在路由层完成更合适。<br>
+<strong>注</strong>：<em>必须在 TheRouter.build().navigation() 方法调用前添加处理器，否则处理器前的所有跳转不会被替换</em>。   </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Navigator</span><span class="o">.</span><span class="na">addRouterReplaceInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="n">RouterReplaceInterceptor</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">RouteItem</span> <span class="nf">replace</span><span class="o">(</span><span class="n">RouteItem</span> <span class="n">routeItem</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">age</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">18</span> <span class="o">&amp;&amp;</span> <span class="n">routeItem</span><span class="o">.</span><span class="na">getClassName</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="s">"ChildrenProhibitActivity"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">RouteItem</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RouteItem</span><span class="o">();</span>
+            <span class="n">target</span><span class="o">.</span><span class="na">setClassName</span><span class="o">(</span><span class="n">HomeActivity</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+            <span class="n">String</span><span class="o">[]</span> <span class="n">path</span> <span class="o">=</span> <span class="o">{</span><span class="s">"https://kymjs.com/too/young"</span><span class="o">};</span>
+            <span class="n">target</span><span class="o">.</span><span class="na">setPathArray</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+            <span class="n">target</span><span class="o">.</span><span class="na">setDescription</span><span class="o">(</span><span class="s">"也可以在这里修改原有路由的参数信息"</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">target</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">routeItem</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</code></pre></div>
+<h4>3.4 路由AOP拦截器</h4>
+
+<p>与前三个处理器不同的点在于，路由的AOP拦截器全局只能有一个。用于实现AOP的能力，在整个TheRouter跳转的过程中，跳转前，目标页是否找到的回调，跳转时，跳转后，都可以做一些自定义的逻辑处理。   </p>
+
+<p><strong>使用场景</strong>：场景很多，最常用的是可以拦截一些跳转，例如debug页面在生产环境不打开，或定制<code>startActivity</code>跳转方法。   </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Navigator</span><span class="o">.</span><span class="na">setRouterInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="n">RouterInterceptor</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">process</span><span class="o">(</span><span class="n">RouteItem</span> <span class="n">routeItem</span><span class="o">,</span> <span class="n">InterceptorCallback</span> <span class="n">callback</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">TheRouter</span><span class="o">.</span><span class="na">isDebug</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">routeItem</span><span class="o">.</span><span class="na">getClassName</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">"com.kymjs.DebugActivity"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// callback 对象也是可以自定义的，看你怎么用了</span>
+            <span class="n">callback</span><span class="o">.</span><span class="na">onContinue</span><span class="o">(</span><span class="n">routeItem</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</code></pre></div>
+<h4>3.5 跳转结果回调</h4>
+
+<p>如果使用<code>TheRouter</code>跳转，传入了一个不识别的的<code>path</code>，则不会有任何处理。你也可以定义一个默认的全局回调，来处理跳转情况，如果落地页是 <code>Fragment</code> 则不会回调。<br>
+当然，跳转结果的回调不止这一个用途，可以根据业务有自己的处理。<br>
+回调也可以单独为某一次跳转设置，<code>navigation()</code>方法有重载可以传入设置。  </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">NavigatorKt</span><span class="o">.</span><span class="na">defaultNavigationCallback</span><span class="o">(</span><span class="k">new</span> <span class="n">NavigationCallback</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// 落地页Activity打开后，执行到onCreate会回调</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onActivityCreated</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Navigator</span> <span class="n">navigator</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Activity</span> <span class="n">activity</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onActivityCreated</span><span class="o">(</span><span class="n">navigator</span><span class="o">,</span> <span class="n">activity</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// startActivity执行后会立刻回调</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onArrival</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Navigator</span> <span class="n">navigator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onArrival</span><span class="o">(</span><span class="n">navigator</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 找到待跳转的落地页时就会回调（startActivity之前）</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFound</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Navigator</span> <span class="n">navigator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onFound</span><span class="o">(</span><span class="n">navigator</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 找不到落地页的时候会回调</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onLost</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Navigator</span> <span class="n">navigator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onLost</span><span class="o">(</span><span class="n">navigator</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</code></pre></div>
+<h3>4.0 其他API</h3>
+
+<h4>4.1 判断一个 url 是否为路由Path</h4>
+
+<p>如果返回为空，表示当前url不是路由表内的path  </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// kotlin toplevel方法，Java调用请使用RouteMapKt类</span>
+<span class="n">matchRouteMap</span><span class="o">(</span><span class="s">"url填这里"</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span> 
+</code></pre></div>
+	</div>
+</div>
+<!--End Main Container -->
+  </body>
+
+  <!-- Footer -->
+<footer> 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3><i class="bi bi-link-45deg bi-footer"></i> 友情链接</h3>
+        <p><a href="https://www.huolala.cn/"> 货拉拉</a></p>
+        <p><a href="https://www.huolala.cn/house_move.html"> 无忧搬家</a></p>
+        <p><a href="https://www.xiaolachuxing.com/"> 小拉出行</a></p>
+      </div>
+      <div class="col-md-4">
+        <h3><i class="bi bi-slack bi-footer"></i> 社区</h3>
+        <p><a href="https://kymjs.com/therouter/wx/"> 官方微信群</a></p>
+        <p><a href="https://github.com/HuolalaTech/hll-wp-therouter-android"> GitHub </a></p>
+        <p><a href="https://juejin.cn/user/1768489241815070/posts"> 技术博客 </a></p> 
+      </div>
+      <div class="col-md-4">
+        <h3><i class="bi bi-postcard-heart bi-footer"></i> 关于</h3>
+        <p><a href="https://juejin.cn/user/1768489241815070/posts"> 货拉拉移动技术团队</a></p>
+      </div>    
+    </div>
+  </div>
+
+  <div class="copyright text center">
+    <p>&copy; Copyright 2022, <a href="#">TheRouter</a>. <br>Theme ported by <a href="https://melvinchng.github.io/" target="_blank">Melvin Ch'ng</a></p>
+  </div>
+</footer>
+</html>
