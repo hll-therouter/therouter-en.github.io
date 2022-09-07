@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-06T13:47:30+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">Android 动态路由框架：TheRouter 开源</title><link href="http://localhost:4000/docs/2022/09/04/01" rel="alternate" type="text/html" title="Android 动态路由框架：TheRouter 开源" /><published>2022-09-04T00:00:00+08:00</published><updated>2022-09-04T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/04/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/04/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。&lt;br&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-07T11:59:28+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">TheRouter 一键迁移工具</title><link href="http://localhost:4000/docs/2022/09/05/01" rel="alternate" type="text/html" title="TheRouter 一键迁移工具" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/05/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/05/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;，目前仅支持&lt;code&gt;ARouter&lt;/code&gt;，其他路由框架迁移也在开发中：&lt;/p&gt;
+
+&lt;p&gt;（GitHub下载，70M左右，请耐心等待）  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mac OS 迁移工具下载：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;Windows 迁移工具下载：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果项目中使用了ARouter的IProvider.init()方法，可能需要手动处理初始化逻辑。&lt;br&gt;
+如下图：  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7f2cc2b3509f41ccaa11dc9617088033~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+
+&lt;h3&gt;注意事项&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;issue中有用户反馈：使用&lt;code&gt;Windows&lt;/code&gt;系统迁移时，会发生乱码情况。犹豫迁移工具对文件的读写均才用&lt;code&gt;UTF-8&lt;/code&gt;编码，所以建议在迁移之前先将工程编码设置为&lt;code&gt;UTF-8&lt;/code&gt;。Android Studio支持修改工程编码：&lt;code&gt;Setting -&amp;gt; Editor -&amp;gt; File Encodings&lt;/code&gt; 修改&lt;code&gt;Global Encoding&lt;/code&gt;和&lt;code&gt;Project Encoding&lt;/code&gt;为 &lt;code&gt;UTF-8&lt;/code&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/encode.jpg&quot;&gt;&lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">TheRouter提供了图形化界面的迁移工具，可以一键从其他路由迁移到TheRouter，目前仅支持ARouter，其他路由框架迁移也在开发中：</summary></entry><entry><title type="html">Android 动态路由框架：TheRouter 开源</title><link href="http://localhost:4000/docs/2022/09/04/01" rel="alternate" type="text/html" title="Android 动态路由框架：TheRouter 开源" /><published>2022-09-04T00:00:00+08:00</published><updated>2022-09-04T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/04/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/04/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。&lt;br&gt;
 Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android&lt;/a&gt;。    &lt;/p&gt;
 
 &lt;p&gt;TheRouter 核心功能具备如下能力：    &lt;/p&gt;
