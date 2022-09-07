@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-07T11:59:28+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">TheRouter 一键迁移工具</title><link href="http://localhost:4000/docs/2022/09/05/01" rel="alternate" type="text/html" title="TheRouter 一键迁移工具" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/05/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/05/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;，目前仅支持&lt;code&gt;ARouter&lt;/code&gt;，其他路由框架迁移也在开发中：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-07T13:16:57+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">TheRouter 一键迁移工具</title><link href="http://localhost:4000/docs/2022/09/05/01" rel="alternate" type="text/html" title="TheRouter 一键迁移工具" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/05/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/05/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;，目前仅支持&lt;code&gt;ARouter&lt;/code&gt;，其他路由框架迁移也在开发中：&lt;/p&gt;
 
 &lt;p&gt;（GitHub下载，70M左右，请耐心等待）  &lt;/p&gt;
 
@@ -216,7 +216,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;3.5 高级用法&lt;/h4&gt;
 
-&lt;p&gt;TheRouter同时支持更多页面跳转能力，详情可参考项目文档【&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/Navigator&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/Navigator&lt;/a&gt;】：    &lt;/p&gt;
+&lt;p&gt;TheRouter同时支持更多页面跳转能力，详情可参考项目文档【&lt;a href=&quot;https://therouter.cn/docs/2022/08/28/01&quot;&gt;https://therouter.cn/docs/2022/08/28/01&lt;/a&gt;】：    &lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;为第三方库里面的页面添加路由表，达到对某些页面降级替换的目的；&lt;br&gt;&lt;/li&gt;
@@ -647,10 +647,10 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;p&gt;TheRouter 核心功能具备四大能力：  &lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt; 页面导航跳转能力（&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/Navigator&quot;&gt;Navigator&lt;/a&gt;） 页面跳转能力介绍 &lt;/li&gt;
-&lt;li&gt; 跨模块依赖注入能力（&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/ServiceProvider&quot;&gt;ServiceProvider&lt;/a&gt;）跨模块依赖注入 &lt;/li&gt;
-&lt;li&gt; 单模块自动初始化能力 （&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/FlowTaskExecutor&quot;&gt;FlowTaskExecutor&lt;/a&gt;）单模块自动初始化能力介绍 &lt;/li&gt;
-&lt;li&gt; 动态化能力 (&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/ActionManager&quot;&gt;ActionManager&lt;/a&gt;) 动态化能力支持 &lt;/li&gt;
+&lt;li&gt; 页面导航跳转能力（&lt;a href=&quot;https://therouter.cn/docs/2022/08/28/01&quot;&gt;Navigator&lt;/a&gt;） 页面跳转能力介绍 &lt;/li&gt;
+&lt;li&gt; 跨模块依赖注入能力（&lt;a href=&quot;https://therouter.cn/docs/2022/08/27/01&quot;&gt;ServiceProvider&lt;/a&gt;）跨模块依赖注入 &lt;/li&gt;
+&lt;li&gt; 单模块自动初始化能力 （&lt;a href=&quot;https://therouter.cn/docs/2022/08/26/01&quot;&gt;FlowTaskExecutor&lt;/a&gt;）单模块自动初始化能力介绍 &lt;/li&gt;
+&lt;li&gt; 动态化能力 (&lt;a href=&quot;https://therouter.cn/docs/2022/08/25/01&quot;&gt;ActionManager&lt;/a&gt;) 动态化能力支持 &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;一、快速上手&lt;/h3&gt;
@@ -670,7 +670,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;1.2 初始化&lt;/h4&gt;
 
-&lt;p&gt;框架内部包含自动初始化功能，详见&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/FlowTaskExecutor.md&quot;&gt;单模块自动初始化能力&lt;/a&gt;&lt;br&gt;
+&lt;p&gt;框架内部包含自动初始化功能，详见&lt;a href=&quot;https://therouter.cn/docs/2022/08/26/01&quot;&gt;单模块自动初始化能力&lt;/a&gt;&lt;br&gt;
 无需任何初始化代码。但推荐你根据业务设置否为&lt;code&gt;Debug&lt;/code&gt;环境，用以查看日志信息。&lt;br&gt;
 &lt;code&gt;Application.attachBaseContext()&lt;/code&gt; 方法中尽可能早设置当前是否为&lt;code&gt;Debug&lt;/code&gt;环境。  &lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
@@ -690,7 +690,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;1.4 页面跳转&lt;/h4&gt;
 
-&lt;p&gt;关于注解&lt;code&gt;@Route&lt;/code&gt;的参数含义，请查看文档：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/Navigator.md&quot;&gt;页面导航跳转能力&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;关于注解&lt;code&gt;@Route&lt;/code&gt;的参数含义，请查看文档：&lt;a href=&quot;https://therouter.cn/docs/2022/08/28/01&quot;&gt;页面导航跳转能力&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;action://scheme.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;第二个页面&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;world&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HomeActivity&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BaseActivity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
