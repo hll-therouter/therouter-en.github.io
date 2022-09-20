@@ -184,9 +184,6 @@ address {
 .blog-img{
   width: 50%;
 }
-img{
-  width: 50%;
-}
 
 @media (min-width: 50px) and (max-width: 988px) { 
  
@@ -216,9 +213,6 @@ img{
     left: 17%; 
     color: white; 
     font-size: 4.5vw;
-  }
-  img{
-    width: 90%;
   }
   .blog-img{
     width: 90%;
@@ -251,9 +245,6 @@ img{
     max-width: 50%; 
     font-size: 2.2vw; 
     line-height:2.8vw
-  }
-  img{
-    width: 70%;
   }
   .blog-img{
     width: 70%;
