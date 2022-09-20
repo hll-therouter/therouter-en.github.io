@@ -96,6 +96,31 @@
 
 <p><img src="http://localhost:4000/assets/img/image/encode.jpg"></p>
 
+<h3>需要手动修改的部分</h3>
+
+<ol>
+<li><p>ARouter 的 Provider.init 部分，建议改为懒加载方式，在服务方法被调用时自己主动调用init方法。    </p></li>
+<li><p>如果使用了 ARouter 拦截器部分，需要自己手动处理拦截器的逻辑，ARouter的拦截器全部可以用 TheRouter 的拦截器替换，具体逻辑请参考：TheRouter页面跳转：【<a href="https://therouter.cn/docs/2022/08/28/01">第三部分</a>】自定义处理器。    </p></li>
+<li><p>ARouter 封装了大量 Bundle 传参的操作，例如<code>withBooleanArray()</code>这种。我们认为这样的封装是冗余的。如果你使用到了对应方法，在TheRouter内可以直接通过对Bundle对象调用对应的方法。例如：    </p></li>
+</ol>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// ARouter </span>
+<span class="n">ARouter</span><span class="o">.</span><span class="na">getInstance</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">path</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">withByteArray</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">withStringArrayList</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span> <span class="n">as</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">navigation</span><span class="o">()</span>
+
+<span class="c1">// TheRouter</span>
+<span class="n">TheRouter</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">fillParams</span> <span class="o">{</span> <span class="n">bundle</span> <span class="o">-&gt;</span>
+        <span class="n">bundle</span><span class="o">.</span><span class="na">putByteArray</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span>
+        <span class="n">bundle</span><span class="o">.</span><span class="na">putStringArrayList</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span>
+    <span class="o">}.</span><span class="na">navigation</span><span class="o">()</span>
+</code></pre></div>
+<p>》》》   </p>
+
+<p>暂未发现其他需要手动修改部分</p>
+
 	</div>
 </div>
 <!--End Main Container -->
