@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-20T10:50:18+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">获取和使用最新版的 TheRouter</title><link href="http://localhost:4000/docs/2022/09/06/01" rel="alternate" type="text/html" title="获取和使用最新版的 TheRouter" /><published>2022-09-06T00:00:00+08:00</published><updated>2022-09-06T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/06/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/06/01">&lt;p&gt;TheRouter 的版本规划分为三种，分别是 &lt;code&gt;稳定版&lt;/code&gt;、&lt;code&gt;预览版&lt;/code&gt;、&lt;code&gt;公测版&lt;/code&gt;。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-20T11:13:43+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">获取和使用最新版的 TheRouter</title><link href="http://localhost:4000/docs/2022/09/06/01" rel="alternate" type="text/html" title="获取和使用最新版的 TheRouter" /><published>2022-09-06T00:00:00+08:00</published><updated>2022-09-06T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/06/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/06/01">&lt;p&gt;TheRouter 的版本规划分为三种，分别是 &lt;code&gt;稳定版&lt;/code&gt;、&lt;code&gt;预览版&lt;/code&gt;、&lt;code&gt;公测版&lt;/code&gt;。&lt;/p&gt;
 
 &lt;h3&gt;稳定版&lt;/h3&gt;
 
@@ -28,7 +28,7 @@
     &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://s01.oss.sonatype.org/content/repositories/snapshots/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;查看最新公测版本：&lt;a href=&quot;https://s01.oss.sonatype.org/content/repositories/snapshots/cn/therouter/&quot;&gt;https://s01.oss.sonatype.org/content/repositories/snapshots/cn/therouter/&lt;/a&gt;  &lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">TheRouter 的版本规划分为三种，分别是 稳定版、预览版、公测版。</summary></entry><entry><title type="html">TheRouter 一键迁移工具</title><link href="http://localhost:4000/docs/2022/09/05/01" rel="alternate" type="text/html" title="TheRouter 一键迁移工具" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/05/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/05/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;，目前仅支持&lt;code&gt;ARouter&lt;/code&gt;，其他路由框架迁移也在开发中：&lt;/p&gt;
+&lt;p&gt;查看最新公测版本：&lt;a href=&quot;https://s01.oss.sonatype.org/content/repositories/snapshots/cn/therouter/&quot;&gt;https://s01.oss.sonatype.org&lt;/a&gt;  &lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">TheRouter 的版本规划分为三种，分别是 稳定版、预览版、公测版。</summary></entry><entry><title type="html">TheRouter 一键迁移工具</title><link href="http://localhost:4000/docs/2022/09/05/01" rel="alternate" type="text/html" title="TheRouter 一键迁移工具" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/05/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/05/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;，目前仅支持&lt;code&gt;ARouter&lt;/code&gt;，其他路由框架迁移也在开发中：&lt;/p&gt;
 
 &lt;p&gt;（GitHub下载，70M左右，请耐心等待）  &lt;/p&gt;
 
@@ -48,7 +48,7 @@
 &lt;li&gt;issue中有用户反馈：使用&lt;code&gt;Windows&lt;/code&gt;系统迁移时，会发生乱码情况。犹豫迁移工具对文件的读写均才用&lt;code&gt;UTF-8&lt;/code&gt;编码，所以建议在迁移之前先将工程编码设置为&lt;code&gt;UTF-8&lt;/code&gt;。Android Studio支持修改工程编码：&lt;code&gt;Setting -&amp;gt; Editor -&amp;gt; File Encodings&lt;/code&gt; 修改&lt;code&gt;Global Encoding&lt;/code&gt;和&lt;code&gt;Project Encoding&lt;/code&gt;为 &lt;code&gt;UTF-8&lt;/code&gt;&lt;br&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/encode.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/encode.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h3&gt;需要手动修改的部分&lt;/h3&gt;
 
@@ -1412,7 +1412,7 @@ A无需关心，&lt;code&gt;IUserService&lt;/code&gt;这个接口服务是谁提
 
 &lt;h4&gt;用途与响应流程&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2022/06/08/XrUy8g.png&quot; alt=&quot;TheRouter-ActionManager&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2022/06/08/XrUy8g.png&quot; class=&quot;blog-img&quot; alt=&quot;TheRouter-ActionManager&quot;&gt;  &lt;/p&gt;
 
 &lt;h3&gt;Action 使用&lt;/h3&gt;
 
