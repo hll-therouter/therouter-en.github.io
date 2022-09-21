@@ -125,6 +125,7 @@
 <ul>
 <li><strong>TheRouterFlowTask.APP_ONCREATE</strong>：当<code>Application</code>的<code>onCreate()</code>执行后初始化</li>
 <li><strong>TheRouterFlowTask.APP_ONSPLASH</strong>：当应用的首个<code>Activity.onCreate()</code>执行后初始化</li>
+<li><strong>TheRouterFlowTask. BEFORE_THEROUTER _INITIALIZATION</strong>：当应用启动后，在TheRouter初始化之前，执行任务。(1.1.1-rc2版本新增)<br></li>
 </ul>
 
 <h3>自定义业务节点初始化</h3>
@@ -162,6 +163,16 @@
 <li>参数有且必须只有<code>Context</code>，入参为<code>Application</code></li>
 </ul>
 
+<h2>实现原理</h2>
+
+<p>每个加了 <code>@FlowTask</code> 注解的方法，都会在编译期被解析，生成一个对应的 <code>Task</code> 对象，这个对象包含了初始化方法的相关信息，比如：是否异步执行、任务名、是否依赖其他任务先执行。   </p>
+
+<p>当所有aar都编译完成，生成好全部的 <code>Task</code> 以后，会在主 app 中通过<code>Gradle</code>插件进行聚合，在这时会将所有的 <code>Task</code> 做一次检查，通过构建<code>有向无环图</code>来防止 <code>Task</code> 发生循环引用的情况。  </p>
+
+<p>每次应用启动后，会在路由初始化时，将有向图中的全部<code>Task</code>，按照依赖关系按顺序加载。  </p>
+
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b400b35a3c0244479ef61ce6759b25a7~tplv-k3u1fbpfcp-watermark.image?" class="blog-img"/></p>
+
 	</div>
 </div>
 <!--End Main Container -->
@@ -186,6 +197,7 @@
       <div class="col-md-4">
         <h3><i class="bi bi-postcard-heart bi-footer"></i> 关于</h3>
         <p><a href="https://juejin.cn/user/1768489241815070/posts"> 货拉拉移动技术团队</a></p>
+        <p><a href="https://kymjs.com"> 开源实验室</a></p>
       </div>    
     </div>
   </div>

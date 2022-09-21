@@ -163,17 +163,21 @@ A无需关心，<code>IUserService</code>这个接口服务是谁提供的，他
 </ul>
 
 <p><strong>注</strong>：<em>如果两个注解同时被添加，则只有<code>Singleton</code>会生效。</em>  </p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 注：如果两个注解同时被添加，则只有Singleton会生效。</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java">
+<span class="c1">//  默认是LRU+软引用缓存</span>
+<span class="c1">// 注：如果两个注解同时被添加，则只有Singleton会生效。</span>
 <span class="nd">@Singleton</span> <span class="c1">// 对外部调用方而言相当于这个对象声明成了单例</span>
 <span class="nd">@NewInstance</span>  <span class="c1">// 每次都会返回新对象</span>
+<span class="kd">class</span> <span class="nc">UserService</span> <span class="n">implement</span> <span class="n">IUserService</span><span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getUserInfo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"返回用户信息"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
 <span class="nd">@ServiceProvider</span>
 <span class="kd">public</span> <span class="kd">static</span> <span class="n">IUserService</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nf">IUserService</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="n">String</span> <span class="nf">getUserInfo</span><span class="o">()</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="s">"返回用户信息"</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">};</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">UserService</span><span class="o">();</span>
 <span class="o">}</span>
 </code></pre></div>
 	</div>
@@ -200,6 +204,7 @@ A无需关心，<code>IUserService</code>这个接口服务是谁提供的，他
       <div class="col-md-4">
         <h3><i class="bi bi-postcard-heart bi-footer"></i> 关于</h3>
         <p><a href="https://juejin.cn/user/1768489241815070/posts"> 货拉拉移动技术团队</a></p>
+        <p><a href="https://kymjs.com"> 开源实验室</a></p>
       </div>    
     </div>
   </div>

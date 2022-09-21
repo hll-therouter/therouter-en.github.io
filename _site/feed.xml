@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-20T11:13:43+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">获取和使用最新版的 TheRouter</title><link href="http://localhost:4000/docs/2022/09/06/01" rel="alternate" type="text/html" title="获取和使用最新版的 TheRouter" /><published>2022-09-06T00:00:00+08:00</published><updated>2022-09-06T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/06/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/06/01">&lt;p&gt;TheRouter 的版本规划分为三种，分别是 &lt;code&gt;稳定版&lt;/code&gt;、&lt;code&gt;预览版&lt;/code&gt;、&lt;code&gt;公测版&lt;/code&gt;。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-21T14:44:33+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">获取和使用最新版的 TheRouter</title><link href="http://localhost:4000/docs/2022/09/06/01" rel="alternate" type="text/html" title="获取和使用最新版的 TheRouter" /><published>2022-09-06T00:00:00+08:00</published><updated>2022-09-06T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/06/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/06/01">&lt;p&gt;TheRouter 的版本规划分为三种，分别是 &lt;code&gt;稳定版&lt;/code&gt;、&lt;code&gt;预览版&lt;/code&gt;、&lt;code&gt;公测版&lt;/code&gt;。&lt;/p&gt;
 
 &lt;h3&gt;稳定版&lt;/h3&gt;
 
@@ -377,6 +377,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;ul&gt;
 &lt;li&gt; &lt;strong&gt;TheRouterFlowTask.APP_ONCREATE&lt;/strong&gt;：当Application的onCreate()执行后初始化&lt;br&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;TheRouterFlowTask.APP_ONSPLASH&lt;/strong&gt;：当应用的首个Activity.onCreate()执行后初始化&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TheRouterFlowTask. BEFORE_THEROUTER _INITIALIZATION&lt;/strong&gt;：当应用启动后，在TheRouter初始化之前，执行任务。(1.1.1-rc2版本新增)&lt;br&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;同时，使用&lt;code&gt;TheRouter&lt;/code&gt;的自动初始化依赖，也无需担心循环依赖造成的问题，框架会在编译期构建有向无环图，监测循环依赖情况，如果发现会在编译期直接报错，并且还会将发生循环引用的任务显示出来，用于排错。   &lt;/p&gt;
@@ -1299,17 +1300,21 @@ A无需关心，&lt;code&gt;IUserService&lt;/code&gt;这个接口服务是谁提
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：&lt;em&gt;如果两个注解同时被添加，则只有&lt;code&gt;Singleton&lt;/code&gt;会生效。&lt;/em&gt;  &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 注：如果两个注解同时被添加，则只有Singleton会生效。&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+&lt;span class=&quot;c1&quot;&gt;//  默认是LRU+软引用缓存&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 注：如果两个注解同时被添加，则只有Singleton会生效。&lt;/span&gt;
 &lt;span class=&quot;nd&quot;&gt;@Singleton&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 对外部调用方而言相当于这个对象声明成了单例&lt;/span&gt;
 &lt;span class=&quot;nd&quot;&gt;@NewInstance&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 每次都会返回新对象&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserService&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;implement&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IUserService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getUserInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;返回用户信息&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
 &lt;span class=&quot;nd&quot;&gt;@ServiceProvider&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IUserService&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;IUserService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getUserInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;返回用户信息&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;UserService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="doc" /><summary type="html">模块化能力支持项：</summary></entry><entry><title type="html">单模块自动初始化能力介绍</title><link href="http://localhost:4000/docs/2022/08/26/01" rel="alternate" type="text/html" title="单模块自动初始化能力介绍" /><published>2022-08-26T00:00:00+08:00</published><updated>2022-08-26T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/26/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/26/01">&lt;ul&gt;
 &lt;li&gt;支持单模块独立初始化&lt;/li&gt;
@@ -1362,6 +1367,7 @@ A无需关心，&lt;code&gt;IUserService&lt;/code&gt;这个接口服务是谁提
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;TheRouterFlowTask.APP_ONCREATE&lt;/strong&gt;：当&lt;code&gt;Application&lt;/code&gt;的&lt;code&gt;onCreate()&lt;/code&gt;执行后初始化&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;TheRouterFlowTask.APP_ONSPLASH&lt;/strong&gt;：当应用的首个&lt;code&gt;Activity.onCreate()&lt;/code&gt;执行后初始化&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TheRouterFlowTask. BEFORE_THEROUTER _INITIALIZATION&lt;/strong&gt;：当应用启动后，在TheRouter初始化之前，执行任务。(1.1.1-rc2版本新增)&lt;br&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;自定义业务节点初始化&lt;/h3&gt;
@@ -1397,7 +1403,17 @@ A无需关心，&lt;code&gt;IUserService&lt;/code&gt;这个接口服务是谁提
 &lt;li&gt;如果是 java，方法必须是 public static 修饰&lt;/li&gt;
 &lt;li&gt;如果是 kotlin，建议写成 top level 的函数&lt;/li&gt;
 &lt;li&gt;参数有且必须只有&lt;code&gt;Context&lt;/code&gt;，入参为&lt;code&gt;Application&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="doc" /><summary type="html">支持单模块独立初始化 支持懒加载初始化 独立初始化允许多任务依赖(参考Gradle Task) 支持编译期循环引用检测 支持自定义业务初始化时机</summary></entry><entry><title type="html">动态化能力支持：ActionManager</title><link href="http://localhost:4000/docs/2022/08/25/01" rel="alternate" type="text/html" title="动态化能力支持：ActionManager" /><published>2022-08-25T00:00:00+08:00</published><updated>2022-08-25T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/25/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/25/01">&lt;ul&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;实现原理&lt;/h2&gt;
+
+&lt;p&gt;每个加了 &lt;code&gt;@FlowTask&lt;/code&gt; 注解的方法，都会在编译期被解析，生成一个对应的 &lt;code&gt;Task&lt;/code&gt; 对象，这个对象包含了初始化方法的相关信息，比如：是否异步执行、任务名、是否依赖其他任务先执行。   &lt;/p&gt;
+
+&lt;p&gt;当所有aar都编译完成，生成好全部的 &lt;code&gt;Task&lt;/code&gt; 以后，会在主 app 中通过&lt;code&gt;Gradle&lt;/code&gt;插件进行聚合，在这时会将所有的 &lt;code&gt;Task&lt;/code&gt; 做一次检查，通过构建&lt;code&gt;有向无环图&lt;/code&gt;来防止 &lt;code&gt;Task&lt;/code&gt; 发生循环引用的情况。  &lt;/p&gt;
+
+&lt;p&gt;每次应用启动后，会在路由初始化时，将有向图中的全部&lt;code&gt;Task&lt;/code&gt;，按照依赖关系按顺序加载。  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b400b35a3c0244479ef61ce6759b25a7~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">支持单模块独立初始化 支持懒加载初始化 独立初始化允许多任务依赖(参考Gradle Task) 支持编译期循环引用检测 支持自定义业务初始化时机</summary></entry><entry><title type="html">动态化能力支持：ActionManager</title><link href="http://localhost:4000/docs/2022/08/25/01" rel="alternate" type="text/html" title="动态化能力支持：ActionManager" /><published>2022-08-25T00:00:00+08:00</published><updated>2022-08-25T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/25/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/25/01">&lt;ul&gt;
 &lt;li&gt;支持全局回调配置&lt;/li&gt;
 &lt;li&gt;支持优先级响应与中断响应&lt;/li&gt;
 &lt;li&gt;支持记录调用路径，解决调试期观察者模式无法追踪&lt;code&gt;Observable&lt;/code&gt;的问题 &lt;/li&gt;
