@@ -219,6 +219,27 @@
 
         <span class="c1">// 如果要打开的是fragment，需要使用</span>
         <span class="o">.</span><span class="na">createFragment</span><span class="o">();</span>
+
+        <span class="c1">// 回调的方式打开页面</span>
+        <span class="o">.</span><span class="na">navigation</span><span class="o">(</span><span class="n">v</span><span class="o">.</span><span class="na">getContext</span><span class="o">(),</span> <span class="k">new</span> <span class="n">NavigationCallback</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFound</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">Navigator</span> <span class="n">navigator</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kd">super</span><span class="o">.</span><span class="na">onFound</span><span class="o">(</span><span class="n">navigator</span><span class="o">);</span>
+                <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">v</span><span class="o">.</span><span class="na">getContext</span><span class="o">(),</span> <span class="s">"找到页面，即将打开"</span> <span class="o">+</span> <span class="n">navigator</span><span class="o">.</span><span class="na">getUrl</span><span class="o">(),</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onLost</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">Navigator</span> <span class="n">navigator</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kd">super</span><span class="o">.</span><span class="na">onLost</span><span class="o">(</span><span class="n">navigator</span><span class="o">);</span>
+                <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">v</span><span class="o">.</span><span class="na">getContext</span><span class="o">(),</span> <span class="s">"丢失页面"</span> <span class="o">+</span> <span class="n">navigator</span><span class="o">.</span><span class="na">getUrl</span><span class="o">(),</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onArrival</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">Navigator</span> <span class="n">navigator</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kd">super</span><span class="o">.</span><span class="na">onArrival</span><span class="o">(</span><span class="n">navigator</span><span class="o">);</span>
+                <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">v</span><span class="o">.</span><span class="na">getContext</span><span class="o">(),</span> <span class="s">"已打开"</span> <span class="o">+</span> <span class="n">navigator</span><span class="o">.</span><span class="na">getUrl</span><span class="o">(),</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
 </code></pre></div>
 <h4>2.2 延迟路由跳转</h4>
 
