@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-10-09T17:50:33+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">Android Studio 插件，TheRouter 跳转辅助工具</title><link href="http://localhost:4000/docs/2022/09/29/01" rel="alternate" type="text/html" title="Android Studio 插件，TheRouter 跳转辅助工具" /><published>2022-09-29T00:00:00+08:00</published><updated>2022-09-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/29/01">&lt;p&gt;开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。   &lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-11-02T10:59:58+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">Android Studio 插件，TheRouter 跳转辅助工具</title><link href="http://localhost:4000/docs/2022/09/29/01" rel="alternate" type="text/html" title="Android Studio 插件，TheRouter 跳转辅助工具" /><published>2022-09-29T00:00:00+08:00</published><updated>2022-09-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/29/01">&lt;p&gt;开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。   &lt;/p&gt;
 
 &lt;iframe width=&quot;384px&quot; height=&quot;319px&quot; src=&quot;https://plugins.jetbrains.com/embeddable/card/20047&quot;&gt;&lt;/iframe&gt;
 
@@ -15,22 +15,26 @@
 
 &lt;h2&gt;使用&lt;/h2&gt;
 
-&lt;p&gt;安装好插件后打开项目，可以看到，项目中所有调用了  &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;TheRouter.build(path).xxxxx
-或
-@Route(path=xxxxx)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;代码的地方，在左侧都有一个绿色箭头的图标。    &lt;/p&gt;
+&lt;p&gt;安装好插件后打开项目，就可以看到，在项目中所有调用了 &lt;code&gt;TheRouter.build(path)&lt;/code&gt; 的地方，&lt;br&gt;
+还有 &lt;code&gt;@Route(path = &amp;quot;xxxxx&amp;quot;)&lt;/code&gt; 注解的位置，&lt;br&gt;
+在左侧侧边栏上都会有一个绿色箭头的图标。    &lt;/p&gt;
 
-&lt;p&gt;鼠标放在图标上一段时间，可以看到提示：点击以后跳转到使用这个&lt;code&gt;path&lt;/code&gt;的地方。&lt;/p&gt;
+&lt;p&gt;如果把鼠标放在图标上一段时间，就可以看到提示：&lt;br&gt;
+点击以后跳转到使用这个&lt;code&gt;path&lt;/code&gt;的地方，&lt;br&gt;
+或者跳转到&lt;code&gt;path&lt;/code&gt;定义的位置，点击以后就能自动跳转了。&lt;br&gt;
+如下图：  &lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin1.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;点击箭头后可以自动跳转到当前&lt;code&gt;path&lt;/code&gt;的声明位置。   &lt;/p&gt;
+&lt;p&gt;如果在代码中有多个地方都可以跳转到当前落地页，点击箭头后会有一个选择框，&lt;br&gt;
+可以选择跳转到使用当前&lt;code&gt;path&lt;/code&gt;的位置。&lt;br&gt;
+例如这张图：   &lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin2.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;如果当前&lt;code&gt;path&lt;/code&gt;是个没有被声明的，或者是由字符串拼接的，可能会出现无法找到的情况，此时在侧边栏会出现黄色的警告提示，需要手动检查这个&lt;code&gt;path&lt;/code&gt;是不是忘记定义落地页了。   &lt;/p&gt;
+&lt;p&gt;如果当前&lt;code&gt;path&lt;/code&gt;是个没有被声明的，或者是由字符串拼接的，可能会出现无法找到定义位置的情况，此时在侧边栏会出现黄色的警告提示，&lt;br&gt;
+需要开发人工去检查这个&lt;code&gt;path&lt;/code&gt;是不是忘记定义落地页了，还是说手误写错了&lt;code&gt;path&lt;/code&gt;。&lt;br&gt;
+例如这张图：   &lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin3.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。</summary></entry><entry><title type="html">获取和使用最新版的 TheRouter</title><link href="http://localhost:4000/docs/2022/09/06/01" rel="alternate" type="text/html" title="获取和使用最新版的 TheRouter" /><published>2022-09-06T00:00:00+08:00</published><updated>2022-09-06T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/06/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/06/01">&lt;p&gt;TheRouter 的版本规划分为三种，分别是 &lt;code&gt;稳定版&lt;/code&gt;、&lt;code&gt;预览版&lt;/code&gt;、&lt;code&gt;公测版&lt;/code&gt;。&lt;/p&gt;
 
@@ -81,7 +85,7 @@
 &lt;h3&gt;注意事项&lt;/h3&gt;
 
 &lt;ol&gt;
-&lt;li&gt;issue中有用户反馈：使用&lt;code&gt;Windows&lt;/code&gt;系统迁移时，会发生乱码情况。犹豫迁移工具对文件的读写均才用&lt;code&gt;UTF-8&lt;/code&gt;编码，所以建议在迁移之前先将工程编码设置为&lt;code&gt;UTF-8&lt;/code&gt;。Android Studio支持修改工程编码：&lt;code&gt;Setting -&amp;gt; Editor -&amp;gt; File Encodings&lt;/code&gt; 修改&lt;code&gt;Global Encoding&lt;/code&gt;和&lt;code&gt;Project Encoding&lt;/code&gt;为 &lt;code&gt;UTF-8&lt;/code&gt;&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;issue中有用户反馈：使用&lt;code&gt;Windows&lt;/code&gt;系统迁移时，会发生乱码情况。犹豫迁移工具对文件的读写均采用&lt;code&gt;UTF-8&lt;/code&gt;编码，所以建议在迁移之前先将工程编码设置为&lt;code&gt;UTF-8&lt;/code&gt;。Android Studio支持修改工程编码：&lt;code&gt;Setting -&amp;gt; Editor -&amp;gt; File Encodings&lt;/code&gt; 修改&lt;code&gt;Global Encoding&lt;/code&gt;和&lt;code&gt;Project Encoding&lt;/code&gt;为 &lt;code&gt;UTF-8&lt;/code&gt;&lt;br&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/encode.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
@@ -91,8 +95,7 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;ARouter 的 Provider.init 部分，建议改为懒加载方式，在服务方法被调用时自己主动调用init方法。    &lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;如果使用了 ARouter 拦截器部分，需要自己手动处理拦截器的逻辑，ARouter的拦截器全部可以用 TheRouter 的拦截器替换，具体逻辑请参考：TheRouter页面跳转：【&lt;a href=&quot;https://therouter.cn/docs/2022/08/28/01&quot;&gt;第三部分&lt;/a&gt;】自定义处理器。    &lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ARouter 封装了大量 Bundle 传参的操作，例如&lt;code&gt;withBooleanArray()&lt;/code&gt;这种。我们认为这样的封装是冗余的。如果你使用到了对应方法，在TheRouter内可以直接通过对Bundle对象调用对应的方法。例如：    &lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;&lt;p&gt;ARouter 封装了大量 Bundle 传参的操作，例如&lt;code&gt;withBooleanArray()&lt;/code&gt;这种。我们认为这样的封装是冗余的。如果你使用到了对应方法，在TheRouter内可以直接通过对Bundle对象调用对应的方法。例如：    &lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// ARouter &lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;ARouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -106,7 +109,18 @@
         &lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putByteArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putStringArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;with(bundle)&lt;/code&gt;的实现区别。在&lt;code&gt;ARouter&lt;/code&gt;中，&lt;code&gt;with&lt;/code&gt;操作是一个集合性操作，如果此时&lt;code&gt;bundle&lt;/code&gt;中的 key 与&lt;code&gt;withString(key, value)&lt;/code&gt;中的 key 重复，会发生后者覆盖前者的情况。在&lt;code&gt;TheRouter&lt;/code&gt;中，&lt;code&gt;with&lt;/code&gt;操作是传入一个额外的对象，不会发生覆盖，但在第二个界面获取时需要通过&lt;code&gt;@Autowired&lt;/code&gt;注解获取。&lt;br&gt;
+如果你希望&lt;code&gt;with(bundle)&lt;/code&gt;能直接通过intent获取，可以使用如下代码。  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;ARouter.build().with(yourBundle).navigate()
+
+TheRouter.build(&quot;&quot;)
+    .fillParams { bundle -&amp;gt;
+        bundle.putAll(yourBundle)
+    }.navigation()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;p&gt;》》》   &lt;/p&gt;
 
 &lt;p&gt;暂未发现其他需要手动修改部分&lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">TheRouter提供了图形化界面的迁移工具，可以一键从其他路由迁移到TheRouter，目前仅支持ARouter，其他路由框架迁移也在开发中：</summary></entry><entry><title type="html">Android 动态路由框架：TheRouter 开源</title><link href="http://localhost:4000/docs/2022/09/04/01" rel="alternate" type="text/html" title="Android 动态路由框架：TheRouter 开源" /><published>2022-09-04T00:00:00+08:00</published><updated>2022-09-04T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/04/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/04/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。&lt;br&gt;
@@ -554,7 +568,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;tr&gt;
 &lt;td&gt;加载路由表&lt;/td&gt;
 &lt;td&gt;无运行时扫描&lt;br&gt;无反射&lt;/td&gt;
-&lt;td&gt;运行时扫描dex&lt;br&gt;反射实例类&lt;br&gt;性能损耗大&lt;/td&gt;
+&lt;td&gt;运行时扫描dex(新版本改为反射)&lt;br&gt;反射实例类&lt;br&gt;性能损耗大&lt;/td&gt;
 &lt;td&gt;运行时读文件&lt;br&gt;反射实例类&lt;br&gt;性能损耗中&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -578,7 +592,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;tr&gt;
 &lt;td&gt;动态注册路由信息&lt;/td&gt;
 &lt;td&gt;✔️&lt;/td&gt;
-&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
 &lt;td&gt;✖️&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -612,13 +626,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;td&gt;✖️&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;支持使用路由打开第三方库页面&lt;/td&gt;
-&lt;td&gt;✔️&lt;/td&gt;
-&lt;td&gt;✖️&lt;/td&gt;
-&lt;td&gt;✖️&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;支持使用路由打开第三方库页面&lt;/td&gt;
+&lt;td&gt;支持使用路由打开第三方SDK页面&lt;/td&gt;
 &lt;td&gt;✔️&lt;/td&gt;
 &lt;td&gt;✖️&lt;/td&gt;
 &lt;td&gt;✖️&lt;/td&gt;
@@ -749,7 +757,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 
 &lt;h4&gt;1.1 Gradle 引入&lt;/h4&gt;
 
-&lt;p&gt;最新版本号，请访问：(地址待补充)&lt;/p&gt;
+&lt;p&gt;最新版本号，请访问：(&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/releases&quot;&gt;github/releases&lt;/a&gt;)&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 项目根目录 build.gradle 引入&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;therouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;
 

@@ -91,22 +91,26 @@
 
 <h2>使用</h2>
 
-<p>安装好插件后打开项目，可以看到，项目中所有调用了  </p>
-<div class="highlight"><pre><code class="language-" data-lang="">TheRouter.build(path).xxxxx
-或
-@Route(path=xxxxx)
-</code></pre></div>
-<p>代码的地方，在左侧都有一个绿色箭头的图标。    </p>
+<p>安装好插件后打开项目，就可以看到，在项目中所有调用了 <code>TheRouter.build(path)</code> 的地方，<br>
+还有 <code>@Route(path = &quot;xxxxx&quot;)</code> 注解的位置，<br>
+在左侧侧边栏上都会有一个绿色箭头的图标。    </p>
 
-<p>鼠标放在图标上一段时间，可以看到提示：点击以后跳转到使用这个<code>path</code>的地方。</p>
+<p>如果把鼠标放在图标上一段时间，就可以看到提示：<br>
+点击以后跳转到使用这个<code>path</code>的地方，<br>
+或者跳转到<code>path</code>定义的位置，点击以后就能自动跳转了。<br>
+如下图：  </p>
 
 <p><img src="http://localhost:4000/assets/img/image/TheRouterIdeaPlugin1.jpg" class="blog-img"></p>
 
-<p>点击箭头后可以自动跳转到当前<code>path</code>的声明位置。   </p>
+<p>如果在代码中有多个地方都可以跳转到当前落地页，点击箭头后会有一个选择框，<br>
+可以选择跳转到使用当前<code>path</code>的位置。<br>
+例如这张图：   </p>
 
 <p><img src="http://localhost:4000/assets/img/image/TheRouterIdeaPlugin2.jpg" class="blog-img"></p>
 
-<p>如果当前<code>path</code>是个没有被声明的，或者是由字符串拼接的，可能会出现无法找到的情况，此时在侧边栏会出现黄色的警告提示，需要手动检查这个<code>path</code>是不是忘记定义落地页了。   </p>
+<p>如果当前<code>path</code>是个没有被声明的，或者是由字符串拼接的，可能会出现无法找到定义位置的情况，此时在侧边栏会出现黄色的警告提示，<br>
+需要开发人工去检查这个<code>path</code>是不是忘记定义落地页了，还是说手误写错了<code>path</code>。<br>
+例如这张图：   </p>
 
 <p><img src="http://localhost:4000/assets/img/image/TheRouterIdeaPlugin3.jpg" class="blog-img"></p>
 
