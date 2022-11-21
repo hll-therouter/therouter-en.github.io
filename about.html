@@ -83,7 +83,7 @@ permalink: /about
               <td>✔️</td>
             </tr>
             <tr>
-              <td>支持依赖注入</td>
+              <td>依赖注入</td>
               <td>✔️</td>
               <td>✔️</td>
               <td>✔️</td>
@@ -91,7 +91,7 @@ permalink: /about
             <tr>
               <td>加载路由表</td>
               <td>无运行时扫描<br>无反射</td>
-              <td>运行时扫描dex<br>反射实例类<br>性能损耗大</td>
+              <td>运行时扫描dex(新版本改为反射)<br>反射实例类<br>性能损耗大</td>
               <td>运行时读文件<br>反射实例类<br>性能损耗中</td>
             </tr>
             <tr>
@@ -119,10 +119,22 @@ permalink: /about
               <td>✖️</td>
             </tr>
             <tr>
-              <td>APT支持增量编译</td>
+              <td>支持 APT/KAPT 增量编译</td>
               <td>✔️</td>
               <td>✔️（开启文档生成则无法增量编译）</td>
               <td>✖️</td>
+            </tr>
+            <tr>
+              <td>支持 KSP 编译</td>
+              <td>✔️</td>
+              <td>✖️</td>
+              <td>✖️</td>
+            </tr>
+            <tr>
+              <td>支持 AGP8</td>
+              <td>✔️</td>
+              <td>Gradle 7.3 以后无法使用</td>
+              <td>Gradle 7.3 以后无法使用</td>
             </tr>
             <tr>
               <td>plugin支持增量编译</td>
@@ -149,13 +161,7 @@ permalink: /about
               <td>✖️</td>
             </tr>
             <tr>
-              <td>支持使用路由打开第三方库页面</td>
-              <td>✔️</td>
-              <td>✖️</td>
-              <td>✖️</td>
-            </tr>
-            <tr>
-              <td>支持使用路由打开第三方库页面</td>
+              <td>支持使用路由打开第三方 SDK 页面</td>
               <td>✔️</td>
               <td>✖️</td>
               <td>✖️</td>

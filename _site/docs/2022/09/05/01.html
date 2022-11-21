@@ -118,14 +118,15 @@
         <span class="n">bundle</span><span class="o">.</span><span class="na">putStringArrayList</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span>
     <span class="o">}.</span><span class="na">navigation</span><span class="o">()</span>
 </code></pre></div></li>
-<li><p><code>with(bundle)</code>的实现区别。在<code>ARouter</code>中，<code>with</code>操作是一个集合性操作，如果此时<code>bundle</code>中的 key 与<code>withString(key, value)</code>中的 key 重复，会发生后者覆盖前者的情况。在<code>TheRouter</code>中，<code>with</code>操作是传入一个额外的对象，不会发生覆盖，但在第二个界面获取时需要通过<code>@Autowired</code>注解获取。<br>
+<li><p><code>with(bundle)</code>的实现区别。在 ARouter 中，with 操作是一个集合性操作，如果此时 bundle 中的 key 与 <code>withString(key, value)</code> 中的 key 重复，会发生后者覆盖前者的情况。<br>
+在<code>TheRouter</code>中，with 操作是传入一个额外的对象，不会发生覆盖，但在落地页获取时需要通过 <code>@Autowired</code> 注解获取。<br>
 如果你希望<code>with(bundle)</code>能直接通过intent获取，可以使用如下代码。  </p>
-<div class="highlight"><pre><code class="language-" data-lang="">ARouter.build().with(yourBundle).navigate()
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ARouter</span><span class="o">.</span><span class="na">build</span><span class="o">().</span><span class="na">with</span><span class="o">(</span><span class="n">yourBundle</span><span class="o">).</span><span class="na">navigate</span><span class="o">()</span>
 
-TheRouter.build("")
-    .fillParams { bundle -&gt;
-        bundle.putAll(yourBundle)
-    }.navigation()
+<span class="n">TheRouter</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">fillParams</span> <span class="o">{</span> <span class="n">bundle</span> <span class="o">-&gt;</span>
+        <span class="n">bundle</span><span class="o">.</span><span class="na">putAll</span><span class="o">(</span><span class="n">yourBundle</span><span class="o">)</span>
+    <span class="o">}.</span><span class="na">navigation</span><span class="o">()</span>
 </code></pre></div></li>
 </ol>
 
