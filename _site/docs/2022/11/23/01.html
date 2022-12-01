@@ -39,13 +39,18 @@
       <li class="nav-item">
         
           
-            <a href="/doc" class="nav-link active header-color">文档</a>
+            <a href="/doc" class="nav-link active header-color">博客</a>
            
          
       </li>
       <li class="nav-item">
         
-          <a href="/docs/2022/08/24/01" class="nav-link header-color">发帖</a>
+          <a href="/docs/2022/08/24/01" class="nav-link header-color">社区</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/api/1.1.2-rc5" class="nav-link header-color">API文档</a>
          
       </li>
       <li class="nav-item">
@@ -89,25 +94,25 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 <h4>1. 新版本接入classpath</h4>
 
 <p>如果是新版本的Gradle，<code>classpath</code>已经改为用<code>plugins</code>的方式引入，只需要在闭包内加这一句就行了</p>
-<div class="highlight"><pre><code class="language-" data-lang="">id 'cn.therouter' version '1.1.1' apply false
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter'</span> <span class="n">version</span> <span class="s1">'1.1.1'</span> <span class="n">apply</span> <span class="kc">false</span>
 </code></pre></div>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d9a373ad726141a1b77d548e99de3656~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"></p>
 
 <h4>2. 老版本接入classpath</h4>
 
 <p>对于老版本的Gradle，需要手动引入<code>classpath</code>，在TheRouter官方Github首页也有接入介绍</p>
-<div class="highlight"><pre><code class="language-" data-lang="">classpath "cn.therouter:plugin:1.1.1"
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">classpath</span> <span class="s2">"cn.therouter:plugin:1.1.1"</span>
 </code></pre></div>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e17c86607e14d0888bf2ab30b34d3b1~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"></p>
 
 <h4>3. 引入插件</h4>
 
 <p>找到项目里全部的app模块（一般只会有一个，特殊项目会有多个）。也就是整个工程的所有<code>build.gradle</code>文件里面，只要是有<code>com.android.application</code>这个的模块，都要加上如下代码</p>
-<div class="highlight"><pre><code class="language-" data-lang="">// 老版本这样写
-apply plugin: 'therouter'
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// 老版本这样写</span>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'therouter'</span>
 
-// 新版本这样写
-id 'therouter'
+<span class="c1">// 新版本这样写</span>
+<span class="n">id</span> <span class="s1">'therouter'</span>
 </code></pre></div>
 <table><thead>
 <tr>
@@ -116,7 +121,7 @@ id 'therouter'
 </tr>
 </thead><tbody>
 <tr>
-<td><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5cefce8ad9c243a49bb5445128525b83~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"> (被注释掉的那个就是kapt插件，这里我是用了更先进的ksp)</td>
+<td><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5cefce8ad9c243a49bb5445128525b83~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"> <br>(被注释掉的那个就是kapt插件，这里我是用了更先进的ksp)</td>
 <td><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a8bfb7c684a40268e3297285b4643e4~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"></td>
 </tr>
 </tbody></table>
@@ -129,44 +134,44 @@ id 'therouter'
 
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ef8fb789721548b4bc7a11563ecc328b~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"> 
 如果报找不到kapt，可能是因为没有引入kotlin-kapt的插件，参考步骤3里面的截图，接入对应的kapt。如果是纯Java工程，需要用Java的APT处理，APT就不用引入插件了，直接把<code>kapt</code>改成<code>annotationProcessor</code></p>
-<div class="highlight"><pre><code class="language-" data-lang="">annotationProcessor "cn.therouter:apt:1.1.1"
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">annotationProcessor</span> <span class="s2">"cn.therouter:apt:1.1.1"</span>
 </code></pre></div>
 <h2>使用</h2>
 
 <h4>1. 声明路由</h4>
 
 <p>给需要跳转的页面加上路由表声明</p>
-<div class="highlight"><pre><code class="language-" data-lang="">@Route(path = "http://therouter.com/home")
-public class HomeActivity extends BaseActivity {
-}
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Route</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"http://therouter.com/home"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HomeActivity</span> <span class="kd">extends</span> <span class="n">BaseActivity</span> <span class="o">{</span>
+<span class="o">}</span>
 </code></pre></div>
 <h4>2. 添加参数注入</h4>
 
 <p>这一步如果在base里面写了的话就不用每个Activity都加了。</p>
-<div class="highlight"><pre><code class="language-" data-lang="">@Override
-protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    TheRouter.inject(this);
-}
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+    <span class="n">TheRouter</span><span class="o">.</span><span class="na">inject</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="o">}</span>
 </code></pre></div>
 <h4>3. 发起跳转</h4>
 
 <p>也就是原来使用startActivity()的方法，都可以改成这样使用了</p>
-<div class="highlight"><pre><code class="language-" data-lang="">@Override
-protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    TheRouter.build("要跳转的目标页Path")
-        .withInt("intValue", 12345678) 
-        .withString("str_123_Value", "传中文字符串")
-        .withBoolean("boolValue", true)
-        .withLong("longValue", 123456789012345L)
-        .withChar("charValue", 'c')
-        .withDouble("double", 3.14159265358972)
-        .withFloat("floatValue", 3.14159265358972F)
-        .navigation();
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+    <span class="n">TheRouter</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s">"要跳转的目标页Path"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withInt</span><span class="o">(</span><span class="s">"intValue"</span><span class="o">,</span> <span class="mi">12345678</span><span class="o">)</span> 
+        <span class="o">.</span><span class="na">withString</span><span class="o">(</span><span class="s">"str_123_Value"</span><span class="o">,</span> <span class="s">"传中文字符串"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withBoolean</span><span class="o">(</span><span class="s">"boolValue"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withLong</span><span class="o">(</span><span class="s">"longValue"</span><span class="o">,</span> <span class="mi">123456789012345L</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withChar</span><span class="o">(</span><span class="s">"charValue"</span><span class="o">,</span> <span class="sc">'c'</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withDouble</span><span class="o">(</span><span class="s">"double"</span><span class="o">,</span> <span class="mf">3.14159265358972</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withFloat</span><span class="o">(</span><span class="s">"floatValue"</span><span class="o">,</span> <span class="mf">3.14159265358972</span><span class="n">F</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">navigation</span><span class="o">();</span>
 
-    TheRouter.build("如果没有参数，可以什么都不传").navigation();
-}
+    <span class="n">TheRouter</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s">"如果没有参数，可以什么都不传"</span><span class="o">).</span><span class="na">navigation</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre></div>
 <h2>KSP接入(可选，用于替代kapt)</h2>
 

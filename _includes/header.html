@@ -16,19 +16,26 @@
       <li class="nav-item">
         {% if page.url contains "/doc" %}
           {% if page.url contains "/2022/08/24" %}
-            <a href="/doc" class="nav-link header-color">文档</a>
+            <a href="/doc" class="nav-link header-color">博客</a>
           {% else %}
-            <a href="/doc" class="nav-link active header-color">文档</a>
+            <a href="/doc" class="nav-link active header-color">博客</a>
           {% endif %} 
         {% else %}
-          <a href="/doc" class="nav-link header-color">文档</a>
+          <a href="/doc" class="nav-link header-color">博客</a>
         {% endif %} 
       </li>
       <li class="nav-item">
         {% if page.url contains "/docs/2022/08/24/01" %}
           <a href="/docs/2022/08/24/01" class="nav-link active header-color">发帖</a>
         {% else %}
-          <a href="/docs/2022/08/24/01" class="nav-link header-color">发帖</a>
+          <a href="/docs/2022/08/24/01" class="nav-link header-color">社区</a>
+        {% endif %} 
+      </li>
+      <li class="nav-item">
+        {% if page.url contains "/api" %}
+          <a href="/api/1.1.2-rc5" class="nav-link active header-color">API文档</a>
+        {% else %}
+          <a href="/api/1.1.2-rc5" class="nav-link header-color">API文档</a>
         {% endif %} 
       </li>
       <li class="nav-item">
