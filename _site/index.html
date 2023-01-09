@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+  <!-- meta data & title -->
+  <meta charset="utf-8">
+  <title>TheRouter - 移动端模块化解决方案</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。">
+  <meta name="author" content="TheRouter">
+  <meta name="keyword"
+      content="android,kotlin,arouter,TheRouter">
+
+  <meta name="keywords"
+      content="android,kotlin,arouter,therouter,studio,优质开发技术">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/animate.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/prism.css">
+
+  <script type="text/javascript" src="http://localhost:4000/js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</head>
+  <div class="container">
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <img src="http://localhost:4000/assets/img/logo/logo4.png" width="170px">
+    </a>
+
+    <ul class="nav nav-pills">
+      
+      <li class="nav-item">
+        
+          <a href="/" class="nav-link active header-color" aria-current="page">首页</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/doc" class="nav-link header-color">博客</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/docs/2022/08/24/01" class="nav-link header-color">社区</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/api/1.1.2-rc5" class="nav-link header-color">API文档</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/about" class="nav-link header-color">关于</a>
+         
+      </li>
+      <li class="nav-item"><a href="https://github.com/HuolalaTech/hll-wp-therouter-android" class="nav-link header-color">GitHub</a></li>
+    </ul>
+  </header>
+</div>
+
+
+<!-- End Header -->
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-1.10.2.min.js"></script>
+<script src="http://localhost:4000/js/wow.min.js"></script>
+<script>
+  new WOW().init();
+</script>
+
+  <body>
+    <div style="position: relative; width: 100%;">
+        <img src="http://localhost:4000/assets/img/logo/huolala.jpg" class="blur" width="100%">
+        <span class="home-title">移动端模块化解决方案</span>
+        <span class="home-text">TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。支持KSP、支持AGP8，不仅能对常规的模块依赖解耦、页面跳转，同时提供了模块化过程中常见问题的解决办法。</span>
+        <a href="http://localhost:4000/docs/2022/11/23/01">
+            <button type="button" class="btn btn-info button-color home-button-start">快速开始</button>
+        </a>
+        <a href="https://github.com/HuolalaTech/hll-wp-therouter-android">
+            <button type="button" class="btn btn-outline-info button-outline-color home-button-github">GitHub</button>
+        </a>
+    </div>
+
+    <!-- Begin #services-section -->
+    <section id="services" class="services-section section-global-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="services-header">
+                    <h3 class="services-header-title">框架能力</h3><hr>
+                </div>
+            </div>
+      
+            <!-- Begin Services Row 1 -->
+            <div class="row services-row services-row-head services-row-1">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated fadeInLeft" data-wow-offset="40">
+                        <p class="services-icon"><i class="bi bi-bezier home-bi"></i></p>
+                        <h4 class="services-title">页面跳转能力<br>Navigator</h4>
+                        <p class="services-body">支持正则Path，多对一页面关系，动态下发路由表。支持纯原生、H5 Hybrid、Flutter、RN、Weex等混合开发框架。<br><br></p>
+                        <p class="services-more"><a href="/docs/2022/08/28/01">查阅详细文档</a></p>
+                    </div>
+                </div>
+        
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated zoomIn" data-wow-offset="40">
+                        <p class="services-icon"><i class="bi bi-bezier2 home-bi"></i></p>
+                        <h4 class="services-title">依赖注入能力<br>ServiceProvider</h4>
+                        <p class="services-body">支持跨模块依赖注入，支持自定义注入项的创建规则，依赖注入可自定义参数。支持自定义服务拦截，单模块 mock 调试。</p>
+                        <p class="services-more"><a href="/docs/2022/08/27/01">查阅详细文档</a></p>
+                    </div>
+                </div>
+        
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated fadeInRight" data-wow-offset="40">
+                        <p class="services-icon"><i class="bi bi-diagram-3 home-bi"></i></p>
+                        <h4 class="services-title">业务节点订阅<br>FlowTaskExecutor</h4>
+                        <p class="services-body">支持独立模块自动初始化，初始化允许跨模块多任务依赖，支持编译期循环引用检测，支持自定义业务初始化时机，可以用于解决隐私合规问题。</p>
+                        <p class="services-more"><a href="/docs/2022/08/26/01">查阅详细文档</a></p>
+                    </div>        
+                </div>
+            </div>
+            <!-- End Serivces Row 1 -->
+      
+            <!-- Begin Services Row 2 -->
+            <div class="row services-row services-row-tail services-row-2">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated zoomIn" data-wow-offset="40">
+                        <p class="services-icon"><i class="bi bi-yelp home-bi"></i></p>
+                        <h4 class="services-title">动态化能力<br>ActionManager</h4>
+                        <p class="services-body">支持远程代码执行，支持全局回调配置，支持优先级响应与中断响应，支持记录调用路径，解决调试期观察者模式无法追踪Observable的问题。</p>
+                        <p class="services-more"><a href="/docs/2022/08/25/01">查阅详细文档</a></p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated fadeInLeft" data-wow-offset="40">
+                        <p class="services-icon"><i class="bi bi-columns-gap home-bi"></i></span></p>
+                        <h4 class="services-title">出色的AS辅助工具<br><br></h4>
+                        <p class="services-body">一个用于自动跳转的高效辅助插件，可以直接从路由的声明处查看到哪些地方跳转到本路由，再也不用怕路由字符串满天飞了。</p>
+                        <p class="services-more"><a href="/docs/2022/09/29/01">查阅详细文档</a></p>
+                    </div>
+                </div>
+        
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated fadeInRight" data-wow-offset="40">
+                        <p class="services-icon"><i class="bi bi-signpost-split home-bi"></i></p>
+                        <h4 class="services-title">从其他路由一键迁移<br><br></h4>
+                        <p class="services-body">TheRouter提供了图形化界面的迁移工具，可以一键从其他路由迁移到TheRouter，目前仅支持ARouter，其他路由框架迁移也在开发中。</p>
+                        <p class="services-more"><a href="/docs/2022/09/05/01">查阅详细文档</a></p>
+                    </div>
+                </div>
+            </div>
+            <!-- End Serivces Row 2 -->
+    
+        </div>      
+    </section>
+    <!-- End #services-section -->
+
+  </body>
+
+  <!-- Footer -->
+<footer> 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3><i class="bi bi-link-45deg bi-footer"></i> 友情链接</h3>
+        <p><a href="https://www.huolala.cn/"> 货拉拉</a></p>
+        <p><a href="https://www.huolala.cn/house_move.html"> 无忧搬家</a></p>
+        <p><a href="https://www.xiaolachuxing.com/"> 小拉出行</a></p>
+      </div>
+      <div class="col-md-4">
+        <h3><i class="bi bi-slack bi-footer"></i> 社区</h3>
+        <p><a href="https://kymjs.com/therouter/wx/"> 官方微信群</a></p>
+        <p><a href="https://github.com/HuolalaTech/hll-wp-therouter-android"> GitHub </a></p>
+        <p><a href="https://juejin.cn/user/1768489241815070/posts"> 技术博客 </a></p> 
+      </div>
+      <div class="col-md-4">
+        <h3><i class="bi bi-postcard-heart bi-footer"></i> 关于</h3>
+        <p><a href="https://juejin.cn/user/1768489241815070/posts"> 货拉拉移动技术团队</a></p>
+        <p><a href="https://kymjs.com"> 开源实验室</a></p>
+      </div>    
+    </div>
+  </div>
+
+  <div class="copyright text center">
+    <p>&copy; Copyright 2023, <a href="#">TheRouter</a>. <br>Theme ported by <a href="https://melvinchng.github.io/" target="_blank">Melvin Ch'ng</a></p>
+  </div>
+</footer>
+</html>

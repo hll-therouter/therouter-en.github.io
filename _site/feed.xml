@@ -1,0 +1,1704 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-09T11:09:30+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">从零接入 TheRouter</title><link href="http://localhost:4000/docs/2022/11/23/01" rel="alternate" type="text/html" title="从零接入 TheRouter" /><published>2022-11-23T00:00:00+08:00</published><updated>2022-11-23T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/11/23/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/11/23/01">&lt;p&gt;TheRouter是货拉拉开源的路由框架，针对Android平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。&lt;br&gt;
+Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/&lt;/a&gt;&lt;br&gt;
+官网：&lt;a href=&quot;http://therouter.cn/&quot;&gt;http://therouter.cn/&lt;/a&gt;  &lt;/p&gt;
+
+&lt;h2&gt;开始之前&lt;/h2&gt;
+
+&lt;p&gt;如果你的项目之前使用过其他路由，建议使用迁移工具一键迁移： &lt;a href=&quot;https://therouter.cn/docs/2022/09/05/01&quot;&gt;https://therouter.cn/docs/2022/09/05/01&lt;/a&gt;   &lt;/p&gt;
+
+&lt;p&gt;如果你的是新项目，请继续往下看接入步骤。&lt;/p&gt;
+
+&lt;h2&gt;查看最新版本&lt;/h2&gt;
+
+&lt;p&gt;TheRouter的版本分为两种，稳定版和rc版，一般不追求新功能我们就用稳定版就行，可以在官网看到最新的版本号和各种版本的说明：&lt;a href=&quot;https://therouter.cn/docs/2022/09/06/01&quot;&gt;https://therouter.cn/docs/2022/09/06/01&lt;/a&gt;  &lt;/p&gt;
+
+&lt;h2&gt;接入&lt;/h2&gt;
+
+&lt;p&gt;新建一个Demo工程，打开Demo的根目录&lt;code&gt;build.gradle&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h4&gt;1. 新版本接入classpath&lt;/h4&gt;
+
+&lt;p&gt;如果是新版本的Gradle，&lt;code&gt;classpath&lt;/code&gt;已经改为用&lt;code&gt;plugins&lt;/code&gt;的方式引入，只需要在闭包内加这一句就行了&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cn.therouter'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.1.1'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d9a373ad726141a1b77d548e99de3656~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+
+&lt;h4&gt;2. 老版本接入classpath&lt;/h4&gt;
+
+&lt;p&gt;对于老版本的Gradle，需要手动引入&lt;code&gt;classpath&lt;/code&gt;，在TheRouter官方Github首页也有接入介绍&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cn.therouter:plugin:1.1.1&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e17c86607e14d0888bf2ab30b34d3b1~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+
+&lt;h4&gt;3. 引入插件&lt;/h4&gt;
+
+&lt;p&gt;找到项目里全部的app模块（一般只会有一个，特殊项目会有多个）。也就是整个工程的所有&lt;code&gt;build.gradle&lt;/code&gt;文件里面，只要是有&lt;code&gt;com.android.application&lt;/code&gt;这个的模块，都要加上如下代码&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 老版本这样写&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'therouter'&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 新版本这样写&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'therouter'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table&gt;&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;新版本的Gradle&lt;/th&gt;
+&lt;th&gt;老版本的Gradle&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5cefce8ad9c243a49bb5445128525b83~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; &lt;br&gt;(被注释掉的那个就是kapt插件，这里我是用了更先进的ksp)&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a8bfb7c684a40268e3297285b4643e4~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+
+&lt;h4&gt;4. 引入kapt&lt;/h4&gt;
+
+&lt;p&gt;TheRouter的注解处理依赖kapt执行，所以要在项目里面手动引入，否则无法处理注解&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注：所有的模块都必须引入kapt，否则就有可能造成某些路由表不生成。我最开始以为简单，就在最底层模块依赖了kapt，结果上层模块路由表都没有生成，查了好久才发现，所有模块都要加。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ef8fb789721548b4bc7a11563ecc328b~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; 
+如果报找不到kapt，可能是因为没有引入kotlin-kapt的插件，参考步骤3里面的截图，接入对应的kapt。如果是纯Java工程，需要用Java的APT处理，APT就不用引入插件了，直接把&lt;code&gt;kapt&lt;/code&gt;改成&lt;code&gt;annotationProcessor&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;annotationProcessor&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cn.therouter:apt:1.1.1&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;使用&lt;/h2&gt;
+
+&lt;h4&gt;1. 声明路由&lt;/h4&gt;
+
+&lt;p&gt;给需要跳转的页面加上路由表声明&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HomeActivity&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BaseActivity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;2. 添加参数注入&lt;/h4&gt;
+
+&lt;p&gt;这一步如果在base里面写了的话就不用每个Activity都加了。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;3. 发起跳转&lt;/h4&gt;
+
+&lt;p&gt;也就是原来使用startActivity()的方法，都可以改成这样使用了&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;要跳转的目标页Path&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;intValue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12345678&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;str_123_Value&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;传中文字符串&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withBoolean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;boolValue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withLong&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;longValue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123456789012345L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withChar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;charValue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'c'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withDouble&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;double&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.14159265358972&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withFloat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;floatValue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.14159265358972&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;如果没有参数，可以什么都不传&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;KSP接入(可选，用于替代kapt)&lt;/h2&gt;
+
+&lt;h4&gt;1. 升级Gradle&lt;/h4&gt;
+
+&lt;p&gt;KSP 依赖Gradle7.X，所以需要把 Gradle 版本号跟 AGP 版本号都升级到最新。&lt;/p&gt;
+
+&lt;p&gt;比如我的版本号是这样的（项目目录/gradle/wrapper/gradle-wrapper.properties）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4b2c1f6ee4224f188802867cbeefb678~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; &lt;/p&gt;
+
+&lt;p&gt;AGP我用的是 8.0 的，根目录&lt;code&gt;build.gradle&lt;/code&gt;中插件列表&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0eb0dd4a28284fa39f5d05274e0feac0~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; &lt;/p&gt;
+
+&lt;p&gt;由于新版本的Gradle强制要求最新版本的&lt;code&gt;Android Studio Preview&lt;/code&gt;，并且必须&lt;code&gt;Java11&lt;/code&gt;编译，所以还得要下载最新的AS预览版，并修改编译环境。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/61553a1f06f845d5955fc41ff9d2f3c8~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/321fe7b191de46cf812f4e5dae39228d~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; &lt;/p&gt;
+
+&lt;h4&gt;2. 添加KSP依赖&lt;/h4&gt;
+
+&lt;p&gt;根目录&lt;code&gt;build.gradle&lt;/code&gt;中，插件列表闭包内引入&lt;code&gt;KSP&lt;/code&gt;插件依赖&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ded28ea022f54c94a1af76e01aa1ce92~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; &lt;/p&gt;
+
+&lt;h4&gt;3. 添加KSP声明&lt;/h4&gt;
+
+&lt;p&gt;所有模块都要加上KSP插件的声明，否则会提示找不到KSP工具。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/163322b3d37b4f548e5229b3032438fe~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; &lt;/p&gt;
+
+&lt;h4&gt;4. 使用KSP&lt;/h4&gt;
+
+&lt;p&gt;在所有模块的&lt;code&gt;dependencies&lt;/code&gt;闭包内，引入therouter的依赖，需要注意的是，所有模块都要引入&lt;code&gt;ksp &amp;quot;cn.therouter:apt:1.1.3-beta1&amp;quot;&lt;/code&gt;，不能只在最底层模块引入ksp。&lt;/p&gt;
+
+&lt;p&gt;（下面的 implementation 可以只在最底层引入，上传传递依赖)。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  KSP 是从 1.1.3-beta1 版本开始支持的&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8c8b45d19046490da3cf2a1760805c01~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; &lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">TheRouter是货拉拉开源的路由框架，针对Android平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。 Github: https://github.com/HuolalaTech/hll-wp-therouter-android/ 官网：http://therouter.cn/</summary></entry><entry><title type="html">Android Studio 插件，TheRouter 跳转辅助工具</title><link href="http://localhost:4000/docs/2022/09/29/01" rel="alternate" type="text/html" title="Android Studio 插件，TheRouter 跳转辅助工具" /><published>2022-09-29T00:00:00+08:00</published><updated>2022-09-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/29/01">&lt;p&gt;开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。   &lt;/p&gt;
+
+&lt;iframe width=&quot;384px&quot; height=&quot;319px&quot; src=&quot;https://plugins.jetbrains.com/embeddable/card/20047&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2&gt;下载插件&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;打开 Android Studio -&amp;gt; Preferences -&amp;gt;  Plugins  -&amp;gt; Marketplace&lt;/li&gt;
+&lt;li&gt;搜索 &lt;code&gt;TheRouter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;点击下载&lt;/li&gt;
+&lt;li&gt;重启 Android Studio&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;使用&lt;/h2&gt;
+
+&lt;p&gt;安装好插件后打开项目，就可以看到，在项目中所有调用了 &lt;code&gt;TheRouter.build(path)&lt;/code&gt; 的地方，&lt;br&gt;
+还有 &lt;code&gt;@Route(path = &amp;quot;xxxxx&amp;quot;)&lt;/code&gt; 注解的位置，&lt;br&gt;
+在左侧侧边栏上都会有一个绿色箭头的图标。    &lt;/p&gt;
+
+&lt;p&gt;如果把鼠标放在图标上一段时间，就可以看到提示：&lt;br&gt;
+点击以后跳转到使用这个&lt;code&gt;path&lt;/code&gt;的地方，&lt;br&gt;
+或者跳转到&lt;code&gt;path&lt;/code&gt;定义的位置，点击以后就能自动跳转了。&lt;br&gt;
+如下图：  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin1.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;如果在代码中有多个地方都可以跳转到当前落地页，点击箭头后会有一个选择框，&lt;br&gt;
+可以选择跳转到使用当前&lt;code&gt;path&lt;/code&gt;的位置。&lt;br&gt;
+例如这张图：   &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin2.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;如果当前&lt;code&gt;path&lt;/code&gt;是个没有被声明的，或者是由字符串拼接的，可能会出现无法找到定义位置的情况，此时在侧边栏会出现黄色的警告提示，&lt;br&gt;
+需要开发人工去检查这个&lt;code&gt;path&lt;/code&gt;是不是忘记定义落地页了，还是说手误写错了&lt;code&gt;path&lt;/code&gt;。&lt;br&gt;
+例如这张图：   &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin3.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。</summary></entry><entry><title type="html">获取和使用最新版的 TheRouter</title><link href="http://localhost:4000/docs/2022/09/06/01" rel="alternate" type="text/html" title="获取和使用最新版的 TheRouter" /><published>2022-09-06T00:00:00+08:00</published><updated>2022-09-06T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/06/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/06/01">&lt;p&gt;TheRouter 的版本规划分为三种，分别是 &lt;code&gt;稳定版&lt;/code&gt;、&lt;code&gt;预览版&lt;/code&gt;、&lt;code&gt;公测版&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h3&gt;稳定版&lt;/h3&gt;
+
+&lt;p&gt;稳定版总是在&lt;code&gt;main&lt;/code&gt;分支打包发布，最新的稳定版本就是&lt;code&gt;main&lt;/code&gt;分支的最新代码。   &lt;/p&gt;
+
+&lt;p&gt;你可以在 GitHub 的 releases 页面找到最新的稳定版本。&lt;br&gt;
+&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/releases&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/releases&lt;/a&gt;  &lt;/p&gt;
+
+&lt;p&gt;稳定版的版本号格式为&lt;code&gt;x.y.z&lt;/code&gt;，最新的稳定版本会有绿色的&lt;code&gt;Latest&lt;/code&gt;标记。     &lt;/p&gt;
+
+&lt;h3&gt;预览版&lt;/h3&gt;
+
+&lt;p&gt;预览版为一段时间的&lt;code&gt;feature&lt;/code&gt;和&lt;code&gt;bugfix&lt;/code&gt;整合，表示即将被合并到&lt;code&gt;main&lt;/code&gt;分支的代码。  &lt;/p&gt;
+
+&lt;p&gt;最新的预览版会在 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/releases&quot;&gt; GitHub 的 releases 页面&lt;/a&gt; 标记为&lt;code&gt;Pre-release&lt;/code&gt;，预览版版本号一般会带有&lt;code&gt;-rc&lt;/code&gt;标记。  &lt;/p&gt;
+
+&lt;p&gt;预览版可以直接在&lt;code&gt;mavenCentral()&lt;/code&gt;仓库获取，无需特殊处理。适合追求新功能和特定 bug 修复的开发者使用。  &lt;/p&gt;
+
+&lt;h3&gt;公测版&lt;/h3&gt;
+
+&lt;p&gt;公测版为每次新&lt;code&gt;feature&lt;/code&gt;或&lt;code&gt;bugfix&lt;/code&gt;的打包，不会在 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/releases&quot;&gt;releases 页&lt;/a&gt; 展示，你可以在maven上查看最新的公测版本。   &lt;/p&gt;
+
+&lt;p&gt;公测版版本号一般会带有&lt;code&gt;-alpha&lt;/code&gt;标记，需要在&lt;code&gt;build.gradle&lt;/code&gt;中引入公测版仓库。  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-gradle&quot; data-lang=&quot;gradle&quot;&gt;&lt;span class=&quot;k&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mavenCentral&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://s01.oss.sonatype.org/content/repositories/snapshots/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;查看最新公测版本：&lt;a href=&quot;https://s01.oss.sonatype.org/content/repositories/snapshots/cn/therouter/&quot;&gt;https://s01.oss.sonatype.org&lt;/a&gt;  &lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">TheRouter 的版本规划分为三种，分别是 稳定版、预览版、公测版。</summary></entry><entry><title type="html">TheRouter 一键迁移工具</title><link href="http://localhost:4000/docs/2022/09/05/01" rel="alternate" type="text/html" title="TheRouter 一键迁移工具" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/05/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/05/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;，目前仅支持&lt;code&gt;ARouter&lt;/code&gt;，其他路由框架迁移也在开发中：&lt;/p&gt;
+
+&lt;p&gt;（GitHub下载，70M左右，请耐心等待）  &lt;/p&gt;
+
+&lt;p&gt;当前版本：1.1.1 (2022-10-09更新)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mac OS 迁移工具下载：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;Windows 迁移工具下载：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果项目中使用了ARouter的IProvider.init()方法，可能需要手动处理初始化逻辑。&lt;br&gt;
+如下图：  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7f2cc2b3509f41ccaa11dc9617088033~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+
+&lt;h3&gt;注意事项&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;issue中有用户反馈：使用&lt;code&gt;Windows&lt;/code&gt;系统迁移时，会发生乱码情况。犹豫迁移工具对文件的读写均采用&lt;code&gt;UTF-8&lt;/code&gt;编码，所以建议在迁移之前先将工程编码设置为&lt;code&gt;UTF-8&lt;/code&gt;。Android Studio支持修改工程编码：&lt;code&gt;Setting -&amp;gt; Editor -&amp;gt; File Encodings&lt;/code&gt; 修改&lt;code&gt;Global Encoding&lt;/code&gt;和&lt;code&gt;Project Encoding&lt;/code&gt;为 &lt;code&gt;UTF-8&lt;/code&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/encode.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;需要手动修改的部分&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;ARouter 的 Provider.init 部分，建议改为懒加载方式，在服务方法被调用时自己主动调用init方法。    &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果使用了 ARouter 拦截器部分，需要自己手动处理拦截器的逻辑，ARouter的拦截器全部可以用 TheRouter 的拦截器替换，具体逻辑请参考：TheRouter页面跳转：【&lt;a href=&quot;https://therouter.cn/docs/2022/08/28/01&quot;&gt;第三部分&lt;/a&gt;】自定义处理器。    &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ARouter 封装了大量 Bundle 传参的操作，例如&lt;code&gt;withBooleanArray()&lt;/code&gt;这种。我们认为这样的封装是冗余的。如果你使用到了对应方法，在TheRouter内可以直接通过对Bundle对象调用对应的方法。例如：    &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// ARouter &lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ARouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withByteArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withStringArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// TheRouter&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fillParams&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putByteArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putStringArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;with(bundle)&lt;/code&gt;的实现区别。在 ARouter 中，with 操作是一个集合性操作，如果此时 bundle 中的 key 与 &lt;code&gt;withString(key, value)&lt;/code&gt; 中的 key 重复，会发生后者覆盖前者的情况。&lt;br&gt;
+在&lt;code&gt;TheRouter&lt;/code&gt;中，with 操作是传入一个额外的对象，不会发生覆盖，但在落地页获取时需要通过 &lt;code&gt;@Autowired&lt;/code&gt; 注解获取。&lt;br&gt;
+如果你希望&lt;code&gt;with(bundle)&lt;/code&gt;能直接通过intent获取，可以使用如下代码。  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;ARouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;yourBundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fillParams&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putAll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;yourBundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;》》》   &lt;/p&gt;
+
+&lt;p&gt;暂未发现其他需要手动修改部分&lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">TheRouter提供了图形化界面的迁移工具，可以一键从其他路由迁移到TheRouter，目前仅支持ARouter，其他路由框架迁移也在开发中：</summary></entry><entry><title type="html">Android 动态路由框架：TheRouter 开源</title><link href="http://localhost:4000/docs/2022/09/04/01" rel="alternate" type="text/html" title="Android 动态路由框架：TheRouter 开源" /><published>2022-09-04T00:00:00+08:00</published><updated>2022-09-04T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/04/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/04/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。&lt;br&gt;
+Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android&lt;/a&gt;。    &lt;/p&gt;
+
+&lt;p&gt;TheRouter 核心功能具备如下能力：    &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;页面导航跳转能力(Navigator)&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;跨模块依赖注入能力(ServiceProvider)&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;单模块自动初始化能力(FlowTaskExecutor)&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;动态化能力(ActionManager)&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;模块AAR/源码依赖一键切换脚本&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;一、为什么要使用 TheRouter&lt;/h3&gt;
+
+&lt;p&gt;路由是现如今移动端开发中必不可少的功能，尤其是企业级APP，可以用于将&lt;code&gt;Intent&lt;/code&gt;页面跳转的强依赖关系解耦，同时减少跨团队开发的互相依赖问题。   &lt;/p&gt;
+
+&lt;p&gt;对于大型 APP 开发，基本都会选用模块化(或组件化)方式开发，对于模块间解耦要求更高。 &lt;code&gt;TheRouter&lt;/code&gt; 是一整套完全面向模块化开发的解决方案，不仅能支持常规的模块依赖解耦、页面跳转，同时提供了模块化过程中常见问题的解决办法。例如：完美解决了模块化开发后由于组件内无法获取 &lt;code&gt;Application&lt;/code&gt; 生命周期与业务流程，造成每次初始化与关联依赖调用都需要跨模块修改代码的问题。       &lt;/p&gt;
+
+&lt;h4&gt;1.1 TheRouter 四大能力&lt;/h4&gt;
+
+&lt;p&gt;Navigator：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;支持 &lt;code&gt;Activity&lt;/code&gt; 和 &lt;code&gt;Fragment&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;支持&lt;code&gt;Path&lt;/code&gt;与页面多对一关系或一对一关系，可用于解决多端path统一问题&lt;/li&gt;
+&lt;li&gt;页面&lt;code&gt;Path&lt;/code&gt;支持正则表达式声明&lt;/li&gt;
+&lt;li&gt;支持 &lt;code&gt;json&lt;/code&gt; 格式路由表导出&lt;/li&gt;
+&lt;li&gt;支持动态下发 &lt;code&gt;json&lt;/code&gt; 路由表，降级任意页面为H5&lt;/li&gt;
+&lt;li&gt;支持任意&lt;code&gt;object&lt;/code&gt;跨模块传递（无需序列化，且能保证对象类型）&lt;/li&gt;
+&lt;li&gt;支持页面跳转拦截处理&lt;/li&gt;
+&lt;li&gt;支持自定义页面参数解析方式（例如将&lt;code&gt;json&lt;/code&gt;解析为对象）&lt;/li&gt;
+&lt;li&gt;支持使用路由跳转到第三方 SDK 中的&lt;code&gt;Activity&lt;/code&gt;(&lt;code&gt;Fragment&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ServiceProvider：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;支持跨模块依赖注入&lt;/li&gt;
+&lt;li&gt;支持自定义注入项的创建规则，依赖注入可自定义参数&lt;/li&gt;
+&lt;li&gt;支持自定义服务拦截，单模块&lt;code&gt;mock&lt;/code&gt;调试&lt;/li&gt;
+&lt;li&gt;支持注入对象缓存，多次注入 只会new一次对象&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;FlowTaskExecutor：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;支持单模块独立初始化&lt;/li&gt;
+&lt;li&gt;支持懒加载初始化&lt;/li&gt;
+&lt;li&gt;独立初始化允许多任务依赖(参考&lt;code&gt;Gradle Task&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;支持编译期循环引用检测&lt;/li&gt;
+&lt;li&gt;支持自定义业务初始化时机，可以用于解决隐私合规问题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ActionManager：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;支持全局回调配置&lt;/li&gt;
+&lt;li&gt;支持优先级响应与中断响应&lt;/li&gt;
+&lt;li&gt;支持记录调用路径，解决调试期观察者模式无法追踪&lt;code&gt;Observable&lt;/code&gt;的问题 &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;注：&lt;/strong&gt; &lt;code&gt;FlowTaskExecutor&lt;/code&gt;、&lt;code&gt;ActionManager&lt;/code&gt; 后续会作为可选能力，提供&lt;code&gt;可插拔&lt;/code&gt;或&lt;code&gt;单独使用&lt;/code&gt;的选项（预计10月份提供）。&lt;/p&gt;
+
+&lt;h3&gt;二、路由方案&lt;/h3&gt;
+
+&lt;p&gt;目前现有的路由基本上集中于两种能力的实现：页面跳转、跨模块调用，核心技术方案大体上如图：  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2d819de9d8ea424d8ee0b1b924795967~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt; &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;开发阶段，对要使用路由的落地页或被调用方法添加注解标识。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;编译期解析注解，生成一系列中间代码，待调用。&lt;/li&gt;
+&lt;li&gt; 应用启动后调用中间代码完成路由的准备动作。大部分路由会额外通过 &lt;code&gt;Gradle Transform&lt;/code&gt;，在编译期做一次聚合，以提升运行时准备路由表的效率。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;发起路由跳转时，本质上就是一次路由表遍历，通过uri获取到对应的落地页或方法对象，进行调用。&lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 的页面跳转、跨模块调用也是如此，但是在设计上会有一些细节处理。   &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e048fba4a04c46738ed9a1e29ebab6e7~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 会在编译期根据注解生成 &lt;code&gt;RouteMap__&lt;/code&gt;开头的类，这些类中记录了当前模块的所有路由信息，也就是当前模块的路由表。   &lt;/p&gt;
+
+&lt;p&gt;在最顶层的&lt;code&gt;app&lt;/code&gt;模块中，通过&lt;code&gt;Gradle&lt;/code&gt;插件，将所有aar、源码中的&lt;code&gt;RouteMap__&lt;/code&gt;开头的类统一集中到&lt;code&gt;TheRouterServiceProvideInjecter&lt;/code&gt;类中。   &lt;/p&gt;
+
+&lt;p&gt;后续应用启动后，初始化路由时只需要执行&lt;code&gt;TheRouterServiceProvideInjecter&lt;/code&gt;类的方法，就能&lt;strong&gt;没有任何反射&lt;/strong&gt;的加载到全部的路由表了。  &lt;/p&gt;
+
+&lt;p&gt;加载以后的路由表会被保存到一个支持正则匹配的 &lt;code&gt;Map&lt;/code&gt; 中，这也是&lt;code&gt;TheRouter&lt;/code&gt;允许多个&lt;code&gt;path&lt;/code&gt;对应同一个落地页的原因。每当发生页面跳转时，通过跳转时的&lt;code&gt;path&lt;/code&gt;，去&lt;code&gt;Map&lt;/code&gt;中获取到对应的落地页信息，再正常调用&lt;code&gt;startActivity()&lt;/code&gt;即可。   &lt;/p&gt;
+
+&lt;h3&gt;三、使用 TheRouter 页面跳转&lt;/h3&gt;
+
+&lt;h4&gt;3.1 声明路由项&lt;/h4&gt;
+
+&lt;p&gt;如果一个页面（支持 Activity、Fragment）允许被路由打开，则需要使用注解 &lt;code&gt;@Route&lt;/code&gt; 声明路由项，每个页面允许声明多个路由项，也就是一对多的能力，极大降低多端路由统一时的业务影响面。  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;参数释义&lt;/strong&gt;   &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;path&lt;/strong&gt;: 路由path 【必传】。&lt;br&gt;
+建议是一个url。path内支持使用正则表达式（为了匹配效率，正则必须包含反双斜杠\），允许多个path对应同一个Activity(Fragment)。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;action&lt;/strong&gt;: 自定义事件【可选】。&lt;br&gt;
+一般用来打开目标页面后做一个执行动作，例如自定义页面弹出广告弹窗。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;description&lt;/strong&gt;: 页面描述【可选】。&lt;br&gt;
+会被记录到路由表中，方便后期排查的时候知道每个path或Activity是什么业务。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;params&lt;/strong&gt;: 页面参数【可选】。&lt;br&gt;
+自动写入&lt;code&gt;intent&lt;/code&gt;中，允许写在路由表中动态下发修改默认值，或通过路由跳转时代码传入。&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt; &lt;span class=&quot;nd&quot;&gt;@Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;action://scheme.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;第二个页面&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;world&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HomeActivity&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppCompatActivity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;3.2 发起页面跳转&lt;/h4&gt;
+
+&lt;p&gt;传入的参数可以是 &lt;code&gt;String&lt;/code&gt; 和8种基本数据类型、也可以是&lt;code&gt;Bundle&lt;/code&gt;、&lt;code&gt;Serializable&lt;/code&gt;、
+&lt;code&gt;Parcelable&lt;/code&gt;对象，跟 &lt;code&gt;Intent&lt;/code&gt; 传值规则一致。&lt;br&gt;
+同时也支持为本次跳转的 &lt;code&gt;Intent&lt;/code&gt; 添加&lt;code&gt;Flag/Uri/ClipData/identifier&lt;/code&gt;等业务特殊参数。   &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 传入参数可以通过注解 @Autowired 解析成任意类型，如果是对象建议传json&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// context 参数如果不传或传 null，会自动使用 application 替换&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12345678&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key2&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;参数&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withBoolean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key3&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withSerializable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key4&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;object&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 这个方法可以传递任意对象，但是接收的地方对象类型需自行保证一致，否则会强转异常&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// 如果传入 requestCode，默认使用startActivityForResult启动Activity&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// 如果要打开的是fragment，需要使用&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createFragment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;3.3 路由表生成规则&lt;/h4&gt;
+
+&lt;p&gt;如果两条路由的&lt;code&gt;path&lt;/code&gt;、目标&lt;code&gt;className&lt;/code&gt;完全相同，则认为是同一条路由，&lt;strong&gt;不会考虑参数是否相同&lt;/strong&gt;。&lt;br&gt;
+路由表生成规则：编译期按照如下顺序取&lt;strong&gt;并集&lt;/strong&gt;。   &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;覆盖规则&lt;/strong&gt;：&lt;br&gt;
+根据如下顺序，如果相同，后者可以覆盖前者的路由表规则。   &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;编译期解析注解生成路由表&lt;/li&gt;
+&lt;li&gt;首先取 &lt;code&gt;业务模块 aar&lt;/code&gt; 中的路由表&lt;/li&gt;
+&lt;li&gt;再取 主&lt;code&gt;app module&lt;/code&gt; 代码中的路由表&lt;/li&gt;
+&lt;li&gt;最后取 &lt;code&gt;assets/RouteMap.json&lt;/code&gt; 文件中声明的路由表。
+
+&lt;ul&gt;
+&lt;li&gt;如果编译期没有这个文件，会生成一份默认路由表放在这个目录内；如果有，会将路由表合并。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;路由表生成时可配置是否启用检查路由合法性，判断目标页面是否存在，(warning/error)级别。&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;运行时线上动态下发的路由表&lt;br&gt;
+
+&lt;ul&gt;
+&lt;li&gt;路由表允许线上动态下发，将覆盖本地路由表，详见 【3.4 动态路由表的设计与使用】&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;如果编译期没有这个文件，会生成一份默认路由表放在这个目录内；如果有，会将路由表合并，因此，对于没办法修改代码的第三方SDK内部，如果希望通过路由打开，只需要手动在&lt;code&gt;RouteMap.json&lt;/code&gt;文件中声明，就能通过路由打开了。    &lt;/p&gt;
+
+&lt;h4&gt;3.4 动态路由表的设计与使用&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 的路由表是动态添加的，项目每次编译后，会在 apk 内生成一份当前 APP 的全量路由表，默认路径为：&lt;code&gt;/assets/therouter/routeMap.json&lt;/code&gt;。这个路由表也可以后续通过远程下发的方式使用，例如远端可以针对不同的APP版本，下发不同的路由表达到配置目的。这样如果将来线上某些页面发生Crash，可以通过将这个页面的落地页替换为H5的方式，临时解决这类问题。    &lt;/p&gt;
+
+&lt;p&gt;有两种推荐的远程下发方式可供使用方选择：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;将打包系统与配置系统打通，每次新版本APP打包后自动将&lt;code&gt;assets/&lt;/code&gt;目录中的配置文件上传到配置系统，下发给对应版本APP 。优点在于全自动不会出错。&lt;/li&gt;
+&lt;li&gt;配置系统无法打通，线上手动下发需要修改的路由项，因为 &lt;code&gt;TheRouter&lt;/code&gt; 会自动用最新下发的路由项覆盖包内的路由项。优点在于精确，且流量资源占用小。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;注：一旦你设置了自定义的&lt;code&gt;InitTask&lt;/code&gt;，原框架内路由表初始化任务将不再执行，你需要自己处理找不到路由表时的兜底逻辑，一种建议的处理方式见如下代码。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 此代码 必须 在 Application.super.onCreate() 之前调用&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;RouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setInitTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RouterMapInitTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/** 
+     * 此方法执行在异步
+     */&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;asyncInitRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 此处为纯业务逻辑，每家公司远端配置方案可能都不一样&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 不建议每次都请求网络，否则请求网络的过程中，路由表是空的，可能造成APP无法跳转页面&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 最好是优先加载本地，然后开异步线程加载远端配置&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Connfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;doHttp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;routeMap&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 建议加一个判断，如果远端配置拉取失败，使用包内配置做兜底方案，否则可能造成路由表异常&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TextUtils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RouteItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Gson&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fromJson&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TypeToken&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RouteItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// 建议远端下发路由表差异部分，用远端包覆盖本地更合理&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;RouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// 在异步执行TheRouter内部兜底路由表&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;initRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;3.5 高级用法&lt;/h4&gt;
+
+&lt;p&gt;TheRouter同时支持更多页面跳转能力，详情可参考项目文档【&lt;a href=&quot;https://therouter.cn/docs/2022/08/28/01&quot;&gt;https://therouter.cn/docs/2022/08/28/01&lt;/a&gt;】：    &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;为第三方库里面的页面添加路由表，达到对某些页面降级替换的目的；&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;延迟路由跳转（从Android 8开始，不能在后台启动页面）；&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;跳转过程拦截器（总共四层，可根据实际需求使用）；&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;跳转结果回调；&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;四、跨模块依赖注入 ServiceProvider 的设计&lt;/h3&gt;
+
+&lt;p&gt;对于模块化开发中跨模块的调用，我们推荐采用 &lt;a href=&quot;https://zh.m.wikipedia.org/zh-cn/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84&quot;&gt;SOA(面向服务架构)&lt;/a&gt; 的设计方式，服务调用方与使用方完全隔离，调用模块外的能力不需要关注能力的提供者是谁。&lt;br&gt;
+&lt;code&gt;ServiceProvider&lt;/code&gt; 的核心设计思想也是这样的，目前服务间的调用协议采用接口的方式。当然，也可以兼容不通过接口下沉而是直接调用的情况。  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6dbabea09faa4a598faf46ffd7462de9~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+
+&lt;p&gt;具体到 Android 侧就是 AIDL 类似的设计，只是要比AIDL开发简单很多：  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;服务提供方负责提供服务，不需要关心调用方是谁会在何时调用自己。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;服务的使用方只关注服务本身，不需要关心这个服务是谁提供的，只需要只能服务能提供哪些能力即可。&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;例如上面的图片：拉拉需要使用录音的服务，小货则向外提供一个录音的服务，由&lt;code&gt;TheRouter&lt;/code&gt;的&lt;code&gt;ServiceProvider&lt;/code&gt;负责撮合。  &lt;/p&gt;
+
+&lt;h4&gt;4.1 服务使用方：拉拉&lt;/h4&gt;
+
+&lt;p&gt;她无需关心，&lt;code&gt;IRecordService&lt;/code&gt;这个接口服务是谁提供的，他只需要知道自己需要使用这样的一个服务就行了。&lt;br&gt;
+注：如果没有提供服务的提供方，&lt;code&gt;TheRouter.get()&lt;/code&gt;可能返回&lt;code&gt;null&lt;/code&gt;  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;IRecordService:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)?.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;doRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;4.2 服务提供方：小货&lt;/h4&gt;
+
+&lt;p&gt;服务提供方需要声明一个提供服务的方法，用&lt;code&gt;@ServiceProvider&lt;/code&gt;注解标记。  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;如果是 &lt;code&gt;java&lt;/code&gt;，必须是 &lt;code&gt;public static&lt;/code&gt; 修饰&lt;/li&gt;
+&lt;li&gt;如果是 &lt;code&gt;kotlin&lt;/code&gt;，建议写成 top level 的函数&lt;/li&gt;
+&lt;li&gt;方法名不限&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/**
+ * 方法名不限定，任意名字都行
+ * 返回值必须是服务接口名，如果是实现了服务的子类，需要加上returnType限定（例如下面代码）
+ * 方法必须加上 public static 修饰，否则编译期就会报错
+ */&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ServiceProvider&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IRecordService&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;IRecordService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;doRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;执行录制逻辑&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 也可以直接返回对象，然后标注这个方法的服名是什么&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ServiceProvider&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;returnType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IRecordService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RecordServiceImpl&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// xxx &lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;五、单模块自动初始化能力 FlowTaskExecutor 的设计&lt;/h3&gt;
+
+&lt;p&gt;前面讲过，&lt;code&gt;TheRouter&lt;/code&gt;是完全面向模块化开发提供的一套解决方案。在模块化开发时，可能每个模块都有自己需要初始化的一些代码。以前的做法是把这些代码都在&lt;code&gt;Application&lt;/code&gt;里声明，但是这样可能随着业务变动每次都需要修改&lt;code&gt;Application&lt;/code&gt;所在模块。&lt;code&gt;TheRouter&lt;/code&gt; 的单模块自动初始化能力就是为了解决这样的情况，可以只在当前模块声明初始化方法后，将会在业务场景时自动被调用。    &lt;/p&gt;
+
+&lt;p&gt;每个希望被自动初始化的方法，必须使用&lt;code&gt;public static&lt;/code&gt;修饰，主要原因是这样子就能通过类名直接调用了。另外很多初始化代码都需要获取&lt;code&gt;Context&lt;/code&gt;对象，所以我们将&lt;code&gt;Context&lt;/code&gt;作为初始化方法的默认参数，会自动传入&lt;code&gt;Application&lt;/code&gt;。其他的所在类名、方法名都没有限制，反正只要加上了 &lt;code&gt;@FlowTask&lt;/code&gt; 注解，在编译期都能通过 APT 获取到。   &lt;/p&gt;
+
+&lt;h4&gt;5.1 FlowTaskExecutor 使用介绍&lt;/h4&gt;
+
+&lt;p&gt;可以在当前模块中，任意类中声明一个任意方法名的方法，给方法添加上&lt;code&gt;@FlowTask&lt;/code&gt; 的注解即可。   &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;@FlowTask&lt;/code&gt; 注解参数说明： &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;taskName&lt;/strong&gt;：当前初始化任务的任务名，必须全局唯一，建议格式为：&lt;code&gt;moduleName_taskName&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dependsOn&lt;/strong&gt;：参考&lt;code&gt;Gradle&lt;/code&gt; Task，任务与任务之间可能会有依赖关系。如果当前任务需要依赖其他任务先初始化，则在这里声明依赖的任务名。可以同时依赖多个任务，用英文逗号分隔，空格可选，会被过滤：dependsOn = &amp;quot;mmkv, config, login&amp;quot;，默认为空，应用启动就被调用。注：&lt;code&gt;dependsOn&lt;/code&gt;只能保证&lt;code&gt;task&lt;/code&gt;是在依赖任务之后执行，由于内部逻辑都是在异步线程操作，取决于线程切换，并不一定是立刻执行。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;async&lt;/strong&gt;：是否要在异步执行此任务，默认false。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/**
+ * 将会在异步执行
+ */&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@FlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;taskName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;mmkv_init&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependsOn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TheRouterFlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;APP_ONCREATE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;异步=========Application onCreate后执行&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@FlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;taskName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;app1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main线程=========应用启动就会执行&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**
+ * 将会在主线程初始化
+ */&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@FlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;taskName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependsOn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;mmkv,app1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main线程=========在app1和mmkv两个任务都执行以后才会被执行&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;5.2内置初始化节点&lt;/h4&gt;
+
+&lt;p&gt;使用这个能力，在路由内部默认支持了两个生命周期类任务，可在使用时直接引用  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt; &lt;strong&gt;TheRouterFlowTask.APP_ONCREATE&lt;/strong&gt;：当Application的onCreate()执行后初始化&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TheRouterFlowTask.APP_ONSPLASH&lt;/strong&gt;：当应用的首个Activity.onCreate()执行后初始化&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TheRouterFlowTask. BEFORE_THEROUTER _INITIALIZATION&lt;/strong&gt;：当应用启动后，在TheRouter初始化之前，执行任务。(1.1.1-rc2版本新增)&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;同时，使用&lt;code&gt;TheRouter&lt;/code&gt;的自动初始化依赖，也无需担心循环依赖造成的问题，框架会在编译期构建有向无环图，监测循环依赖情况，如果发现会在编译期直接报错，并且还会将发生循环引用的任务显示出来，用于排错。   &lt;/p&gt;
+
+&lt;h4&gt;5.3  实现原理&lt;/h4&gt;
+
+&lt;p&gt;每个加了 &lt;code&gt;@FlowTask&lt;/code&gt; 注解的方法，都会在编译期被解析，生成一个对应的 &lt;code&gt;Task&lt;/code&gt; 对象，这个对象包含了初始化方法的相关信息，比如：是否异步执行、任务名、是否依赖其他任务先执行。   &lt;/p&gt;
+
+&lt;p&gt;当所有aar都编译完成，生成好全部的 &lt;code&gt;Task&lt;/code&gt; 以后，会在主 app 中通过&lt;code&gt;Gradle&lt;/code&gt;插件进行聚合，在这时会将所有的 &lt;code&gt;Task&lt;/code&gt; 做一次检查，通过构建&lt;code&gt;有向无环图&lt;/code&gt;来防止 &lt;code&gt;Task&lt;/code&gt; 发生循环引用的情况。  &lt;/p&gt;
+
+&lt;p&gt;每次应用启动后，会在路由初始化时，将有向图中的全部&lt;code&gt;Task&lt;/code&gt;，按照依赖关系按顺序加载。  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b400b35a3c0244479ef61ce6759b25a7~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+
+&lt;h3&gt;六、动态化能力 ActionManager 的设计&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;Action&lt;/code&gt; 本质是一个全局的系统回调，主要用于预埋的一系列操作，例如：弹窗、上传日志、清理缓存。&lt;br&gt;
+与 Android 系统自带的广播通知类似，你可以在任何地方声明动作与处理方式。并且所有&lt;code&gt;Action&lt;/code&gt;都是可以被跟踪的，只要你愿意，可以在日志中将所有的动作调用栈输出，以方便调试使用，这样在一定程度上可以解决观察者模式带来的通病：&lt;strong&gt;无法追踪&lt;code&gt;Observable&lt;/code&gt;的问题&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;h4&gt;6.1 Action 使用&lt;/h4&gt;
+
+&lt;p&gt;声明一个 Action：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// action建议遵循一定的格式&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTION&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;therouter://action/xxx&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@FlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;taskName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;action_demo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;context:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addActionInterceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ACTION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;object:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ActionInterceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;context:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;args:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// do something&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;执行一个 Action：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// action建议遵循一定的格式&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTION&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;therouter://action/xxx&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 如果执行了一个没有被声明的Action，则不会有任何动作&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ACTION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;6.2 高级用法&lt;/h4&gt;
+
+&lt;p&gt;每个&lt;code&gt;Action&lt;/code&gt; 允许关联多个 &lt;code&gt;ActionInterceptor&lt;/code&gt;进行处理，多个&lt;code&gt;ActionInterceptor&lt;/code&gt;之间可以自定义拦截器优先级，同时允许终止接下来的低优先级拦截器的执行。   &lt;/p&gt;
+
+&lt;p&gt;最典型应用场景：首页可能会有多个弹窗，不同业务之间的弹窗是有优先级之分的，为了体验优化我们肯定不会在首页一次把所有弹窗全部弹出，可以通过&lt;code&gt;ActionInterceptor&lt;/code&gt;为每个弹窗声明好优先级关系，假设需求是首页只能弹出3个弹窗，那么第三个弹窗处理完毕即可关闭当前事件，接下来的拦截器将不会被响应。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ActionInterceptor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;context:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;args:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onFinish&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+
+    &lt;span class=&quot;cm&quot;&gt;/**
+     * 数字越大，优先级越高
+     */&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;open&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;priority:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int&lt;/span&gt;
+        &lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;6.3 客户端动态响应使用场景&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;如果仅客户端使用&lt;/strong&gt;，常用的场景可能是：当用户执行某些操作（打开某个页面、H5点击某个按钮、动态页面配置的点击事件）时，将会自动触发，执行预埋的 Action 逻辑。   &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;如果与服务端链路打通&lt;/strong&gt;，这个能力其实是需要整个公司的配合，比如有一套类似智慧大脑的方案，可以基于客户端过去的一些埋点数据，智能推断出用户下一步要做的事情，然后通过长连接直接向客户端下发指令做某些事情。那么通过客户端预埋的页面跳转、弹窗、清缓存、退出登录等等操作，就可以通过服务端指令进行操作，则就是一套完整的动态化方案。   &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8bae49fec9d94ae2a3cdf2d07b39efa6~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+
+&lt;h3&gt;七、一键切换源码与 AAR&lt;/h3&gt;
+
+&lt;h4&gt;7.1 模块化支持的 Gradle 脚本&lt;/h4&gt;
+
+&lt;p&gt;在模块化开发过程中，如果没有采用分仓，或采用了分仓但依然使用 &lt;code&gt;git-submodule&lt;/code&gt; 的方式开发，应该都会遇到一个问题。如果集成包采用源码编译，构建时间实在太久，大大降低开发调试效率；如果采用aar依赖编译，对于底层模块修改了代码，每次都要重新构建aar，在上层模块修改版本号以后，才能继续整包构建编译，也极大影响开发效率。&lt;br&gt;
+&lt;code&gt;TheRouter&lt;/code&gt; 中提供了一个 &lt;code&gt;Gradle&lt;/code&gt; 脚本，只需要在开发本地的&lt;code&gt;local.properties&lt;/code&gt;文件中声明要参与编译的&lt;code&gt;module&lt;/code&gt;，其他未声明的默认使用aar编译，这样就能灵活切换源码与aar，并且不会影响其他人，如下节选代码可供参考使用：  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/**
+ * 如果工程中有源码，则依赖源码，否则依赖aar
+ */&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;moduleApi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compileStr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Closure&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;configureClosure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compileStr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;:&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;artifactid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;includeModule&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HashSet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;rootProject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAllprojects&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rootProject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;includeModule&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;includeModule&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;artifactid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;源码依赖：===project(\&quot;:$artifactid\&quot;)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;projects&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;':'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;artifactid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;configureClosure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//        projects.project.configurations { compile.exclude group: group, module: artifactid }&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;依赖：=======$group:$artifactid:$version&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;projects&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;$group:$artifactid:$version&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;configureClosure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在实际使用时，可以完全使用&lt;code&gt;moduleApi&lt;/code&gt; 替换掉原有的&lt;code&gt;api&lt;/code&gt;。当然， &lt;code&gt;implementation&lt;/code&gt;也可以有一个对应的&lt;code&gt;moduleImplementation&lt;/code&gt;，这样只需要注释或解注释&lt;code&gt;setting.gradle&lt;/code&gt;文件内的&lt;code&gt;include&lt;/code&gt;语句就可以达到切换源码、&lt;code&gt;aar&lt;/code&gt;的目的了。&lt;/p&gt;
+
+&lt;h3&gt;八、从其他路由迁移至 TheRouter&lt;/h3&gt;
+
+&lt;h4&gt;8.1 迁移工具一键迁移&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;，目前仅支持&lt;code&gt;ARouter&lt;/code&gt;，其他路由框架迁移也在开发中（GitHub下载，70M左右，请耐心等待）：  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mac OS 迁移工具下载：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;Windows 迁移工具下载：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果项目中使用了ARouter的IProvider.init()方法，可能需要手动处理初始化逻辑。&lt;br&gt;
+如下图：  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7f2cc2b3509f41ccaa11dc9617088033~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+
+&lt;h4&gt;8.2 与其他路由对比&lt;/h4&gt;
+
+&lt;table&gt;&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;功能&lt;/th&gt;
+&lt;th&gt;TheRouter&lt;/th&gt;
+&lt;th&gt;ARouter&lt;/th&gt;
+&lt;th&gt;WMRouter&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Fragment路由&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;支持依赖注入&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;加载路由表&lt;/td&gt;
+&lt;td&gt;无运行时扫描&lt;br&gt;无反射&lt;/td&gt;
+&lt;td&gt;运行时扫描dex(新版本改为反射)&lt;br&gt;反射实例类&lt;br&gt;性能损耗大&lt;/td&gt;
+&lt;td&gt;运行时读文件&lt;br&gt;反射实例类&lt;br&gt;性能损耗中&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;注解正则表达式&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Activity指定拦截器&lt;/td&gt;
+&lt;td&gt;✔️（四大拦截器可根据业务定制）&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;导出路由文档&lt;/td&gt;
+&lt;td&gt;✔️（路由文档支持添加注释描述）&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;动态注册路由信息&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;APT支持增量编译&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✔️（开启文档生成则无法增量编译）&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;plugin支持增量编译&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;支持KSP编译&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;支持 AGP8 编译&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;Gradle7.3以后无法使用&lt;/td&gt;
+&lt;td&gt;Gradle7.3以后无法使用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;多 Path 对应同一页面（低成本实现双端path统一）&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;远端路由表下发&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;支持单模块独立初始化&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;支持使用路由打开第三方SDK页面&lt;/td&gt;
+&lt;td&gt;✔️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;td&gt;✖️&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;对热修复支持（例如tinker）&lt;/td&gt;
+&lt;td&gt;✔️(未改变的代码多次构建无变动)&lt;/td&gt;
+&lt;td&gt;✖️(多次构建apt产物会发生变化，生成无意义补丁)&lt;/td&gt;
+&lt;td&gt;✖️(多次构建apt产物会发生变化，生成无意义补丁)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+
+&lt;h3&gt;九、总结&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 并不仅仅是一个小巧灵活的路由库，而是一整套完整的 &lt;code&gt;Android&lt;/code&gt; 模块化解决方案，能够解决几乎全部的模块化过程中会遇到的问题。&lt;br&gt;
+对于现有的路由框架，我们也在最大限度支持平滑迁移，目前已完成&lt;code&gt;ARouter&lt;/code&gt;的一键迁移工具，其他框架的迁移仍在开发中。你也可以在&lt;code&gt;Github&lt;/code&gt; &lt;code&gt;issue&lt;/code&gt;中提出需求，我们评估后会尽快支持，也欢迎任何人提供 &lt;code&gt;Pull Requests&lt;/code&gt;。  &lt;/p&gt;
+
+&lt;p&gt;更多问题请加群沟通：&lt;br&gt;
+&lt;img src=&quot;https://kymjs.com/therouter/wx/therouter_wx.jpg&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;</content><author><name></name></author><category term="news" /><summary type="html">TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。 Github 项目地址与使用文档详见 https://github.com/HuolalaTech/hll-wp-therouter-android。</summary></entry><entry><title type="html">路由的高阶使用</title><link href="http://localhost:4000/docs/2022/09/03/01" rel="alternate" type="text/html" title="路由的高阶使用" /><published>2022-09-03T00:00:00+08:00</published><updated>2022-09-03T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/03/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/03/01">&lt;h3&gt;多进程使用 TheRouter&lt;/h3&gt;
+
+&lt;p&gt;TheRouter支持多进程，单默认只会在主进程执行初始化逻辑。如果使用了多进程，可以先关闭&lt;code&gt;TheRouter&lt;/code&gt;的自动初始化，然后手动在&lt;code&gt;Application&lt;/code&gt;的&lt;code&gt;onCreate()&lt;/code&gt;中执行初始化功能。   &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;attachBaseContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;base:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attachBaseContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;theRouterUseAutoInit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;自定义Log输出&lt;/h3&gt;
+
+&lt;p&gt;默认情况下，&lt;code&gt;TheRouter&lt;/code&gt;会在&lt;code&gt;debug&lt;/code&gt;模式下，将&lt;code&gt;log&lt;/code&gt;打印到控制台，在&lt;code&gt;release&lt;/code&gt;模式下不做任何输出。&lt;br&gt;
+如果你希望采集线上日志信息，可以自定义&lt;code&gt;release&lt;/code&gt;场景下的日志输出方式：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 这一步建议放在Application.onCreate()之前，否则可能会在赋值之前就有部分日志已经执行了默认逻辑。&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logCat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;  
+        &lt;span class=&quot;c1&quot;&gt;// 执行上报日志的逻辑&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;判断String，是否为路由path&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 判断是否为路由落地页path&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isRouterPath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;  
+
+&lt;span class=&quot;c1&quot;&gt;// 判断是否为 Action&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isRouterAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;导出路由历史记录&lt;/h3&gt;
+
+&lt;p&gt;如果需要记录用户历史操作信息，用于排查错误时回放，可以直接使用历史记录导出功能：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// level共8个状态可选&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NONE&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 不导出任何数据&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTIVITY&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//仅导出Activity的路由操作&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FRAGMENT&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//仅导出Fragment的路由操作&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PAGE&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 导出 Fragment + Activity的路由操作&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTION&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 导出 ActionManager 的操作记录&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SERVICE_PROVIDER&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 导出 ServiceProvider的记录&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FLOW_TASK&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 导出 FlowTaskExecutor 的历史记录&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ALL&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 导出全部记录&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 8种状态可互相叠加，例如&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;level&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTIVITY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTION&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FLOW_TASK&lt;/span&gt;
+
+&lt;span class=&quot;nf&quot;&gt;export&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;forEach&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'\n'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'\n'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;导入导出 Intent 对象&lt;/h3&gt;
+
+&lt;p&gt;有一些特殊的业务场景可能必须使用&lt;code&gt;Intent&lt;/code&gt;对象作为参数，例如通知栏点击以后，系统只提供了&lt;code&gt;Intent&lt;/code&gt;参数。TheRouter 也支持这样的使用场景：  &lt;/p&gt;
+
+&lt;p&gt;导入 Intent：  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withXxxxx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;导出 Intent：  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 注：导出Intent时，需要url有对应的落地页，否则Intent不会附带withXXX()的参数信息&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withXxxxx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createIntent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;插件化项目集成&lt;/h3&gt;
+
+&lt;p&gt;TheRouter的路由表是完全动态化的，所以允许动态加载插件路由表。
+现有市面上插件化框架较多，具体可参考使用的插件化方案，当插件被加载时分别调用如下代码&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 在异步线程执行&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 初始化插件内的依赖注入&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouterServiceProvideInjecter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;trojan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 初始化插件内的FlowTask&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouterServiceProvideInjecter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addFlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;digraph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 初始化插件内的路由表&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouterServiceProvideInjecter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;initDefaultRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Flutter/RN/WEEX等混编项目集成&lt;/h3&gt;
+
+&lt;p&gt;TheRouter的路由表是完全动态化的，所以允许动态加载跨平台项目的路由表。&lt;/p&gt;
+
+&lt;p&gt;可以直接将路由表配置到/assets/RouteMap.json文件中。&lt;br&gt;
+如果路由表的url是具备规律的，可简单使用正则表达式一次性加载&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://kymjs.com/flutter/\\S*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;className&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;com.therouter.FlutterActivity&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;action&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;params&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;......&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="doc" /><summary type="html">多进程使用 TheRouter</summary></entry><entry><title type="html">TheRouter 基础能力介绍</title><link href="http://localhost:4000/docs/2022/08/29/01" rel="alternate" type="text/html" title="TheRouter 基础能力介绍" /><published>2022-08-29T00:00:00+08:00</published><updated>2022-08-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/29/01">&lt;p&gt;&lt;img src=&quot;/assets/img/image/hll.png&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+
+&lt;h3&gt;功能介绍&lt;/h3&gt;
+
+&lt;p&gt;TheRouter 核心功能具备四大能力：  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt; 页面导航跳转能力（&lt;a href=&quot;https://therouter.cn/docs/2022/08/28/01&quot;&gt;Navigator&lt;/a&gt;） 页面跳转能力介绍 &lt;/li&gt;
+&lt;li&gt; 跨模块依赖注入能力（&lt;a href=&quot;https://therouter.cn/docs/2022/08/27/01&quot;&gt;ServiceProvider&lt;/a&gt;）跨模块依赖注入 &lt;/li&gt;
+&lt;li&gt; 单模块自动初始化能力 （&lt;a href=&quot;https://therouter.cn/docs/2022/08/26/01&quot;&gt;FlowTaskExecutor&lt;/a&gt;）单模块自动初始化能力介绍 &lt;/li&gt;
+&lt;li&gt; 动态化能力 (&lt;a href=&quot;https://therouter.cn/docs/2022/08/25/01&quot;&gt;ActionManager&lt;/a&gt;) 动态化能力支持 &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;一、快速上手&lt;/h3&gt;
+
+&lt;h4&gt;1.1 Gradle 引入&lt;/h4&gt;
+
+&lt;p&gt;最新版本号，请访问：(&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/releases&quot;&gt;github/releases&lt;/a&gt;)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 项目根目录 build.gradle 引入&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;therouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// app module 中引入&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;therouter&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 依赖&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;kapt&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;cn.therouter:apt:1.1.0&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;cn.therouter:router:1.1.0&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;1.2 初始化&lt;/h4&gt;
+
+&lt;p&gt;框架内部包含自动初始化功能，详见&lt;a href=&quot;https://therouter.cn/docs/2022/08/26/01&quot;&gt;单模块自动初始化能力&lt;/a&gt;&lt;br&gt;
+无需任何初始化代码。但推荐你根据业务设置否为&lt;code&gt;Debug&lt;/code&gt;环境，用以查看日志信息。&lt;br&gt;
+&lt;code&gt;Application.attachBaseContext()&lt;/code&gt; 方法中尽可能早设置当前是否为&lt;code&gt;Debug&lt;/code&gt;环境。  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;attachBaseContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setDebug&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attachBaseContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;1.3 页面参数注入&lt;/h4&gt;
+
+&lt;p&gt;在&lt;code&gt;Activity&lt;/code&gt; 或 &lt;code&gt;Fragment&lt;/code&gt; 的 &lt;code&gt;onCreate()&lt;/code&gt;方法中调用，建议直接在&lt;code&gt;BaseActivity(BaseFragment)&lt;/code&gt;中做    &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;1.4 页面跳转&lt;/h4&gt;
+
+&lt;p&gt;关于注解&lt;code&gt;@Route&lt;/code&gt;的参数含义，请查看文档：&lt;a href=&quot;https://therouter.cn/docs/2022/08/28/01&quot;&gt;页面导航跳转能力&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;action://scheme.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;第二个页面&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;world&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HomeActivity&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BaseActivity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;要跳转的目标页Path&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;intValue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12345678&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 传 int 值&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;str_123_Value&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;传中文字符串&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withBoolean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;boolValue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withLong&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;longValue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123456789012345L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withChar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;charValue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'c'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withDouble&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;double&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.14159265358972&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withFloat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;floatValue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.14159265358972&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;二、编译器配置&lt;/h3&gt;
+
+&lt;p&gt;可在&lt;code&gt;local.properties&lt;/code&gt;配置编译期属性（warning输出日志，error直接报错）  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;增量编译开关&lt;/strong&gt;&lt;br&gt;
+开启增量编译能大幅加快编译速度，但在删除旧代码时，可能需要clean后重新编译，否则会报错。&lt;br&gt;
+&lt;code&gt;THEROUTER_OPEN_INCREMENTAL=true&lt;/code&gt; （true/false可选，默认是false）&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;路由表未知&lt;code&gt;Activity&lt;/code&gt;检测&lt;/strong&gt;&lt;br&gt;
+路由表中如果声明了一个不存在的&lt;code&gt;Activity&lt;/code&gt;，通常是因为旧代码删除时忘记清理路由表了，这里可选报错或警告，提供参考。&lt;br&gt;
+&lt;code&gt;CHECK_ROUTE_MAP=warning&lt;/code&gt; （warning/error可选，不加则不会执行检测）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化任务未知依赖检查&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;@FlowTask&lt;/code&gt;的&lt;code&gt;dependsOn&lt;/code&gt;参数声明了一个不存在的任务，通常情况下是由于任务名书写错误，建议设置为error，尽早在编译期发现问题。
+&lt;code&gt;CHECK_FLOW_UNKNOW_DEPEND=warning&lt;/code&gt; （warning/error可选，不加则不会执行检测）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;三、混淆配置&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;-keep class androidx.annotation.Keep
+-keep @androidx.annotation.Keep class * {*;}
+-keepclassmembers class * {
+    @androidx.annotation.Keep *;
+}
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep &amp;lt;methods&amp;gt;;
+}
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep &amp;lt;fields&amp;gt;;
+}
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep &amp;lt;init&amp;gt;(...);
+}
+-keepclasseswithmembers class * {
+    @com.therouter.router.Autowired &amp;lt;fields&amp;gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;四、从其他路由迁移至 TheRouter&lt;/h3&gt;
+
+&lt;h4&gt;4.1 迁移工具一键迁移&lt;/h4&gt;
+
+&lt;p&gt;可使用迁移工具一键迁移：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mac OS 迁移工具：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Windows 迁移工具：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果项目中使用了&lt;code&gt;ARouter&lt;/code&gt;的&lt;code&gt;IProvider.init()&lt;/code&gt;方法，可能需要手动处理初始化逻辑。&lt;/p&gt;
+
+&lt;p&gt;如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/image/TheRouterTransfer.png&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+
+&lt;h3&gt;五、源码运行与调试&lt;/h3&gt;
+
+&lt;h4&gt;5.1 工程模块描述&lt;/h4&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;TheRouter
+  ├─app
+  │   └──代码使用示例Demo
+  ├─business-a
+  │   └──用于模块化业务模块的演示模块
+  ├─business-b
+  │   └──用于模块化业务模块的演示模块
+  ├─business-base
+  │   └──用于模块化基础模块的演示模块
+  ├─apt
+  │   └──注解处理器相关代码
+  ├─plugin
+  │   └──编译期 Gradle 插件源码
+  └─router
+      └──路由库核心代码
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;5.2 项目运行&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;打开&lt;code&gt;local.properties&lt;/code&gt;，声明你想要调试的模块
+例如希望源码调试&lt;code&gt;apt&lt;/code&gt;模块，则声明&lt;code&gt;apt=true&lt;/code&gt;即可&lt;/li&gt;
+&lt;li&gt; 同步 Gradle 变更&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4&gt;5.3 plugin 源码调试&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;plugin&lt;/code&gt;调试比较特殊，需要修改&lt;code&gt;module&lt;/code&gt;名。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;修改&lt;code&gt;plugin&lt;/code&gt;文件夹名为&lt;code&gt;buildSrc&lt;/code&gt;（注意大小写）&lt;/li&gt;
+&lt;li&gt;注释根目录&lt;code&gt;build.gradle&lt;/code&gt;中的&lt;code&gt;classpath&lt;/code&gt;引用（不需要了）&lt;/li&gt;
+&lt;li&gt;同步 Gradle 变更&lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="doc" /><summary type="html"></summary></entry><entry><title type="html">页面跳转能力介绍</title><link href="http://localhost:4000/docs/2022/08/28/01" rel="alternate" type="text/html" title="页面跳转能力介绍" /><published>2022-08-28T00:00:00+08:00</published><updated>2022-08-28T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/28/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/28/01">&lt;p&gt;路由可用于处理页面跳转  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;支持 &lt;code&gt;Activity&lt;/code&gt; 和 &lt;code&gt;Fragment&lt;/code&gt;&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;支持&lt;code&gt;path&lt;/code&gt;与页面多对一关系或一对一关系&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;页面&lt;code&gt;Path&lt;/code&gt;支持正则表达式声明&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;支持 &lt;code&gt;json&lt;/code&gt; 格式路由表导出&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;支持动态下发 &lt;code&gt;json&lt;/code&gt; 路由表&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;支持任意&lt;code&gt;object&lt;/code&gt;跨模块传递（无需序列化，且能保证对象类型）&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;支持页面跳转拦截处理&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;支持自定义页面参数解析方式（例如将json解析为对象）&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;支持使用路由跳转到第三方SDK中的&lt;code&gt;Activity(Fragment)&lt;/code&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;1.0 路由表&lt;/h3&gt;
+
+&lt;h4&gt;1.1 声明路由项&lt;/h4&gt;
+
+&lt;p&gt;如果一个页面（支持 Activity、Fragment）允许被路由打开，则需要使用注解 @Route 声明路由项，每个页面允许声明多个路由项，也就是一对多的能力，极大降低多端路由统一时的业务影响面。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;参数释义&lt;/strong&gt;  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;path&lt;/strong&gt;: 路由path 【必传】。&lt;br&gt;
+建议是一个url。path内支持使用正则表达式（为了匹配效率，正则必须包含反双斜杠\），允许多个path对应同一个Activity(Fragment)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;action&lt;/strong&gt;:  自定义事件【可选】。
+一般用来打开目标页面后做一个执行动作，例如自定义页面弹出广告弹窗&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;description&lt;/strong&gt;:  页面描述【可选】。
+会被记录到路由表中，方便后期排查的时候知道每个path或Activity是什么业务&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;params&lt;/strong&gt;:  页面参数【可选】。
+自动写入intent中，允许写在路由表中动态下发修改默认值，或通过路由跳转时代码传入。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;action://scheme.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;第二个页面&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;world&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HomeActivity&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppCompatActivity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;1.2 路由表生成规则&lt;/h4&gt;
+
+&lt;p&gt;如果两条路由的path、目标className完全相同，则认为是同一条路由，&lt;strong&gt;不会考虑参数是否相同&lt;/strong&gt;。  &lt;/p&gt;
+
+&lt;p&gt;路由表生成规则：编译期按照如下顺序取&lt;strong&gt;并集&lt;/strong&gt;。&lt;br&gt;
+覆盖规则：根据如下顺序，如果相同，后者可以覆盖前者的路由表规则。  &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;编译期解析注解生成路由表&lt;/li&gt;
+&lt;li&gt;首先取 &lt;code&gt;业务模块 aar&lt;/code&gt; 中的路由表&lt;/li&gt;
+&lt;li&gt;再取 &lt;code&gt;主app module&lt;/code&gt; 代码中的路由表&lt;/li&gt;
+&lt;li&gt;最后取 &lt;code&gt;assets/RouteMap.json&lt;/code&gt; 文件中声明的路由表。
+
+&lt;ul&gt;
+&lt;li&gt;如果编译期没有这个文件，会生成一份默认路由表放在这个目录内；如果有，会将路由表合并&lt;/li&gt;
+&lt;li&gt;路由表生成时可配置是否启用检查路由合法性，判断目标页面是否存在，(warning/error)级别&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;运行时线上动态下发的路由表
+
+&lt;ul&gt;
+&lt;li&gt;路由表允许线上动态下发，将覆盖本地路由表，详见 【1.3 远端下发路由表】&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4&gt;1.3 远端下发路由表&lt;/h4&gt;
+
+&lt;p&gt;TheRouter项目每次编译后，会在apk内生成一份路由表，默认路径为：&lt;code&gt;/assets/therouter/routeMap.json&lt;/code&gt;   &lt;/p&gt;
+
+&lt;p&gt;同时这份路由表也支持远端动态下发，例如远端可以针对不同的APP版本，下发不同的路由表达到配置目的。因此有两种推荐的方式可供使用方选择：  &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;将打包系统与配置系统打通，每次新版本APP打包后自动将assets/目录中的配置文件上传到配置系统，下发给对应版本APP 。优点在于全自动不会出错。&lt;/li&gt;
+&lt;li&gt;配置系统无法打通，线上手动下发需要修改的路由项，因为 TheRouter 会自动用最新下发的路由项覆盖包内的路由项。优点在于精确，且流量资源占用小。&lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;注：一旦你设置了自定义的InitTask，原框架内路由表初始化任务将不再执行，你需要自己处理找不到路由表时的兜底逻辑&lt;/strong&gt;，一种建议的处理方式见如下代码。 &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 此代码 必须 在 Application.super.onCreate() 之前调用&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;RouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setInitTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RouterMapInitTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/** 
+     * 此方法执行在异步
+     */&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;asyncInitRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 此处为纯业务逻辑，每家公司远端配置方案可能都不一样&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 不建议每次都请求网络，否则请求网络的过程中，路由表是空的，可能造成APP无法跳转页面&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 最好是优先加载本地，然后开异步线程加载远端配置&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Connfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;doHttp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;routeMap&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 建议加一个判断，如果远端配置拉取失败，使用包内配置做兜底方案，否则可能造成路由表异常&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TextUtils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RouteItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Gson&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fromJson&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TypeToken&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RouteItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// 建议远端下发路由表差异部分，用远端包覆盖本地更合理&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;RouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// 在异步执行TheRouter内部兜底路由表&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;initRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;1.4  为第三方库添加路由表&lt;/h4&gt;
+
+&lt;p&gt;共有两种方式  &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;配置文件添加：在本地 assets/RouteMap.json 文件中声明第三方页面的路由表。&lt;/li&gt;
+&lt;li&gt;代码运行时添加：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/**
+ * @params path 路由Path
+ * @params className 第三方页面的Activity或Fragment完整类名
+ * @params action 要向页面传入的动作，如果没有传空字符串
+ * @params description  第三方页面的文档描述
+ */&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;addRouteItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RouteItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;className&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;1.5 编译期配置&lt;/h4&gt;
+
+&lt;p&gt;路由表中如果声明了一个不存在的Activity，通常是因为旧代码删除时忘记清理路由表了，这里可选报错或警告，提供参考。&lt;br&gt;
+可在&lt;code&gt;local.properties&lt;/code&gt;配置编译期属性（warning输出日志，error直接报错）  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;路由表中声明了不存在的&lt;code&gt;Activity&lt;/code&gt;检查 &lt;code&gt;CHECK_ROUTE_MAP=warning&lt;/code&gt; warning/error可选&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2.0 页面跳转使用方式&lt;/h3&gt;
+
+&lt;h4&gt;2.1 路由跳转&lt;/h4&gt;
+
+&lt;p&gt;传入的参数可以是 &lt;code&gt;String&lt;/code&gt; 和8种基本数据类型、也可以是&lt;code&gt;Bundle&lt;/code&gt;、&lt;code&gt;Serializable&lt;/code&gt;、
+&lt;code&gt;Parcelable&lt;/code&gt;对象，跟 &lt;code&gt;Intent&lt;/code&gt; 传值规则一致。  &lt;/p&gt;
+
+&lt;p&gt;同时也支持为本次跳转的 &lt;code&gt;Intent&lt;/code&gt; 添加&lt;code&gt;Flag/Uri/ClipData/identifier&lt;/code&gt;等业务特殊参数。  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 传入参数可以通过注解 @Autowired 解析成任意类型，如果是对象建议传json&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// context 参数如果不传或传 null，会自动使用 application 替换&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12345678&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key2&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;参数&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withBoolean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key3&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withSerializable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key4&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;object&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 与上一个方法不同，这个方法可以传递任意对象，但是接收的地方对象类型请保证一致&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// 如果传入 requestCode，默认使用startActivityForResult启动Activity&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// 如果要打开的是fragment，需要使用&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createFragment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// 回调的方式打开页面&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NavigationCallback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onFound&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@NotNull&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Navigator&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onFound&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Toast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;makeText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;找到页面，即将打开&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Toast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LENGTH_SHORT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onLost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@NotNull&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Navigator&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onLost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Toast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;makeText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;丢失页面&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Toast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LENGTH_SHORT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onArrival&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@NotNull&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Navigator&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onArrival&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Toast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;makeText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;已打开&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Toast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LENGTH_SHORT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;2.2 延迟路由跳转&lt;/h4&gt;
+
+&lt;p&gt;延迟跳转主要应用场景有两种：  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;第一种&lt;/strong&gt;：初始化时期，如果路由表的量非常巨大时。这种情况在别的路由框架上要么会白屏一段时间，要么直接丢弃这次跳转。在TheRouter中，框架会暂存当前的跳转动作，在路由表初始化完成后立刻执行跳转。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;第二种&lt;/strong&gt;：从Android 8.0开始，Activity 不能在后台启动页面，这对于业务判断造成了很大的影响。由于可能会有前台 Service 的情况，不能单纯以 Activity 生命周期判断前后台。在TheRouter中，框架允许业务自定义前后台规则，如果为后台情况，可以将跳转动作暂存，当进入前台后再恢复跳转。&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 暂存的动作可以有多个，会在恢复时按顺序执行&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12345678&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// 暂存当前跳转动作&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 恢复&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sendPendingNavigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//toplevel方法，无需类名调用，Java请通过NavigatorKt类名调用&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;2.3 路由参数接收&lt;/h4&gt;
+
+&lt;p&gt;使用注解接收对象时，必须调用TheRouter.inject(this);建议直接在 Base 中统一调用。&lt;br&gt;
+接收有两种形式：  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;通过注解自动接收，默认支持 String 和8种基本数据类型，也支持自定义对象的解析&lt;/li&gt;
+&lt;li&gt;通过代码从 intent 中获取&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HomeActivity&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BaseActivity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 允许解析成8种基本数据类型或对应封装类&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// String类型可以自动解析，除了String和8种基本类型封装类以外，&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 其他的Object需要自定义解析规则，自定义方式见下文高级功能介绍 2.3 节内容&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// 如果没有声明 name，则使用变量名作为 Intent 解析的key&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;key3&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 使用注解接收对象时，必须调用这一句，建议直接在 Base 中统一调用。&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 当然如果不嫌麻烦，也是允许自己手动解析的，但是只能解析成String，因为传的时候都是以String类型传递&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getIntent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getStringExtra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;2.4 对象参数接收&lt;/h4&gt;
+
+&lt;p&gt;页面跳转间如果要对象，有两种方式：  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;第一种：先将对象序列化为json，将json传递以后，自定义解析器反序列化为对象，参考&lt;code&gt;自定义 @Autowired 解析&lt;/code&gt;&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;第二种：直接传递，在直接传递时需要注意对象类型，接收的地方不要出现强转错误
+对象参数只能使用注解接收。使用注解接收对象时，必须调用&lt;code&gt;TheRouter.inject(this);&lt;/code&gt;建议直接在 &lt;code&gt;Base&lt;/code&gt; 中统一调用。&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;user_info_object&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 传递json对象&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;user_object&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 这个方法可以传递任意对象，但是接收的地方对象类型请保证一致&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HomeActivity&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BaseActivity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_info_object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 使用注解接收对象时，必须调用这一句，建议直接在 Base 中统一调用。&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;2.5 自定义 @Autowired 解析&lt;/h4&gt;
+
+&lt;p&gt;页面跳转间如果要对象，需要先将对象序列化为json，将json传递以后再反序列化为对象&lt;br&gt;
+通过 &lt;code&gt;@Autowired&lt;/code&gt; 注解可以自定义将 json 解析为对象注入  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAutowiredParser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MyAutowiredParser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;具体&lt;code&gt;Parser类&lt;/code&gt;定义可参考代码&lt;code&gt;DefaultUrlParser&lt;/code&gt;类  &lt;/p&gt;
+
+&lt;h3&gt;3.0 路由跳转自定义处理器&lt;/h3&gt;
+
+&lt;p&gt;框架内置四种自定义处理器可供业务场景定制，用于在路由跳转过程中，以切面的方式统一修改路由落地页参数信息。  &lt;/p&gt;
+
+&lt;h4&gt;3.1 Path 修改器&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;应用场景&lt;/strong&gt;：用于修复客户端上路由 path 错误问题。  &lt;/p&gt;
+
+&lt;p&gt;例如：相对路径转绝对路径，或由于服务端下发的链接无法固定https或http，但客户端代码写死了 https 的 path，就可以用这种方式统一。&lt;br&gt;
+&lt;strong&gt;注&lt;/strong&gt;：&lt;em&gt;必须在 TheRouter.build() 方法调用前添加处理器，否则处理器前的所有path不会被修改&lt;/em&gt;。  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;Navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addNavigatorPathFixHandle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NavigatorPathFixHandle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;www.kymjs.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startsWith&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://www.kymjs.com&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/**
+     * 数字越大，优先级越高，
+     * 优先级方法通常情况下不需要重写，除非你真的有什么特殊场景会用到
+     */&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getPriority&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;3.2 页面替换器&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;应用场景&lt;/strong&gt;：需要将某些&lt;code&gt;path&lt;/code&gt;指定为新链接的时候使用。 也可以用在修复链接的场景，但是与 &lt;code&gt;path 修改器&lt;/code&gt;不同的是，修改器通常是为了解决通用性的问题，替换器只在页面跳转时才会生效，更多是用来解决特性问题。   &lt;/p&gt;
+
+&lt;p&gt;例如模块化的时候，首页壳模板组件中开发了一个&lt;code&gt;SplashActivity&lt;/code&gt;广告组件作为应用的&lt;code&gt;MainActivity&lt;/code&gt;，在闪屏广告结束的时候自动跳转业务首页页面。 
+但是每个业务不同，首页页面的 &lt;code&gt;Path&lt;/code&gt; 也不相同，而不希望让每个业务线自己去改这个首页壳模板组件，此时就可以组件中先写占位符&lt;code&gt;https://kymjs.com/splash/to/home&lt;/code&gt;，让接入方通过 &lt;code&gt;Path&lt;/code&gt; 替换器解决。&lt;br&gt;
+&lt;strong&gt;注&lt;/strong&gt;：&lt;em&gt;必须在 TheRouter.build().navigation() 方法调用前添加处理器，否则处理器前的所有跳转不会被替换&lt;/em&gt;。  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;Navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addPathReplaceInterceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PathReplaceInterceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://kymjs.com/splash/to/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://kymjs.com/business/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;3.3 路由替换器&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;应用场景&lt;/strong&gt;：常用在未登录不能使用的页面上。例如访问用户钱包页面，在钱包页声明的时候，可以在路由表上声明本页面是需要登录的，在路由跳转过程中，如果落地页是需要登录的，则先替换路由到登录页，同时将原落地页信息作为参数传给登录页，登录流程处理完成后可以继续执行之前的路由操作。  &lt;/p&gt;
+
+&lt;p&gt;路由替换器的拦截点更靠后，主要用于框架已经从路由表中根据 path 找到路由以后，对找到的路由做操作。     &lt;/p&gt;
+
+&lt;p&gt;这种逻辑在所有页面跳转前写不太合适，以前的做法通常是在落地页写逻辑判断用户是否具有权限，但其实在路由层完成更合适。&lt;br&gt;
+&lt;strong&gt;注&lt;/strong&gt;：&lt;em&gt;必须在 TheRouter.build().navigation() 方法调用前添加处理器，否则处理器前的所有跳转不会被替换&lt;/em&gt;。   &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+&lt;span class=&quot;c1&quot;&gt;// 对于如何判断当前页面是否需要登录，有很多中方式，我们推荐用在 assets/RouteMap.json 路由表或者注解中配置(会自动加入路由表)，例如下面的 needLogin 用注解定义：&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://kymjs.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;needLogin&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestActivity&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppCompatActivity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 用  assets/RouteMap.json 路由表定义的方式如下&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;path&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://kymjs.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;className&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;com.therouter.demo.shell.TestActivity&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;action&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;params&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;needLogin&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;n&quot;&gt;NavigatorKt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addRouterReplaceInterceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RouterReplaceInterceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RouteItem&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RouteItem&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;routeItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parseBoolean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;routeItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getExtras&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;needLogin&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;RouteItem&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matchRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;登录页面的url&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setDescription&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;可以在这修改路由参数，推荐把routeItem作为参数传给登录页&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;routeItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;3.4 路由AOP拦截器&lt;/h4&gt;
+
+&lt;p&gt;与前三个处理器不同的点在于，路由的AOP拦截器全局只能有一个。用于实现AOP的能力，在整个TheRouter跳转的过程中，跳转前，目标页是否找到的回调，跳转时，跳转后，都可以做一些自定义的逻辑处理。   &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;使用场景&lt;/strong&gt;：场景很多，最常用的是可以拦截一些跳转，例如debug页面在生产环境不打开，或定制&lt;code&gt;startActivity&lt;/code&gt;跳转方法。   &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;Navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setRouterInterceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RouterInterceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RouteItem&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;routeItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;InterceptorCallback&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isDebug&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;routeItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getClassName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.kymjs.DebugActivity&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// callback 对象也是可以自定义的，看你怎么用了&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onContinue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;routeItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;3.5 跳转结果回调&lt;/h4&gt;
+
+&lt;p&gt;如果使用&lt;code&gt;TheRouter&lt;/code&gt;跳转，传入了一个不识别的的&lt;code&gt;path&lt;/code&gt;，则不会有任何处理。你也可以定义一个默认的全局回调，来处理跳转情况，如果落地页是 &lt;code&gt;Fragment&lt;/code&gt; 则不会回调。&lt;br&gt;
+当然，跳转结果的回调不止这一个用途，可以根据业务有自己的处理。&lt;br&gt;
+回调也可以单独为某一次跳转设置，&lt;code&gt;navigation()&lt;/code&gt;方法有重载可以传入设置。  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;NavigatorKt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;defaultNavigationCallback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NavigationCallback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 落地页Activity打开后，执行到onCreate会回调&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onActivityCreated&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@NonNull&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Navigator&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@NonNull&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Activity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onActivityCreated&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// startActivity执行后会立刻回调&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onArrival&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@NonNull&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Navigator&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onArrival&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// 找到待跳转的落地页时就会回调（startActivity之前）&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onFound&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@NonNull&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Navigator&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onFound&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// 找不到落地页的时候会回调&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onLost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@NonNull&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Navigator&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onLost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;4.0 其他API&lt;/h3&gt;
+
+&lt;h4&gt;4.1 判断一个 url 是否为路由Path&lt;/h4&gt;
+
+&lt;p&gt;如果返回为空，表示当前url不是路由表内的path  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// kotlin toplevel方法，Java调用请使用RouteMapKt类&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;matchRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;url填这里&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="doc" /><summary type="html">路由可用于处理页面跳转</summary></entry><entry><title type="html">跨模块依赖注入</title><link href="http://localhost:4000/docs/2022/08/27/01" rel="alternate" type="text/html" title="跨模块依赖注入" /><published>2022-08-27T00:00:00+08:00</published><updated>2022-08-27T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/27/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/27/01">&lt;p&gt;模块化能力支持项：  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;支持跨模块依赖注入&lt;/li&gt;
+&lt;li&gt;支持自定义注入项的创建规则，依赖注入可自定义参数&lt;/li&gt;
+&lt;li&gt;支持自定义服务拦截，单模块mock调试&lt;/li&gt;
+&lt;li&gt;支持注入对象缓存，多次注入 只会new一次对象&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;1.0 依赖注入&lt;/h3&gt;
+
+&lt;p&gt;用于跨模块通信使用，核心设计思想是参考了&lt;a href=&quot;https://baike.baidu.com/item/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/8258990&quot;&gt;SOA(面向服务架构)&lt;/a&gt; 的设计方式。
+具体到 Android 侧就是 AIDL 类似的实现：&lt;br&gt;
+例如当前有两个模块：A订单模块、B登录模块，下单需要获取用户信息。&lt;br&gt;
+这个业务场景就是，A需要使用获取用户信息的服务，B需要向外提供一个获取用户信息的服务。    &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2022/06/08/XrJc0f.jpg&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+
+&lt;h4&gt;1.1 声明接口服务&lt;/h4&gt;
+
+&lt;p&gt;首先声明一个接口，放入公共依赖层  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 假设当前有一个用户信息获取服务&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IUserService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getUserInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;1.2 服务使用方&lt;/h4&gt;
+
+&lt;p&gt;也就是上面例子的 A订单模块，他需要使用获取用户信息的服务
+A无需关心，&lt;code&gt;IUserService&lt;/code&gt;这个接口服务是谁提供的，他只需要知道自己需要使用这样的一个服务就行了。&lt;br&gt;
+&lt;strong&gt;注&lt;/strong&gt;：&lt;em&gt;如果没有提供服务的提供方，&lt;code&gt;TheRouter.get()&lt;/code&gt;可能返回&lt;code&gt;null&lt;/code&gt;&lt;/em&gt;    &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;IUserService:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)?.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUserInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;1.3 服务提供方&lt;/h4&gt;
+
+&lt;p&gt;服务提供方需要声明一个提供服务的方法，用&lt;code&gt;@ServiceProvider&lt;/code&gt;注解标记。  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;如果是 java，必须是 public static 修饰&lt;/li&gt;
+&lt;li&gt;如果是 kotlin，建议写成 top level 的函数&lt;/li&gt;
+&lt;li&gt;方法名不限&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/**
+ * 方法名不限定，任意名字都行
+ * 返回值必须是服务接口名，如果是实现了服务的子类，需要加上returnType限定（例如下面代码）
+ * 方法必须加上 public static 修饰，否则编译期就会报错
+ */&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ServiceProvider&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IUserService&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;IUserService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getUserInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;返回用户信息&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 也可以直接返回对象，然后标注这个方法的服名是什么&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ServiceProvider&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;returnType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IUserService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UserServiceImpl&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;xxx&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;2.0 自定义服务拦截器&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;使用场景&lt;/strong&gt;：单模块调试时，可能会有需要 mock 其他模块提供的服务，TheRouter 允许自定义其他模块的实现。   &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;Interceptor&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interceptor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Interceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;interception&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IUserService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;IUserService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getRouterInject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addInterceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;interceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;3.0 服务缓存&lt;/h3&gt;
+
+&lt;p&gt;服务提供方运行对提供的服务做配置，对于无状态的服务，尽可能使用缓存方式减少对象创建次数，而有状态的服务，则每次创建新对象保证多次调用有不会互相污染状态（例如订单状态管理、商品销售状态等服务）。      &lt;/p&gt;
+
+&lt;p&gt;声明服务缓存只需要在 @ServiceProvider的方法上新增额外注解即可，例如下面示例代码：  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Singleton&lt;/strong&gt; 表示这个对象会被永久缓存，对外部调用方而言相当于这个对象声明成了单例&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NewInstance&lt;/strong&gt; 表示每次都会返回新对象&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：&lt;em&gt;如果两个注解同时被添加，则只有&lt;code&gt;Singleton&lt;/code&gt;会生效。&lt;/em&gt;  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+&lt;span class=&quot;c1&quot;&gt;// 注：如果都不加，默认是LRU+软引用缓存&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 如果两个注解同时被添加，则只有Singleton会生效。&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Singleton&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 对外部调用方而言相当于这个对象声明成了单例&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@NewInstance&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 每次都会返回新对象&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IUserService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getUserInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;nd&quot;&gt;@ServiceProvider&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IUserService&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;IUserService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getUserInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;返回用户信息&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;4.0 在类上注解ServiceProvider&lt;/h3&gt;
+
+&lt;p&gt;从&lt;code&gt;1.1.2-rc7&lt;/code&gt;版本开始，&lt;code&gt;ServiceProvider&lt;/code&gt;支持给类设置注解。  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 服务提供方&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ServiceProvider&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestClassAnnotation&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ITestClassAnnotation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//服务使用方&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ITestClassAnnotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果一个接口都没有实现，默认的返回类型为当前类本身。&lt;br&gt;
+如果 类有多个接口需要实现，则必须显示声明&lt;code&gt;returnType&lt;/code&gt;，例如：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 服务提供方&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ServiceProvider&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;returnType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ITestClassAnnotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestClassAnnotation&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ITestClassAnnotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ITest0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//服务使用方&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ITestClassAnnotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果你的类有父类实现了接口协议，而你又不想显示声明&lt;code&gt;returnType&lt;/code&gt;，例如下面这种场景。我们也提供了一个编译选项可供使用，在&lt;code&gt;gradle.properties&lt;/code&gt;文件中加入 &lt;code&gt;USE_EXTENSION=true&lt;/code&gt;    &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt; ：请 &lt;strong&gt;谨慎&lt;/strong&gt; 开启 &lt;code&gt;USE_EXTENSION&lt;/code&gt;。当开启后，所有协议判断会使用&lt;code&gt;isAssignableFrom&lt;/code&gt;去判断，而不再是&lt;code&gt;equals&lt;/code&gt;，对运行时性能会有较大影响。  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SuperTestClassAnnotation&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ITestClassAnnotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ITest0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 服务提供方&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ServiceProvider&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestClassAnnotation&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SuperTestClassAnnotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 当在`gradle.properties`文件中加入 `USE_EXTENSION=true`后，&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 表示允许接口协议拥有继承关系，所以可以使用如下两个协议获取并使用服务&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ITestClassAnnotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 或&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ITest0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="doc" /><summary type="html">模块化能力支持项：</summary></entry><entry><title type="html">业务节点订阅(自动初始化)能力介绍</title><link href="http://localhost:4000/docs/2022/08/26/01" rel="alternate" type="text/html" title="业务节点订阅(自动初始化)能力介绍" /><published>2022-08-26T00:00:00+08:00</published><updated>2022-08-26T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/26/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/26/01">&lt;ul&gt;
+&lt;li&gt;支持单模块独立初始化&lt;/li&gt;
+&lt;li&gt;支持懒加载初始化&lt;/li&gt;
+&lt;li&gt;独立初始化允许多任务依赖(参考Gradle Task)&lt;/li&gt;
+&lt;li&gt;支持编译期循环引用检测&lt;/li&gt;
+&lt;li&gt;支持自定义业务初始化时机&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;常用场景&lt;/strong&gt;：模块化开发时，可能每个模块都有自己需要初始化的一些代码。以前的做法是把这些代码都在&lt;code&gt;Application&lt;/code&gt;里声明，但是这样可能随着业务变动每次都需要修改&lt;code&gt;Application&lt;/code&gt;所在模块。&lt;code&gt;TheRouter&lt;/code&gt;的单模块自动初始化能力就是为了解决这样的情况，可以只在当前模块声明初始化方法后，将会在业务场景时自动被调用。  &lt;/p&gt;
+
+&lt;h2&gt;使用介绍&lt;/h2&gt;
+
+&lt;p&gt;无需担心循环依赖造成的问题，框架会在编译期构建&lt;code&gt;有向无环图&lt;/code&gt;，监测循环依赖情况，如果发现会在编译期直接报错。&lt;/p&gt;
+
+&lt;p&gt;可以在当前模块中，任意类中声明一个任意方法名的方法，给方法添加上&lt;code&gt;@FlowTask&lt;/code&gt; 的注解即可。  &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;@FlowTask&lt;/code&gt; 注解参数说明：  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;taskName&lt;/strong&gt;：当前初始化任务的任务名，必须全局唯一，建议格式为：&lt;code&gt;moduleName_taskName&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dependsOn&lt;/strong&gt;：参考&lt;code&gt;Gradle&lt;/code&gt; Task，任务与任务之间可能会有依赖关系。如果当前任务需要依赖其他任务先初始化，则在这里声明依赖的任务名。可以同时依赖多个任务，用英文逗号分隔，空格可选，会被过滤：dependsOn = &amp;quot;mmkv, config, login&amp;quot;，默认为空，应用启动就被调用。注：&lt;code&gt;dependsOn&lt;/code&gt;只能保证&lt;code&gt;task&lt;/code&gt;是在依赖任务之后执行，由于内部逻辑都是在异步线程操作，取决于线程切换，并不一定是立刻执行。 &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;async&lt;/strong&gt;：是否要在异步执行此任务，默认false。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/**
+ * 将会在异步执行
+ */&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@FlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;taskName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;mmkv_init&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependsOn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TheRouterFlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;THEROUTER_INITIALIZATION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;异步=========Application onCreate后执行&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@FlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;taskName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;app1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main线程=========应用启动就会执行&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**
+ * 将会在主线程初始化
+ */&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@FlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;taskName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependsOn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;mmkv,app1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main线程=========在app1和mmkv两个任务都执行以后才会被执行&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;内置初始化节点&lt;/h2&gt;
+
+&lt;p&gt;框架默认支持了两个生命周期类任务，可在使用时直接引用&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;TheRouterFlowTask.APP_ONCREATE：(已废弃，预计在1.1.4版本删除)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TheRouterFlowTask.APP_ONSPLASH&lt;/strong&gt;：当应用的首个&lt;code&gt;Activity.onCreate()&lt;/code&gt;执行后初始化&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TheRouterFlowTask. BEFORE_THEROUTER _INITIALIZATION&lt;/strong&gt;：当应用启动后，在TheRouter初始化之前，执行任务。(1.1.1-rc2版本新增)&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TheRouterFlowTask.THEROUTER_INITIALIZATION&lt;/strong&gt;：当TheRouter初始化后，执行相关依赖任务。(1.1.2-rc6版本新增)&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;自定义业务节点初始化&lt;/h3&gt;
+
+&lt;p&gt;支持定义业务节点，例如&lt;strong&gt;隐私协议&lt;/strong&gt;通过以后才初始化某些方法：&lt;/p&gt;
+
+&lt;p&gt;事实上框架默认的两个生命周期任务也是通过这个能力完成的。  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 假设隐私协议任务名为：AgreePrivacyCache&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**
+ * 同意隐私协议后初始化录音SDK
+ */&lt;/span&gt;
+ &lt;span class=&quot;nd&quot;&gt;@FlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;taskName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;initRecord&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependsOn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;AgreePrivacyCache&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;context:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initRecordAudioSDK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 当用户同意隐私协议时，调度依赖隐私协议的所有任务执行&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;runTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;AgreePrivacyCache&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;编译期配置&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;@FlowTask&lt;/code&gt;的&lt;code&gt;dependsOn&lt;/code&gt;参数声明了一个不存在的任务，通常情况下是由于任务名书写错误，建议设置为&lt;code&gt;error&lt;/code&gt;，尽早在编译期发现问题。
+可在&lt;code&gt;local.properties&lt;/code&gt;配置编译期属性（warning输出日志，error直接报错）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+&lt;li&gt; &lt;code&gt;CHECK_FLOW_UNKNOW_DEPEND=warning&lt;/code&gt; warning/error可选&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2 . 在编译期，如果想知道当前APP中，总共有哪些&lt;code&gt;FlowTask&lt;/code&gt;，他们之间的依赖关系是怎样的，可以通过在&lt;code&gt;local.properties&lt;/code&gt;配置编译期属性即可。  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;   &lt;code&gt;SHOW_FLOW_DEPEND=true&lt;/code&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;编译效果如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2022/12/05/zyBye1.jpg&quot; class=&quot;blog-post&quot; alt=&quot;TheRouter FlowTask&quot;&gt; &lt;/p&gt;
+
+&lt;h2&gt;初始化方法的限制&lt;/h2&gt;
+
+&lt;p&gt;标注&lt;code&gt;FlowTask&lt;/code&gt;的方法需要遵循如下限制：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;如果是 java，方法必须是 public static 修饰&lt;/li&gt;
+&lt;li&gt;如果是 kotlin，建议写成 top level 的函数&lt;/li&gt;
+&lt;li&gt;参数有且必须只有&lt;code&gt;Context&lt;/code&gt;，入参为&lt;code&gt;Application&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;实现原理&lt;/h2&gt;
+
+&lt;p&gt;每个加了 &lt;code&gt;@FlowTask&lt;/code&gt; 注解的方法，都会在编译期被解析，生成一个对应的 &lt;code&gt;Task&lt;/code&gt; 对象，这个对象包含了初始化方法的相关信息，比如：是否异步执行、任务名、是否依赖其他任务先执行。   &lt;/p&gt;
+
+&lt;p&gt;当所有aar都编译完成，生成好全部的 &lt;code&gt;Task&lt;/code&gt; 以后，会在主 app 中通过&lt;code&gt;Gradle&lt;/code&gt;插件进行聚合，在这时会将所有的 &lt;code&gt;Task&lt;/code&gt; 做一次检查，通过构建&lt;code&gt;有向无环图&lt;/code&gt;来防止 &lt;code&gt;Task&lt;/code&gt; 发生循环引用的情况。  &lt;/p&gt;
+
+&lt;p&gt;每次应用启动后，会在路由初始化时，将有向图中的全部&lt;code&gt;Task&lt;/code&gt;，按照依赖关系按顺序加载。  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b400b35a3c0244479ef61ce6759b25a7~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">支持单模块独立初始化 支持懒加载初始化 独立初始化允许多任务依赖(参考Gradle Task) 支持编译期循环引用检测 支持自定义业务初始化时机</summary></entry></feed>

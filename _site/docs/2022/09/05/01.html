@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+  <!-- meta data & title -->
+  <meta charset="utf-8">
+  <title>TheRouter 一键迁移工具</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。">
+  <meta name="author" content="TheRouter">
+  <meta name="keyword"
+      content="TheRouter 一键迁移工具,android,kotlin,arouter,TheRouter">
+
+  <meta name="keywords"
+      content="TheRouter 一键迁移工具,android,kotlin,arouter,therouter,studio,优质开发技术">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/animate.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/prism.css">
+
+  <script type="text/javascript" src="http://localhost:4000/js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</head>
+  <div class="container">
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <img src="http://localhost:4000/assets/img/logo/logo4.png" width="170px">
+    </a>
+
+    <ul class="nav nav-pills">
+      
+      <li class="nav-item">
+        
+          <a href="/" class="nav-link header-color" aria-current="page">首页</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          
+            <a href="/doc" class="nav-link active header-color">博客</a>
+           
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/docs/2022/08/24/01" class="nav-link header-color">社区</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/api/1.1.2-rc5" class="nav-link header-color">API文档</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/about" class="nav-link header-color">关于</a>
+         
+      </li>
+      <li class="nav-item"><a href="https://github.com/HuolalaTech/hll-wp-therouter-android" class="nav-link header-color">GitHub</a></li>
+    </ul>
+  </header>
+</div>
+
+
+<!-- End Header -->
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-1.10.2.min.js"></script>
+<script src="http://localhost:4000/js/wow.min.js"></script>
+<script>
+  new WOW().init();
+</script>
+
+  <body>
+  	
+  		<h2 class="blog-title" align="center">TheRouter 一键迁移工具</h2>
+  	
+    <br>
+    <!-- Main Container -->
+<div class="container">
+	<div class="blog-post">
+		<p><code>TheRouter</code>提供了图形化界面的迁移工具，可以一键从其他路由迁移到<code>TheRouter</code>，目前仅支持<code>ARouter</code>，其他路由框架迁移也在开发中：</p>
+
+<p>（GitHub下载，70M左右，请耐心等待）  </p>
+
+<p>当前版本：1.1.1 (2022-10-09更新)</p>
+
+<ul>
+<li>Mac OS 迁移工具下载：<a href="https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip">https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip</a> </li>
+<li>Windows 迁移工具下载：<a href="https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip">https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip</a></li>
+</ul>
+
+<p>如果项目中使用了ARouter的IProvider.init()方法，可能需要手动处理初始化逻辑。<br>
+如下图：  </p>
+
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7f2cc2b3509f41ccaa11dc9617088033~tplv-k3u1fbpfcp-watermark.image?" class="blog-img"/></p>
+
+<h3>注意事项</h3>
+
+<ol>
+<li>issue中有用户反馈：使用<code>Windows</code>系统迁移时，会发生乱码情况。犹豫迁移工具对文件的读写均采用<code>UTF-8</code>编码，所以建议在迁移之前先将工程编码设置为<code>UTF-8</code>。Android Studio支持修改工程编码：<code>Setting -&gt; Editor -&gt; File Encodings</code> 修改<code>Global Encoding</code>和<code>Project Encoding</code>为 <code>UTF-8</code><br></li>
+</ol>
+
+<p><img src="http://localhost:4000/assets/img/image/encode.jpg" class="blog-img"></p>
+
+<h3>需要手动修改的部分</h3>
+
+<ol>
+<li><p>ARouter 的 Provider.init 部分，建议改为懒加载方式，在服务方法被调用时自己主动调用init方法。    </p></li>
+<li><p>如果使用了 ARouter 拦截器部分，需要自己手动处理拦截器的逻辑，ARouter的拦截器全部可以用 TheRouter 的拦截器替换，具体逻辑请参考：TheRouter页面跳转：【<a href="https://therouter.cn/docs/2022/08/28/01">第三部分</a>】自定义处理器。    </p></li>
+<li><p>ARouter 封装了大量 Bundle 传参的操作，例如<code>withBooleanArray()</code>这种。我们认为这样的封装是冗余的。如果你使用到了对应方法，在TheRouter内可以直接通过对Bundle对象调用对应的方法。例如：    </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// ARouter </span>
+<span class="n">ARouter</span><span class="o">.</span><span class="na">getInstance</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">path</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">withByteArray</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">withStringArrayList</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span> <span class="n">as</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">navigation</span><span class="o">()</span>
+
+<span class="c1">// TheRouter</span>
+<span class="n">TheRouter</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">fillParams</span> <span class="o">{</span> <span class="n">bundle</span> <span class="o">-&gt;</span>
+        <span class="n">bundle</span><span class="o">.</span><span class="na">putByteArray</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span>
+        <span class="n">bundle</span><span class="o">.</span><span class="na">putStringArrayList</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span>
+    <span class="o">}.</span><span class="na">navigation</span><span class="o">()</span>
+</code></pre></div></li>
+<li><p><code>with(bundle)</code>的实现区别。在 ARouter 中，with 操作是一个集合性操作，如果此时 bundle 中的 key 与 <code>withString(key, value)</code> 中的 key 重复，会发生后者覆盖前者的情况。<br>
+在<code>TheRouter</code>中，with 操作是传入一个额外的对象，不会发生覆盖，但在落地页获取时需要通过 <code>@Autowired</code> 注解获取。<br>
+如果你希望<code>with(bundle)</code>能直接通过intent获取，可以使用如下代码。  </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ARouter</span><span class="o">.</span><span class="na">build</span><span class="o">().</span><span class="na">with</span><span class="o">(</span><span class="n">yourBundle</span><span class="o">).</span><span class="na">navigate</span><span class="o">()</span>
+
+<span class="n">TheRouter</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s">""</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">fillParams</span> <span class="o">{</span> <span class="n">bundle</span> <span class="o">-&gt;</span>
+        <span class="n">bundle</span><span class="o">.</span><span class="na">putAll</span><span class="o">(</span><span class="n">yourBundle</span><span class="o">)</span>
+    <span class="o">}.</span><span class="na">navigation</span><span class="o">()</span>
+</code></pre></div></li>
+</ol>
+
+<p>》》》   </p>
+
+<p>暂未发现其他需要手动修改部分</p>
+
+	</div>
+</div>
+<!--End Main Container -->
+  </body>
+
+  <!-- Footer -->
+<footer> 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3><i class="bi bi-link-45deg bi-footer"></i> 友情链接</h3>
+        <p><a href="https://www.huolala.cn/"> 货拉拉</a></p>
+        <p><a href="https://www.huolala.cn/house_move.html"> 无忧搬家</a></p>
+        <p><a href="https://www.xiaolachuxing.com/"> 小拉出行</a></p>
+      </div>
+      <div class="col-md-4">
+        <h3><i class="bi bi-slack bi-footer"></i> 社区</h3>
+        <p><a href="https://kymjs.com/therouter/wx/"> 官方微信群</a></p>
+        <p><a href="https://github.com/HuolalaTech/hll-wp-therouter-android"> GitHub </a></p>
+        <p><a href="https://juejin.cn/user/1768489241815070/posts"> 技术博客 </a></p> 
+      </div>
+      <div class="col-md-4">
+        <h3><i class="bi bi-postcard-heart bi-footer"></i> 关于</h3>
+        <p><a href="https://juejin.cn/user/1768489241815070/posts"> 货拉拉移动技术团队</a></p>
+        <p><a href="https://kymjs.com"> 开源实验室</a></p>
+      </div>    
+    </div>
+  </div>
+
+  <div class="copyright text center">
+    <p>&copy; Copyright 2023, <a href="#">TheRouter</a>. <br>Theme ported by <a href="https://melvinchng.github.io/" target="_blank">Melvin Ch'ng</a></p>
+  </div>
+</footer>
+</html>
