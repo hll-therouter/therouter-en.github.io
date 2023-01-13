@@ -257,7 +257,7 @@
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 暂存的动作可以有多个，会在恢复时按顺序执行</span>
 <span class="n">TheRouter</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s">"http://therouter.com/home"</span><span class="o">)</span>
         <span class="o">.</span><span class="na">withInt</span><span class="o">(</span><span class="s">"key1"</span><span class="o">,</span> <span class="mi">12345678</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">padding</span><span class="o">()</span><span class="c1">// 暂存当前跳转动作</span>
+        <span class="o">.</span><span class="na">pending</span><span class="o">()</span><span class="c1">// 暂存当前跳转动作</span>
         <span class="o">.</span><span class="na">navigation</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
 
 <span class="c1">// 恢复</span>
@@ -389,8 +389,9 @@
 
 <p>这种逻辑在所有页面跳转前写不太合适，以前的做法通常是在落地页写逻辑判断用户是否具有权限，但其实在路由层完成更合适。<br>
 <strong>注</strong>：<em>必须在 TheRouter.build().navigation() 方法调用前添加处理器，否则处理器前的所有跳转不会被替换</em>。   </p>
-<div class="highlight"><pre><code class="language-java" data-lang="java">
-<span class="c1">// 对于如何判断当前页面是否需要登录，有很多中方式，我们推荐用在 assets/RouteMap.json 路由表或者注解中配置(会自动加入路由表)，例如下面的 needLogin 用注解定义：</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 对于如何判断当前页面是否需要登录，我们推荐在 assets/RouteMap.json 路由表或者注解中配置(会自动加入路由表)，例如：</span>
+
+<span class="c1">// 用注解定义 needLogin</span>
 <span class="nd">@Route</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"http://kymjs.com/home"</span><span class="o">,</span> <span class="n">params</span> <span class="o">=</span> <span class="o">{</span><span class="s">"needLogin"</span><span class="o">,</span><span class="s">"true"</span><span class="o">})</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestActivity</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="o">{}</span>
 
@@ -405,7 +406,7 @@
     <span class="o">}</span>
   <span class="o">}</span>
 
-
+<span class="c1">// 在拦截器处理跳转逻辑</span>
 <span class="n">NavigatorKt</span><span class="o">.</span><span class="na">addRouterReplaceInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="n">RouterReplaceInterceptor</span><span class="o">()</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="n">RouteItem</span> <span class="nf">replace</span><span class="o">(</span><span class="n">RouteItem</span> <span class="n">routeItem</span><span class="o">)</span> <span class="o">{</span>

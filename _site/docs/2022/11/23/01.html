@@ -100,14 +100,14 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 <h4>1. 新版本接入classpath</h4>
 
 <p>如果是新版本的Gradle，<code>classpath</code>已经改为用<code>plugins</code>的方式引入，只需要在闭包内加这一句就行了</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter'</span> <span class="n">version</span> <span class="s1">'1.1.1'</span> <span class="n">apply</span> <span class="kc">false</span>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter'</span> <span class="n">version</span> <span class="s1">'1.1.2'</span> <span class="n">apply</span> <span class="kc">false</span>
 </code></pre></div>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d9a373ad726141a1b77d548e99de3656~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"></p>
 
 <h4>2. 老版本接入classpath</h4>
 
 <p>对于老版本的Gradle，需要手动引入<code>classpath</code>，在TheRouter官方Github首页也有接入介绍</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">classpath</span> <span class="s2">"cn.therouter:plugin:1.1.1"</span>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">classpath</span> <span class="s2">"cn.therouter:plugin:1.1.2"</span>
 </code></pre></div>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e17c86607e14d0888bf2ab30b34d3b1~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"></p>
 
@@ -140,7 +140,7 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ef8fb789721548b4bc7a11563ecc328b~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"> 
 如果报找不到kapt，可能是因为没有引入kotlin-kapt的插件，参考步骤3里面的截图，接入对应的kapt。如果是纯Java工程，需要用Java的APT处理，APT就不用引入插件了，直接把<code>kapt</code>改成<code>annotationProcessor</code></p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">annotationProcessor</span> <span class="s2">"cn.therouter:apt:1.1.1"</span>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">annotationProcessor</span> <span class="s2">"cn.therouter:apt:1.1.2"</span>
 </code></pre></div>
 <h2>使用</h2>
 
@@ -179,7 +179,11 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
     <span class="n">TheRouter</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s">"如果没有参数，可以什么都不传"</span><span class="o">).</span><span class="na">navigation</span><span class="o">();</span>
 <span class="o">}</span>
 </code></pre></div>
-<h2>KSP接入(可选，用于替代kapt)</h2>
+<h2>AGP 8.X 使用</h2>
+
+<p>由于 AGP 从 7.X 开始，把<code>TransfromAPI</code>废弃(会有警告，但还能正常使用)，从8.0开始删除了，所以老版本是无法使用的。对于新版本，由于 8.0 的 AGP 还没有正式发布，所以我们也只在 Beta 版本支持，具体进度请参考：<a href="https://github.com/HuolalaTech/hll-wp-therouter-android/issues/22">Issue 22</a>  </p>
+
+<h2>KSP 接入(可选，用于替代kapt)</h2>
 
 <h4>1. 升级Gradle</h4>
 

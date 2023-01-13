@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-09T11:09:30+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">从零接入 TheRouter</title><link href="http://localhost:4000/docs/2022/11/23/01" rel="alternate" type="text/html" title="从零接入 TheRouter" /><published>2022-11-23T00:00:00+08:00</published><updated>2022-11-23T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/11/23/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/11/23/01">&lt;p&gt;TheRouter是货拉拉开源的路由框架，针对Android平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。&lt;br&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-13T10:42:16+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">从零接入 TheRouter</title><link href="http://localhost:4000/docs/2022/11/23/01" rel="alternate" type="text/html" title="从零接入 TheRouter" /><published>2022-11-23T00:00:00+08:00</published><updated>2022-11-23T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/11/23/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/11/23/01">&lt;p&gt;TheRouter是货拉拉开源的路由框架，针对Android平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。&lt;br&gt;
 Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/&lt;/a&gt;&lt;br&gt;
 官网：&lt;a href=&quot;http://therouter.cn/&quot;&gt;http://therouter.cn/&lt;/a&gt;  &lt;/p&gt;
 
@@ -19,14 +19,14 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 &lt;h4&gt;1. 新版本接入classpath&lt;/h4&gt;
 
 &lt;p&gt;如果是新版本的Gradle，&lt;code&gt;classpath&lt;/code&gt;已经改为用&lt;code&gt;plugins&lt;/code&gt;的方式引入，只需要在闭包内加这一句就行了&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cn.therouter'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.1.1'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cn.therouter'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.1.2'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d9a373ad726141a1b77d548e99de3656~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h4&gt;2. 老版本接入classpath&lt;/h4&gt;
 
 &lt;p&gt;对于老版本的Gradle，需要手动引入&lt;code&gt;classpath&lt;/code&gt;，在TheRouter官方Github首页也有接入介绍&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cn.therouter:plugin:1.1.1&quot;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cn.therouter:plugin:1.1.2&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e17c86607e14d0888bf2ab30b34d3b1~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
@@ -59,7 +59,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 
 &lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ef8fb789721548b4bc7a11563ecc328b~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; 
 如果报找不到kapt，可能是因为没有引入kotlin-kapt的插件，参考步骤3里面的截图，接入对应的kapt。如果是纯Java工程，需要用Java的APT处理，APT就不用引入插件了，直接把&lt;code&gt;kapt&lt;/code&gt;改成&lt;code&gt;annotationProcessor&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;annotationProcessor&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cn.therouter:apt:1.1.1&quot;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;annotationProcessor&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cn.therouter:apt:1.1.2&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;使用&lt;/h2&gt;
 
@@ -98,7 +98,11 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
     &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;如果没有参数，可以什么都不传&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;KSP接入(可选，用于替代kapt)&lt;/h2&gt;
+&lt;h2&gt;AGP 8.X 使用&lt;/h2&gt;
+
+&lt;p&gt;由于 AGP 从 7.X 开始，把&lt;code&gt;TransfromAPI&lt;/code&gt;废弃(会有警告，但还能正常使用)，从8.0开始删除了，所以老版本是无法使用的。对于新版本，由于 8.0 的 AGP 还没有正式发布，所以我们也只在 Beta 版本支持，具体进度请参考：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/issues/22&quot;&gt;Issue 22&lt;/a&gt;  &lt;/p&gt;
+
+&lt;h2&gt;KSP 接入(可选，用于替代kapt)&lt;/h2&gt;
 
 &lt;h4&gt;1. 升级Gradle&lt;/h4&gt;
 
@@ -1229,7 +1233,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 暂存的动作可以有多个，会在恢复时按顺序执行&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://therouter.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12345678&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// 暂存当前跳转动作&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;pending&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// 暂存当前跳转动作&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;// 恢复&lt;/span&gt;
@@ -1361,8 +1365,9 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 
 &lt;p&gt;这种逻辑在所有页面跳转前写不太合适，以前的做法通常是在落地页写逻辑判断用户是否具有权限，但其实在路由层完成更合适。&lt;br&gt;
 &lt;strong&gt;注&lt;/strong&gt;：&lt;em&gt;必须在 TheRouter.build().navigation() 方法调用前添加处理器，否则处理器前的所有跳转不会被替换&lt;/em&gt;。   &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
-&lt;span class=&quot;c1&quot;&gt;// 对于如何判断当前页面是否需要登录，有很多中方式，我们推荐用在 assets/RouteMap.json 路由表或者注解中配置(会自动加入路由表)，例如下面的 needLogin 用注解定义：&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 对于如何判断当前页面是否需要登录，我们推荐在 assets/RouteMap.json 路由表或者注解中配置(会自动加入路由表)，例如：&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 用注解定义 needLogin&lt;/span&gt;
 &lt;span class=&quot;nd&quot;&gt;@Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://kymjs.com/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;needLogin&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestActivity&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppCompatActivity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
 
@@ -1377,7 +1382,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-
+&lt;span class=&quot;c1&quot;&gt;// 在拦截器处理跳转逻辑&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;NavigatorKt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addRouterReplaceInterceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RouterReplaceInterceptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RouteItem&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RouteItem&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;routeItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
