@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-13T10:42:16+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">从零接入 TheRouter</title><link href="http://localhost:4000/docs/2022/11/23/01" rel="alternate" type="text/html" title="从零接入 TheRouter" /><published>2022-11-23T00:00:00+08:00</published><updated>2022-11-23T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/11/23/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/11/23/01">&lt;p&gt;TheRouter是货拉拉开源的路由框架，针对Android平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。&lt;br&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-28T15:34:14+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">从零接入 TheRouter</title><link href="http://localhost:4000/docs/2022/11/23/01" rel="alternate" type="text/html" title="从零接入 TheRouter" /><published>2022-11-23T00:00:00+08:00</published><updated>2022-11-23T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/11/23/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/11/23/01">&lt;p&gt;TheRouter是货拉拉开源的路由框架，针对Android平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。&lt;br&gt;
 Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/&lt;/a&gt;&lt;br&gt;
 官网：&lt;a href=&quot;http://therouter.cn/&quot;&gt;http://therouter.cn/&lt;/a&gt;  &lt;/p&gt;
 
@@ -100,7 +100,8 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;AGP 8.X 使用&lt;/h2&gt;
 
-&lt;p&gt;由于 AGP 从 7.X 开始，把&lt;code&gt;TransfromAPI&lt;/code&gt;废弃(会有警告，但还能正常使用)，从8.0开始删除了，所以老版本是无法使用的。对于新版本，由于 8.0 的 AGP 还没有正式发布，所以我们也只在 Beta 版本支持，具体进度请参考：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/issues/22&quot;&gt;Issue 22&lt;/a&gt;  &lt;/p&gt;
+&lt;p&gt;由于 AGP 从 7.X 开始，把 &lt;code&gt;TransfromAPI&lt;/code&gt; 废弃(会有警告，但还能正常使用)，从 8.0 开始删除了，所以老版本是无法使用的。对于新版本，由于 8.0 的 AGP 还没有正式发布，所以我们也只在 Beta 版本支持，以防止再有什么 API 变动。&lt;br&gt;
+具体版本号及开发进度请参考：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/issues/22&quot;&gt;Issue 22&lt;/a&gt;  &lt;/p&gt;
 
 &lt;h2&gt;KSP 接入(可选，用于替代kapt)&lt;/h2&gt;
 
@@ -144,7 +145,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 &lt;li&gt;  KSP 是从 1.1.3-beta1 版本开始支持的&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8c8b45d19046490da3cf2a1760805c01~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; &lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">TheRouter是货拉拉开源的路由框架，针对Android平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。 Github: https://github.com/HuolalaTech/hll-wp-therouter-android/ 官网：http://therouter.cn/</summary></entry><entry><title type="html">Android Studio 插件，TheRouter 跳转辅助工具</title><link href="http://localhost:4000/docs/2022/09/29/01" rel="alternate" type="text/html" title="Android Studio 插件，TheRouter 跳转辅助工具" /><published>2022-09-29T00:00:00+08:00</published><updated>2022-09-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/29/01">&lt;p&gt;开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。   &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8c8b45d19046490da3cf2a1760805c01~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt; &lt;/p&gt;</content><author><name></name></author><category term="入门教程" /><summary type="html">TheRouter是货拉拉开源的路由框架，针对Android平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。 Github: https://github.com/HuolalaTech/hll-wp-therouter-android/ 官网：http://therouter.cn/</summary></entry><entry><title type="html">Android Studio 插件，TheRouter 跳转辅助工具</title><link href="http://localhost:4000/docs/2022/09/29/01" rel="alternate" type="text/html" title="Android Studio 插件，TheRouter 跳转辅助工具" /><published>2022-09-29T00:00:00+08:00</published><updated>2022-09-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/29/01">&lt;p&gt;开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。   &lt;/p&gt;
 
 &lt;iframe width=&quot;384px&quot; height=&quot;319px&quot; src=&quot;https://plugins.jetbrains.com/embeddable/card/20047&quot;&gt;&lt;/iframe&gt;
 
@@ -182,7 +183,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 需要开发人工去检查这个&lt;code&gt;path&lt;/code&gt;是不是忘记定义落地页了，还是说手误写错了&lt;code&gt;path&lt;/code&gt;。&lt;br&gt;
 例如这张图：   &lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin3.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。</summary></entry><entry><title type="html">获取和使用最新版的 TheRouter</title><link href="http://localhost:4000/docs/2022/09/06/01" rel="alternate" type="text/html" title="获取和使用最新版的 TheRouter" /><published>2022-09-06T00:00:00+08:00</published><updated>2022-09-06T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/06/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/06/01">&lt;p&gt;TheRouter 的版本规划分为三种，分别是 &lt;code&gt;稳定版&lt;/code&gt;、&lt;code&gt;预览版&lt;/code&gt;、&lt;code&gt;公测版&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin3.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;</content><author><name></name></author><category term="辅助工具" /><summary type="html">开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。</summary></entry><entry><title type="html">获取和使用最新版的 TheRouter</title><link href="http://localhost:4000/docs/2022/09/06/01" rel="alternate" type="text/html" title="获取和使用最新版的 TheRouter" /><published>2022-09-06T00:00:00+08:00</published><updated>2022-09-06T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/06/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/06/01">&lt;p&gt;TheRouter 的版本规划分为三种，分别是 &lt;code&gt;稳定版&lt;/code&gt;、&lt;code&gt;预览版&lt;/code&gt;、&lt;code&gt;公测版&lt;/code&gt;。&lt;/p&gt;
 
 &lt;h3&gt;稳定版&lt;/h3&gt;
 
@@ -212,7 +213,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
     &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://s01.oss.sonatype.org/content/repositories/snapshots/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;查看最新公测版本：&lt;a href=&quot;https://s01.oss.sonatype.org/content/repositories/snapshots/cn/therouter/&quot;&gt;https://s01.oss.sonatype.org&lt;/a&gt;  &lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">TheRouter 的版本规划分为三种，分别是 稳定版、预览版、公测版。</summary></entry><entry><title type="html">TheRouter 一键迁移工具</title><link href="http://localhost:4000/docs/2022/09/05/01" rel="alternate" type="text/html" title="TheRouter 一键迁移工具" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/05/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/05/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;，目前仅支持&lt;code&gt;ARouter&lt;/code&gt;，其他路由框架迁移也在开发中：&lt;/p&gt;
+&lt;p&gt;查看最新公测版本：&lt;a href=&quot;https://s01.oss.sonatype.org/content/repositories/snapshots/cn/therouter/&quot;&gt;https://s01.oss.sonatype.org&lt;/a&gt;  &lt;/p&gt;</content><author><name></name></author><category term="版本介绍" /><summary type="html">TheRouter 的版本规划分为三种，分别是 稳定版、预览版、公测版。</summary></entry><entry><title type="html">TheRouter 一键迁移工具</title><link href="http://localhost:4000/docs/2022/09/05/01" rel="alternate" type="text/html" title="TheRouter 一键迁移工具" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/05/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/05/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;，目前仅支持&lt;code&gt;ARouter&lt;/code&gt;，其他路由框架迁移也在开发中：&lt;/p&gt;
 
 &lt;p&gt;（GitHub下载，70M左右，请耐心等待）  &lt;/p&gt;
 
@@ -270,7 +271,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 
 &lt;p&gt;》》》   &lt;/p&gt;
 
-&lt;p&gt;暂未发现其他需要手动修改部分&lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">TheRouter提供了图形化界面的迁移工具，可以一键从其他路由迁移到TheRouter，目前仅支持ARouter，其他路由框架迁移也在开发中：</summary></entry><entry><title type="html">Android 动态路由框架：TheRouter 开源</title><link href="http://localhost:4000/docs/2022/09/04/01" rel="alternate" type="text/html" title="Android 动态路由框架：TheRouter 开源" /><published>2022-09-04T00:00:00+08:00</published><updated>2022-09-04T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/04/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/04/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。&lt;br&gt;
+&lt;p&gt;暂未发现其他需要手动修改部分&lt;/p&gt;</content><author><name></name></author><category term="迁移工具" /><summary type="html">TheRouter提供了图形化界面的迁移工具，可以一键从其他路由迁移到TheRouter，目前仅支持ARouter，其他路由框架迁移也在开发中：</summary></entry><entry><title type="html">Android 动态路由框架：TheRouter 开源</title><link href="http://localhost:4000/docs/2022/09/04/01" rel="alternate" type="text/html" title="Android 动态路由框架：TheRouter 开源" /><published>2022-09-04T00:00:00+08:00</published><updated>2022-09-04T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/04/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/04/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。&lt;br&gt;
 Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android&lt;/a&gt;。    &lt;/p&gt;
 
 &lt;p&gt;TheRouter 核心功能具备如下能力：    &lt;/p&gt;
@@ -899,7 +900,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;......&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="doc" /><summary type="html">多进程使用 TheRouter</summary></entry><entry><title type="html">TheRouter 基础能力介绍</title><link href="http://localhost:4000/docs/2022/08/29/01" rel="alternate" type="text/html" title="TheRouter 基础能力介绍" /><published>2022-08-29T00:00:00+08:00</published><updated>2022-08-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/29/01">&lt;p&gt;&lt;img src=&quot;/assets/img/image/hll.png&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="特殊场景处理" /><summary type="html">多进程使用 TheRouter</summary></entry><entry><title type="html">TheRouter 基础能力介绍</title><link href="http://localhost:4000/docs/2022/08/29/01" rel="alternate" type="text/html" title="TheRouter 基础能力介绍" /><published>2022-08-29T00:00:00+08:00</published><updated>2022-08-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/29/01">&lt;p&gt;&lt;img src=&quot;/assets/img/image/hll.png&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
 
 &lt;h3&gt;功能介绍&lt;/h3&gt;
 
@@ -918,14 +919,14 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 
 &lt;p&gt;最新版本号，请访问：(&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/releases&quot;&gt;github/releases&lt;/a&gt;)&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 项目根目录 build.gradle 引入&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;therouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;therouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;// app module 中引入&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;therouter&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;// 依赖&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;kapt&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;cn.therouter:apt:1.1.0&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;cn.therouter:router:1.1.0&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;kapt&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;cn.therouter:apt:1.1.2&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;cn.therouter:router:1.1.2&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;1.2 初始化&lt;/h4&gt;
 
@@ -985,7 +986,12 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;/ul&gt;
 
 &lt;h3&gt;三、混淆配置&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;-keep class androidx.annotation.Keep
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;# 如果使用了 Fragment 路由，需要保证类名不被混淆
+# -keep public class * extends android.app.Fragment
+# -keep public class * extends androidx.fragment.app.Fragment
+# -keep public class * extends android.support.v4.app.Fragment
+
+-keep class androidx.annotation.Keep
 -keep @androidx.annotation.Keep class * {*;}
 -keepclassmembers class * {
     @androidx.annotation.Keep *;
@@ -1055,7 +1061,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;li&gt;修改&lt;code&gt;plugin&lt;/code&gt;文件夹名为&lt;code&gt;buildSrc&lt;/code&gt;（注意大小写）&lt;/li&gt;
 &lt;li&gt;注释根目录&lt;code&gt;build.gradle&lt;/code&gt;中的&lt;code&gt;classpath&lt;/code&gt;引用（不需要了）&lt;/li&gt;
 &lt;li&gt;同步 Gradle 变更&lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><category term="doc" /><summary type="html"></summary></entry><entry><title type="html">页面跳转能力介绍</title><link href="http://localhost:4000/docs/2022/08/28/01" rel="alternate" type="text/html" title="页面跳转能力介绍" /><published>2022-08-28T00:00:00+08:00</published><updated>2022-08-28T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/28/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/28/01">&lt;p&gt;路由可用于处理页面跳转  &lt;/p&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="框架简介" /><summary type="html"></summary></entry><entry><title type="html">页面跳转能力介绍</title><link href="http://localhost:4000/docs/2022/08/28/01" rel="alternate" type="text/html" title="页面跳转能力介绍" /><published>2022-08-28T00:00:00+08:00</published><updated>2022-08-28T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/28/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/28/01">&lt;p&gt;路由可用于处理页面跳转  &lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;支持 &lt;code&gt;Activity&lt;/code&gt; 和 &lt;code&gt;Fragment&lt;/code&gt;&lt;br&gt;&lt;/li&gt;
@@ -1450,7 +1456,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;p&gt;如果返回为空，表示当前url不是路由表内的path  &lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// kotlin toplevel方法，Java调用请使用RouteMapKt类&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;matchRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;url填这里&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="doc" /><summary type="html">路由可用于处理页面跳转</summary></entry><entry><title type="html">跨模块依赖注入</title><link href="http://localhost:4000/docs/2022/08/27/01" rel="alternate" type="text/html" title="跨模块依赖注入" /><published>2022-08-27T00:00:00+08:00</published><updated>2022-08-27T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/27/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/27/01">&lt;p&gt;模块化能力支持项：  &lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="初级能力介绍" /><summary type="html">路由可用于处理页面跳转</summary></entry><entry><title type="html">跨模块依赖注入</title><link href="http://localhost:4000/docs/2022/08/27/01" rel="alternate" type="text/html" title="跨模块依赖注入" /><published>2022-08-27T00:00:00+08:00</published><updated>2022-08-27T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/27/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/27/01">&lt;p&gt;模块化能力支持项：  &lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;支持跨模块依赖注入&lt;/li&gt;
@@ -1596,7 +1602,7 @@ A无需关心，&lt;code&gt;IUserService&lt;/code&gt;这个接口服务是谁提
 &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ITestClassAnnotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// 或&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ITest0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="doc" /><summary type="html">模块化能力支持项：</summary></entry><entry><title type="html">业务节点订阅(自动初始化)能力介绍</title><link href="http://localhost:4000/docs/2022/08/26/01" rel="alternate" type="text/html" title="业务节点订阅(自动初始化)能力介绍" /><published>2022-08-26T00:00:00+08:00</published><updated>2022-08-26T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/26/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/26/01">&lt;ul&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="基础能力介绍" /><summary type="html">模块化能力支持项：</summary></entry><entry><title type="html">业务节点订阅(自动初始化)能力介绍</title><link href="http://localhost:4000/docs/2022/08/26/01" rel="alternate" type="text/html" title="业务节点订阅(自动初始化)能力介绍" /><published>2022-08-26T00:00:00+08:00</published><updated>2022-08-26T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/08/26/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/08/26/01">&lt;ul&gt;
 &lt;li&gt;支持单模块独立初始化&lt;/li&gt;
 &lt;li&gt;支持懒加载初始化&lt;/li&gt;
 &lt;li&gt;独立初始化允许多任务依赖(参考Gradle Task)&lt;/li&gt;
@@ -1706,4 +1712,4 @@ A无需关心，&lt;code&gt;IUserService&lt;/code&gt;这个接口服务是谁提
 
 &lt;p&gt;每次应用启动后，会在路由初始化时，将有向图中的全部&lt;code&gt;Task&lt;/code&gt;，按照依赖关系按顺序加载。  &lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b400b35a3c0244479ef61ce6759b25a7~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;</content><author><name></name></author><category term="doc" /><summary type="html">支持单模块独立初始化 支持懒加载初始化 独立初始化允许多任务依赖(参考Gradle Task) 支持编译期循环引用检测 支持自定义业务初始化时机</summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b400b35a3c0244479ef61ce6759b25a7~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;</content><author><name></name></author><category term="中级能力介绍" /><summary type="html">支持单模块独立初始化 支持懒加载初始化 独立初始化允许多任务依赖(参考Gradle Task) 支持编译期循环引用检测 支持自定义业务初始化时机</summary></entry></feed>
