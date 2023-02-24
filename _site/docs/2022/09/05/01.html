@@ -50,7 +50,7 @@
       </li>
       <li class="nav-item">
         
-          <a href="/api/1.1.2-rc5" class="nav-link header-color">API文档</a>
+          <a href="/api/1.1.2" class="nav-link header-color">API文档</a>
          
       </li>
       <li class="nav-item">
@@ -139,6 +139,16 @@
 
 <p>暂未发现其他需要手动修改部分</p>
 
+<h3>迁移建议</h3>
+
+<p>为防止在迁移完成后，写代码过程中，导包引用错误的情况。<br>
+建议手动检查一遍<code>ARouter</code>的引用是否全部删除，并在各模块<code>build.gradle</code>中配置如下代码，过滤掉相关引用。<br>
+这样如果发生引用错误问题，会在编译期报错，提前发现问题。   </p>
+<div class="highlight"><pre><code class="language-" data-lang="">configurations {
+    all*.exclude group: 'com.alibaba', module: 'arouter-api'
+    all*.exclude group: 'com.alibaba', module: 'arouter-annotation'
+}
+</code></pre></div>
 	</div>
   
   
