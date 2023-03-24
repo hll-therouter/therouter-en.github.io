@@ -6,20 +6,20 @@ layout: null
         <loc>https://therouter.cn/index.html</loc>
         <lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod>
         <changefreq>daily</changefreq>
-        <priority>0.9</priority>
+        <priority>1.0</priority>
     </url>
     <url>
         <loc>https://therouter.cn/about</loc>
         <lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.1</priority>
+        <priority>1.0</priority>
     </url>
-    {% for post in site.posts limit:50 %}
+    {% for post in site.posts limit:150 %}
     <url>
         <loc>https://therouter.cn{{ post.url }}/index.html</loc>
         <lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
     </url>
     {% endfor %}
 </urlset>

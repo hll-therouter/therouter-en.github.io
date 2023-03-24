@@ -111,6 +111,19 @@
         <span class="o">}</span>
     <span class="o">})</span>
 </code></pre></div>
+<p>从 <code>1.1.3-rc1</code>开始，Action 也支持注解声明，可使用如下方式声明：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@ActionInterceptor</span><span class="o">(</span><span class="n">actionName</span> <span class="o">=</span> <span class="s">"action_demo"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestActionInterceptor</span> <span class="kd">extends</span> <span class="n">ActionInterceptor</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">handle</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Navigator</span> <span class="n">navigator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">HomePathIndex</span><span class="o">.</span><span class="na">ACTION2</span><span class="o">,</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+        <span class="c1">// true表示阻断(消费掉)，false表示继续传递，一般都用false</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">handle</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">navigator</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div>
 <p>执行一个 Action：</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// action建议遵循一定的格式</span>
 <span class="kd">const</span> <span class="n">val</span> <span class="n">ACTION</span> <span class="o">=</span> <span class="s">"therouter://action/xxx"</span>
