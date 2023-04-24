@@ -8,7 +8,11 @@ permalink: /doc
   {% for post in site.posts %}
     {% if post.categories[0] == "docs" %}
     {% if post.level == 1 %}
-      <a href="{{ post.url }}" title="{{ post.title }}">
+      {% if post.link %}
+        <a href="{{ post.link }}" title="{{ post.title }}">
+      {% else %}
+        <a href="{{ post.url }}" title="{{ post.title }}">
+      {% endif %}
       <div class="doc-list">
         {% if post.author %}
           <font color="#aaaaaa"> {{ post.author }} 创作于 {{ post.date | date: "%Y-%m-%d" }} </font>
@@ -41,7 +45,11 @@ permalink: /doc
   {% for post in site.posts %}
     {% if post.categories[0] == "docs" %}
     {% if post.level == 2 %}
-      <a href="{{ post.url }}" title="{{ post.title }}">
+      {% if post.link %}
+        <a href="{{ post.link }}" title="{{ post.title }}">
+      {% else %}
+        <a href="{{ post.url }}" title="{{ post.title }}">
+      {% endif %}
       <div class="doc-list">
         {% if post.author %}
           <font color="#aaaaaa"> {{ post.author }} 创作于 {{ post.date | date: "%Y-%m-%d" }} </font>
@@ -67,7 +75,11 @@ permalink: /doc
   {% for post in site.posts %}
     {% if post.categories[0] == "docs" %}
     {% if post.level == 3 %}
-      <a href="{{ post.url }}" title="{{ post.title }}">
+      {% if post.link %}
+        <a href="{{ post.link }}" title="{{ post.title }}">
+      {% else %}
+        <a href="{{ post.url }}" title="{{ post.title }}">
+      {% endif %}
       <div class="doc-list">
         {% if post.author %}
           <font color="#aaaaaa"> {{ post.author }} 创作于 {{ post.date | date: "%Y-%m-%d" }} </font>
@@ -93,7 +105,11 @@ permalink: /doc
   {% for post in site.posts %}
     {% if post.categories[0] == "docs" %}
     {% if post.level == 0 %}
-      <a href="{{ post.url }}" title="{{ post.title }}">
+      {% if post.link %}
+        <a href="{{ post.link }}" title="{{ post.title }}">
+      {% else %}
+        <a href="{{ post.url }}" title="{{ post.title }}">
+      {% endif %}
       <div class="doc-list">
         {% if post.author %}
           <font color="#aaaaaa"> {{ post.author }} 创作于 {{ post.date | date: "%Y-%m-%d" }} </font>

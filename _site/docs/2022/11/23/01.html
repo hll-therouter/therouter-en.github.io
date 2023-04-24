@@ -79,7 +79,7 @@
     <!-- Main Container -->
 <div class="container">
 	<div class="blog-post">
-		<p>TheRouter是货拉拉开源的路由框架，针对Android平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。<br>
+		<p>TheRouter是货拉拉开源的路由框架，针对 Android 平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。<br>
 Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https://github.com/HuolalaTech/hll-wp-therouter-android/</a><br>
 官网：<a href="http://therouter.cn/">http://therouter.cn/</a>  </p>
 
@@ -91,11 +91,11 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 
 <h2>查看最新版本</h2>
 
-<p>TheRouter的版本分为两种，稳定版和rc版，一般不追求新功能我们就用稳定版就行，可以在官网看到最新的版本号和各种版本的说明：<a href="https://therouter.cn/docs/2022/09/06/01">https://therouter.cn/docs/2022/09/06/01</a>  </p>
+<p>TheRouter 的版本分为两种，稳定版和 rc版，一般不追求新功能我们就用稳定版就行，可以在官网看到最新的版本号和各种版本的说明：<a href="https://therouter.cn/docs/2022/09/06/01">https://therouter.cn/docs/2022/09/06/01</a>  </p>
 
 <h2>接入</h2>
 
-<p>新建一个Demo工程，打开Demo的根目录<code>build.gradle</code>。</p>
+<p>新建一个<code>Demo</code>工程，打开<code>Demo</code>的根目录<code>build.gradle</code>。</p>
 
 <h4>1. 新版本接入classpath</h4>
 
@@ -120,26 +120,24 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 <span class="c1">// 新版本这样写</span>
 <span class="n">id</span> <span class="s1">'therouter'</span>
 </code></pre></div>
-<table><thead>
-<tr>
-<th>新版本的Gradle</th>
-<th>老版本的Gradle</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5cefce8ad9c243a49bb5445128525b83~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"> <br>(被注释掉的那个就是kapt插件，这里我是用了更先进的ksp)</td>
-<td><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a8bfb7c684a40268e3297285b4643e4~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"></td>
-</tr>
-</tbody></table>
+<p>新版本的 Gradle 这样配置  </p>
+
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5cefce8ad9c243a49bb5445128525b83~tplv-k3u1fbpfcp-zoom-1.image" width=240> <br>(被注释掉的那个就是kapt插件，这里我是用了更先进的ksp)</p>
+
+<p>老版本的 Gradle 这样配置  </p>
+
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a8bfb7c684a40268e3297285b4643e4~tplv-k3u1fbpfcp-zoom-1.image" width=240></p>
 
 <h4>4. 引入kapt</h4>
 
 <p>TheRouter的注解处理依赖kapt执行，所以要在项目里面手动引入，否则无法处理注解</p>
 
-<p><strong>注：所有的模块都必须引入kapt，否则就有可能造成某些路由表不生成。我最开始以为简单，就在最底层模块依赖了kapt，结果上层模块路由表都没有生成，查了好久才发现，所有模块都要加。</strong></p>
+<p><strong>注：所有的模块都必须引入kapt，否则就有可能造成某些路由表不生成。</strong><br>
+<strong>注：所有APP的模块，如果是需要上线的模块，必须直接或间接在 app 中被依赖，否则最终生成apk会丢失未被依赖的功能。</strong>  </p>
 
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ef8fb789721548b4bc7a11563ecc328b~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"> 
-如果报找不到kapt，可能是因为没有引入kotlin-kapt的插件，参考步骤3里面的截图，接入对应的kapt。如果是纯Java工程，需要用Java的APT处理，APT就不用引入插件了，直接把<code>kapt</code>改成<code>annotationProcessor</code></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ef8fb789721548b4bc7a11563ecc328b~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img">   </p>
+
+<p>如果报找不到kapt，可能是因为没有引入kotlin-kapt的插件，参考步骤3里面的截图，接入对应的kapt。如果是纯Java工程，需要用Java的APT处理，APT就不用引入插件了，直接把<code>kapt</code>改成<code>annotationProcessor</code></p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">annotationProcessor</span> <span class="s2">"cn.therouter:apt:1.1.2"</span>
 </code></pre></div>
 <h2>使用</h2>
@@ -200,7 +198,7 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 
 <p>由于新版本的Gradle强制要求最新版本的<code>Android Studio Preview</code>，并且必须<code>Java11</code>编译，所以还得要下载最新的AS预览版，并修改编译环境。</p>
 
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/61553a1f06f845d5955fc41ff9d2f3c8~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"> </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/61553a1f06f845d5955fc41ff9d2f3c8~tplv-k3u1fbpfcp-zoom-1.image"  width=240> </p>
 
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/321fe7b191de46cf812f4e5dae39228d~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"> </p>
 
@@ -234,6 +232,40 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
   
     
     
+
+    
+      <h3>相关推荐：</h3>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    
+    
+    <div class="col">
+      <div class="card shadow-sm">
+        <a href=/docs/2022/12/23/01>
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>动态路由 TheRouter 的设计与实践</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">动态路由 TheRouter 的设计与实践</text></svg>
+        </a>
+
+        <div class="card-body">
+          <p class="card-text">
+            
+              详细讲解 TheRouter 框架内部实现原理，以及在完整企业级项目中使用的实践效果。这篇文章是我在 2022【GIAC 全球互联网架构大会】分享时所讲内容的文字版本，修改删减了演讲时的冗余言语，现开放给大家阅读，希望能给买不到票参加分享的 开源实验室 读者带来帮助。
+            
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href=/docs/2022/12/23/01>
+                <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
+              </a>
+            </div>
+            <small class="text-muted">1 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+    
+    
     
   
     
@@ -249,9 +281,6 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
     
     
 
-    
-      <h3>相关推荐：</h3>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     
     
     <div class="col">
