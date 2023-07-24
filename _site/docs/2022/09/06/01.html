@@ -39,8 +39,13 @@
       <li class="nav-item">
         
           
-            <a href="/doc" class="nav-link active header-color">博客</a>
+            <a href="/doc" class="nav-link active header-color">Android</a>
            
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/ios" class="nav-link header-color">iOS</a>
          
       </li>
       <li class="nav-item">
@@ -74,12 +79,12 @@
   <body>
   	
   		<h2 class="blog-title" align="center">获取和使用最新版的 TheRouter</h2>
+      <br>
   	
-    <br>
     <!-- Main Container -->
 <div class="container">
 	<div class="blog-post">
-		<p>TheRouter 的版本规划分为三种，分别是 <code>稳定版</code>、<code>预览版</code>、<code>公测版</code>。</p>
+		<p>TheRouter 的版本规划分为三种，分别是 <code>稳定版</code>、<code>预览版</code>(含 beta 版)、<code>公测版</code>。</p>
 
 <h3>稳定版</h3>
 
@@ -98,22 +103,34 @@
 
 <p>预览版可以直接在<code>mavenCentral()</code>仓库获取，无需特殊处理。适合追求新功能和特定 bug 修复的开发者使用。  </p>
 
+<h3>beta预览版</h3>
+
+<p><code>beta</code>预览版一般指在最近一段时间内不会发布<code>release</code>，但可供尝鲜用户使用某些特定功能的版本。  </p>
+
+<p><code>beta</code>预览版会在 <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/releases"> GitHub 的 releases 页面</a> 标记为<code>Pre-release</code>，预览版版本号一般会带有<code>-beta</code>标记。  </p>
+
+<p>预览版可以直接在<code>mavenCentral()</code>仓库获取，无需特殊处理。适合追求新功能和特定 bug 修复的开发者使用。  </p>
+
 <h3>公测版</h3>
 
-<p>公测版为每次新<code>feature</code>或<code>bugfix</code>的打包，不会在 <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/releases">releases 页</a> 展示，你可以在maven上查看最新的公测版本。   </p>
+<p>公测版为每次新<code>feature</code>或<code>bugfix</code>的打包，不会在 <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/releases">releases 页</a> 单独展示，你可以主动在maven上查看最新的公测版本。   </p>
 
-<p>公测版版本号一般会带有<code>-alpha</code>标记，需要在<code>build.gradle</code>中引入公测版仓库。  </p>
+<p>公测版版本号一般不会有特殊标记，但需要在<code>build.gradle</code>中引入公测版仓库。  </p>
 <div class="highlight"><pre><code class="language-gradle" data-lang="gradle"><span class="k">repositories</span> <span class="o">{</span>
     <span class="n">google</span><span class="o">()</span>
     <span class="n">mavenCentral</span><span class="o">()</span>
-    <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s1">'https://s01.oss.sonatype.org/content/repositories/snapshots/'</span> <span class="o">}</span>
+    <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s1">'https://s01.oss.sonatype.org/content/groups/staging/'</span> <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div>
-<p>查看最新公测版本：<a href="https://s01.oss.sonatype.org/content/repositories/snapshots/cn/therouter/">https://s01.oss.sonatype.org</a>  </p>
+<p>查看最新公测版本：<a href="https://s01.oss.sonatype.org/content/groups/staging/cn/therouter/">https://s01.oss.sonatype.org</a>  </p>
 
 	</div>
   
   
+  
+    
+  
+    
   
     
   

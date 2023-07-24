@@ -16,12 +16,23 @@
       <li class="nav-item">
         {% if page.url contains "/doc" %}
           {% if page.url contains "/2022/08/24" %}
-            <a href="/doc" class="nav-link header-color">博客</a>
+            <a href="/doc" class="nav-link header-color">Android</a>
           {% else %}
-            <a href="/doc" class="nav-link active header-color">博客</a>
+            <a href="/doc" class="nav-link active header-color">Android</a>
           {% endif %} 
         {% else %}
-          <a href="/doc" class="nav-link header-color">博客</a>
+          <a href="/doc" class="nav-link header-color">Android</a>
+        {% endif %} 
+      </li>
+      <li class="nav-item">
+        {% if page.ios or page.url contains "/ios" %}
+          {% if page.url contains "/2022/08/24" %}
+            <a href="/ios" class="nav-link header-color">iOS</a>
+          {% else %}
+            <a href="/ios" class="nav-link active header-color">iOS</a>
+          {% endif %} 
+        {% else %}
+          <a href="/ios" class="nav-link header-color">iOS</a>
         {% endif %} 
       </li>
       <li class="nav-item">

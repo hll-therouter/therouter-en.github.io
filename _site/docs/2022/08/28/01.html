@@ -39,8 +39,13 @@
       <li class="nav-item">
         
           
-            <a href="/doc" class="nav-link active header-color">博客</a>
+            <a href="/doc" class="nav-link active header-color">Android</a>
            
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/ios" class="nav-link header-color">iOS</a>
          
       </li>
       <li class="nav-item">
@@ -74,8 +79,8 @@
   <body>
   	
   		<h2 class="blog-title" align="center">页面跳转能力介绍</h2>
+      <br>
   	
-    <br>
     <!-- Main Container -->
 <div class="container">
 	<div class="blog-post">
@@ -116,11 +121,28 @@
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HomeActivity</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="o">{</span>
 <span class="o">}</span>
 </code></pre></div>
-<h4>1.2 路由表生成规则</h4>
+<h4>1.2 路由表生成</h4>
+
+<h4>1.2.1 路由表覆盖规则</h4>
 
 <p>如果两条路由的path、目标className完全相同，则认为是同一条路由，<strong>不会考虑参数是否相同</strong>。  </p>
 
-<p>路由表生成规则：编译期按照如下顺序取<strong>并集</strong>。<br>
+<h4>1.2.2 RouteMap.json 生成规则</h4>
+
+<p><code>RouteMap.json</code>文件是<code>TheRouter</code>路由表的核心。他有两个作用：</p>
+
+<ul>
+<li>是一份清单文件，用于展示当前项目中的全部路由信息。同时这份路由信息是可以通过远端下发覆盖本地数据的，也就是动态路由能力的支持。详见【1.3 远端下发路由表】<br></li>
+<li>用于对第三方 SDK 中的页面添加路由表。很多时候由于第三方 SDK 没有提供路由表声明，而我们又无法修改 SDK 的代码，此时可以手动在<code>RouteMap.json</code>文件中加入第三方的路由页面。详见【1.4 为第三方库添加路由表】<br></li>
+</ul>
+
+<p>如果以上两个能力你都不需要，那么你可以直接忽略这个 json 文件的存在，即便删除也没事，因为每次编译这个文件都会重新生成。而如果你没有删除，也没有关系，在编译期框架会自动合并相同项目，合并规则遵循 【1.2.1 路由表覆盖规则】     </p>
+
+<p>如果你用到了上面的能力，建议你将编译期配置项打开，并设置到<code>error</code>级别，详见【1.5 编译期配置】   </p>
+
+<h4>1.2.3 路由表生成规则</h4>
+
+<p>编译期按照如下顺序取<strong>并集</strong>。<br>
 覆盖规则：根据如下顺序，如果相同，后者可以覆盖前者的路由表规则。  </p>
 
 <ol>
@@ -194,7 +216,7 @@
 </code></pre></div>
 <h4>1.5 编译期配置</h4>
 
-<p>路由表中如果声明了一个不存在的Activity，通常是因为旧代码删除时忘记清理路由表了，这里可选报错或警告，提供参考。<br>
+<p>路由表中如果声明了一个不存在的<code>Activity/Fragment</code>，通常是因为旧代码删除，或重构改了包名类名时，忘记清理路由表了，这里可选报错或警告，提供参考。<br>
 可在<code>local.properties</code>配置编译期属性（warning输出日志，error直接报错）  </p>
 
 <ul>
@@ -490,6 +512,40 @@
     
     <div class="col">
       <div class="card shadow-sm">
+        <a href=/docs/2023/07/21/01>
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>TheRouter 常见问题处理</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">TheRouter 常见问题处理</text></svg>
+        </a>
+
+        <div class="card-body">
+          <p class="card-text">
+            
+              碰到问题，建议先在`GitHub issue`中查看，issue 中整理了一批常见问题，也许就有你要的答案，提问前也请先确认是否有重复的问题。    
+点...
+            
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href=/docs/2023/07/21/01>
+                <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
+              </a>
+            </div>
+            <small class="text-muted">2 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+    
+  
+    
+    
+
+    
+    
+    <div class="col">
+      <div class="card shadow-sm">
         <a href=/docs/2022/12/23/01>
           <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>动态路由 TheRouter 的设计与实践</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">动态路由 TheRouter 的设计与实践</text></svg>
         </a>
@@ -538,53 +594,6 @@
                 <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
               </a>
             </div>
-            <small class="text-muted">5 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-    
-
-    
-    
-    <div class="col">
-      <div class="card shadow-sm">
-        <a href=/docs/2022/08/29/01>
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>TheRouter 基础能力介绍</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">TheRouter 基础能力介绍</text></svg>
-        </a>
-
-        <div class="card-body">
-          <p class="card-text">
-            
-              
-
-### 功能介绍  
-
-TheRouter 核心功能具备四大能力：  
-
-*  页面导航跳转能力（[Navigator](https://therou...
-            
-          </p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <a href=/docs/2022/08/29/01>
-                <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
-              </a>
-            </div>
             <small class="text-muted">4 mins</small>
           </div>
         </div>
@@ -594,8 +603,6 @@ TheRouter 核心功能具备四大能力：
     
   
     
-    
-    
   
     
   
@@ -605,6 +612,11 @@ TheRouter 核心功能具备四大能力：
   
     
   
+    
+    
+
+    
+      
   
     </div>
   

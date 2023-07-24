@@ -39,8 +39,13 @@
       <li class="nav-item">
         
           
-            <a href="/doc" class="nav-link active header-color">博客</a>
+            <a href="/doc" class="nav-link active header-color">Android</a>
            
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/ios" class="nav-link header-color">iOS</a>
          
       </li>
       <li class="nav-item">
@@ -74,14 +79,14 @@
   <body>
   	
   		<h2 class="blog-title" align="center">路由的高阶使用</h2>
+      <br>
   	
-    <br>
     <!-- Main Container -->
 <div class="container">
 	<div class="blog-post">
 		<h3>多进程使用 TheRouter</h3>
 
-<p>TheRouter支持多进程，单默认只会在主进程执行初始化逻辑。如果使用了多进程，可以先关闭<code>TheRouter</code>的自动初始化，然后手动在<code>Application</code>的<code>onCreate()</code>中执行初始化功能。   </p>
+<p>TheRouter支持多进程，但默认只会在主进程执行初始化逻辑。如果使用了多进程，可以先关闭<code>TheRouter</code>的自动初始化，然后手动在<code>Application</code>的<code>onCreate()</code>中执行初始化功能。   </p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">override</span> <span class="n">fun</span> <span class="nf">attachBaseContext</span><span class="o">(</span><span class="nl">base:</span> <span class="n">Context</span><span class="o">)</span> <span class="o">{</span>
     <span class="kd">super</span><span class="o">.</span><span class="na">attachBaseContext</span><span class="o">(</span><span class="n">base</span><span class="o">)</span>
     <span class="n">theRouterUseAutoInit</span> <span class="o">=</span> <span class="kc">false</span>
@@ -92,6 +97,8 @@
     <span class="n">TheRouter</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
 <span class="o">}</span>
 </code></pre></div>
+<p><strong>注意</strong>：关于多进程<code>ServiceProvider</code>，TheRouter 支持跨进程获取数据，但获取的数据本身需要支持跨进程，可以理解为<code>TheRouter</code>本质是个链接两个进程的通道，要将数据从一个进程传递到另一个进程，这个数据本身需要能够被另一个进程接收的到。     </p>
+
 <h3>自定义Log输出</h3>
 
 <p>默认情况下，<code>TheRouter</code>会在<code>debug</code>模式下，将<code>log</code>打印到控制台，在<code>release</code>模式下不做任何输出。<br>
@@ -178,6 +185,10 @@
 	</div>
   
   
+  
+    
+  
+    
   
     
   

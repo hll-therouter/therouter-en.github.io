@@ -4,15 +4,15 @@
   <head>
   <!-- meta data & title -->
   <meta charset="utf-8">
-  <title>在TheRouter官网发表文章</title>
+  <title>TheRouter 常见问题处理</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。">
   <meta name="author" content="TheRouter">
   <meta name="keyword"
-      content="在TheRouter官网发表文章,android,kotlin,arouter,TheRouter">
+      content="TheRouter 常见问题处理,android,kotlin,arouter,TheRouter">
 
   <meta name="keywords"
-      content="在TheRouter官网发表文章,android,kotlin,arouter,therouter,studio,优质开发技术">
+      content="TheRouter 常见问题处理,android,kotlin,arouter,therouter,studio,优质开发技术">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -39,20 +39,18 @@
       <li class="nav-item">
         
           
-            <a href="/doc" class="nav-link header-color">Android</a>
+            <a href="/doc" class="nav-link active header-color">Android</a>
            
          
       </li>
       <li class="nav-item">
         
-          
-            <a href="/ios" class="nav-link header-color">iOS</a>
-           
+          <a href="/ios" class="nav-link header-color">iOS</a>
          
       </li>
       <li class="nav-item">
         
-          <a href="/docs/2022/08/24/01" class="nav-link active header-color">发帖</a>
+          <a href="/docs/2022/08/24/01" class="nav-link header-color">社区</a>
          
       </li>
       <li class="nav-item">
@@ -80,44 +78,76 @@
 
   <body>
   	
-  		<h2 class="blog-title" align="center">在TheRouter官网发表文章</h2>
+  		<h2 class="blog-title" align="center">TheRouter 常见问题处理</h2>
       <br>
   	
     <!-- Main Container -->
 <div class="container">
 	<div class="blog-post">
-		<p>我们欢迎每一位开发者将自己的开发经验分享在【TheRouter 官方网站】<br>
-你可以分享包括：  </p>
+		<p>碰到问题，建议先在<code>GitHub issue</code>中查看，issue 中整理了一批常见问题，也许就有你要的答案，提问前也请先确认是否有重复的问题。<br>
+点击查看： <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/issues?q=is%3Aissue+is%3Aclosed">TheRouter Issue</a>  </p>
+
+<p>如下面列表和 Issue 都无法解决你的问题，建议加群反馈 <a href="https://therouter.cn/docs/2022/08/24/01">https://therouter.cn/docs/2022/08/24/01</a>    </p>
+
+<h3>问题列表不定期更新中...</h3>
+
+<hr>
+
+<ul>
+<li>Q1: <strong>路由表不生成（或生成的代码有问题编译报错）是什么原因？</strong><br></li>
+</ul>
+
+<p>如共用<code>KSP</code>与<code>ViewBinding</code>，会发生丢失问题，可使用<code>KAPT</code>。<br>
+其他场景请按照以下步骤排查：   </p>
 
 <ol>
-<li>使用 <code>TheRouter</code> 的开发经验<br></li>
-<li><code>TheRouter</code>框架的源码分析</li>
-<li>分享自己 <code>APP</code> 的使用经历</li>
-<li>在开发过程中遇到的问题<br></li>
-<li>给我们提建议<br></li>
-<li>新增需求</li>
-<li>提交代码</li>
+<li>plugin 加了吗？plugin 必须加且只能加在 app 模块里。<br></li>
+<li>kapt加了吗？kapt不能只加最底层，所有用了注解的模块都要加。<br></li>
+<li>router、plugin、kapt，三个依赖的版本号必须一致。<br></li>
+<li>在这里查看JDK信息：<code>Preferences-&gt; Build Tools-&gt; Gradle-&gt; Gradle JDK</code>。不能用AS自带的jdk，会有兼容问题，请在 Oracle 官网下载：<a href="https://www.oracle.com/hk/java/technologies/downloads/#java17">Java 17</a>、<a href="https://www.oracle.com/hk/java/technologies/downloads/#java11">Java 11</a>、<a href="https://www.oracle.com/hk/java/technologies/downloads/#java8">Java 8</a>。</li>
+<li>尝试更新至最新rc版本查看是否修复。<a href="https://github.com/HuolalaTech/hll-wp-therouter-android/releases">版本列表</a></li>
 </ol>
 
-<h3>发帖方式</h3>
+<hr>
 
-<ol>
-<li>加入 TheRouter 官方微信群（如过期，请加微信：kymjs123）</li>
-<li>准备好自己要分享内容的<code>markdown</code>格式文档</li>
-<li>发送给<code>张涛</code>，他会协助你发表自己的文章到【TheRouter官网】</li>
-<li>如您需要署名或附带其他链接、公众号、个人介绍，也可以一并提交在文章内。</li>
-</ol>
+<ul>
+<li>Q2：<strong>kotlin使用<code>@Autowired</code>注解编译不通过</strong><br></li>
+</ul>
 
-<p><img src="https://kymjs.com/therouter/wx/therouter_wx.jpg" class="blog-img"/></p>
+<p>查看 GitHub Issue：<a href="https://github.com/HuolalaTech/hll-wp-therouter-android/issues/6">https://github.com/HuolalaTech/hll-wp-therouter-android/issues/6</a></p>
+
+<hr>
+
+<ul>
+<li>Q3：<strong>使用Gradle 8.X，编译报错</strong></li>
+</ul>
+
+<p><a href="https://github.com/HuolalaTech/hll-wp-therouter-android/issues/22">https://github.com/HuolalaTech/hll-wp-therouter-android/issues/22</a></p>
+
+<hr>
+
+<ul>
+<li>Q4：<strong>从 ARouter 迁移 TheRouter 时通过 Bundle 传递的参数不能正确获取</strong><br></li>
+</ul>
+
+<p><a href="https://github.com/HuolalaTech/hll-wp-therouter-android/issues/29">https://github.com/HuolalaTech/hll-wp-therouter-android/issues/29</a></p>
+
+<hr>
+
+<ul>
+<li>Q5：<strong>多进程如何使用</strong></li>
+</ul>
+
+<p><a href="https://therouter.cn/docs/2022/09/03/01">https://therouter.cn/docs/2022/09/03/01</a></p>
+
+<hr>
 
 	</div>
   
   
   
     
-  
     
-  
     
   
     
@@ -132,25 +162,19 @@
     
     <div class="col">
       <div class="card shadow-sm">
-        <a href=/docs/2022/09/29/01>
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Android Studio 插件，TheRouter 跳转辅助工具</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">Android Studio 插件，TheRouter 跳转辅助工具</text></svg>
+        <a href=/docs/2022/12/23/01>
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>动态路由 TheRouter 的设计与实践</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">动态路由 TheRouter 的设计与实践</text></svg>
         </a>
 
         <div class="card-body">
           <p class="card-text">
             
-              开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。   
-
-
-
-## 下载插件  
-
-1. 打开 Android ...
+              详细讲解 TheRouter 框架内部实现原理，以及在完整企业级项目中使用的实践效果。这篇文章是我在 2022【GIAC 全球互联网架构大会】分享时所讲内容的文字版本，修改删减了演讲时的冗余言语，现开放给大家阅读，希望能给买不到票参加分享的 开源实验室 读者带来帮助。
             
           </p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              <a href=/docs/2022/09/29/01>
+              <a href=/docs/2022/12/23/01>
                 <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
               </a>
             </div>
@@ -169,32 +193,39 @@
     
     <div class="col">
       <div class="card shadow-sm">
-        <a href=/docs/2022/09/06/01>
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>获取和使用最新版的 TheRouter</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">获取和使用最新版的 TheRouter</text></svg>
+        <a href=/docs/2022/11/23/01>
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>从零接入 TheRouter</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">从零接入 TheRouter</text></svg>
         </a>
 
         <div class="card-body">
           <p class="card-text">
             
-              TheRouter 的版本规划分为三种，分别是 `稳定版`、`预览版`(含 beta 版)、`公测版`。
-
-### 稳定版
-
-稳定版总是在`main`分支...
+              TheRouter是货拉拉开源的路由框架，针对 Android 平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。
+Git...
             
           </p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              <a href=/docs/2022/09/06/01>
+              <a href=/docs/2022/11/23/01>
                 <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
               </a>
             </div>
-            <small class="text-muted">2 mins</small>
+            <small class="text-muted">8 mins</small>
           </div>
         </div>
       </div>
     </div>
     
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
     
   
     
@@ -204,23 +235,31 @@
     
     <div class="col">
       <div class="card shadow-sm">
-        <a href=/docs/2022/09/05/01>
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>TheRouter 一键迁移工具</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">TheRouter 一键迁移工具</text></svg>
+        <a href=/docs/2022/08/29/01>
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>TheRouter 基础能力介绍</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">TheRouter 基础能力介绍</text></svg>
         </a>
 
         <div class="card-body">
           <p class="card-text">
             
-              `TheRouter`提供了图形化界面的迁移工具，可以一键从其他路由迁移到`TheRouter`，目前仅支持`ARouter`，其他路由框架迁移也在开发中...
+              
+
+功能介绍
+
+TheRouter 核心功能具备四大能力：  
+
+
+ 页面导航跳转能力（Navigator） 页面跳转能力介绍 
+ 跨模块依赖注入能力（S...
             
           </p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              <a href=/docs/2022/09/05/01>
+              <a href=/docs/2022/08/29/01>
                 <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
               </a>
             </div>
-            <small class="text-muted">3 mins</small>
+            <small class="text-muted">9 mins</small>
           </div>
         </div>
       </div>

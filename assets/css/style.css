@@ -152,16 +152,22 @@ address {
     margin-top: 28px;
     }
 
-.home-button-start{
-  position: absolute; 
-  top: 73%; 
-  left: 17%; 
-  color: white;
-}
+.home-button-android{
+    position: absolute; 
+    top: 73%; 
+    left: 15%; 
+    color: white;
+  }
+.home-button-ios{
+    position: absolute; 
+    top: 73%; 
+    left: 22%; 
+    color: white;
+  }
 .home-button-github{
   position: absolute; 
   top: 73%; 
-  left: 27%; 
+  left: 30%; 
   color: white;
 }
 .home-text{
@@ -191,17 +197,23 @@ address {
     margin-top: 28px;
     margin-left: 21px;
     }
-  .home-button-start{
+  .home-button-android{
     position: absolute; 
     top: 53%; 
-    left: 17%; 
+    left: 10%; 
+    color: white;
+  }
+  .home-button-ios{
+    position: absolute; 
+    top: 53%; 
+    left: 43%; 
     color: white;
   }
 
   .home-button-github{
     position: absolute; 
     top: 53%; 
-    left: 57%; 
+    left: 67%; 
     color: white;
   }
   .home-text{
@@ -225,16 +237,22 @@ address {
     margin-left: -58px;
     }
 
-  .home-button-start{
+  .home-button-android{
     position: absolute; 
     top: 73%; 
-    left: 17%; 
+    left: 13%; 
+    color: white;
+  }
+  .home-button-ios{
+    position: absolute; 
+    top: 73%; 
+    left: 33%; 
     color: white;
   }
   .home-button-github{
     position: absolute; 
     top: 73%; 
-    left: 47%; 
+    left: 50%; 
     color: white;
   }
   .home-text{

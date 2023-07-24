@@ -39,8 +39,13 @@
       <li class="nav-item">
         
           
-            <a href="/doc" class="nav-link active header-color">博客</a>
+            <a href="/doc" class="nav-link active header-color">Android</a>
            
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/ios" class="nav-link header-color">iOS</a>
          
       </li>
       <li class="nav-item">
@@ -74,8 +79,8 @@
   <body>
   	
   		<h2 class="blog-title" align="center">跨模块依赖注入</h2>
+      <br>
   	
-    <br>
     <!-- Main Container -->
 <div class="container">
 	<div class="blog-post">
@@ -88,7 +93,7 @@
 <li>支持注入对象缓存，多次注入 只会new一次对象</li>
 </ul>
 
-<h3>1.0 依赖注入</h3>
+<h3>1. 依赖注入</h3>
 
 <p>用于跨模块通信使用，核心设计思想是参考了<a href="https://baike.baidu.com/item/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/8258990">SOA(面向服务架构)</a> 的设计方式。
 具体到 Android 侧就是 AIDL 类似的实现：<br>
@@ -142,7 +147,7 @@ A无需关心，<code>IUserService</code>这个接口服务是谁提供的，他
     <span class="n">xxx</span>
 <span class="o">}</span>
 </code></pre></div>
-<h3>2.0 自定义服务拦截器</h3>
+<h3>2. 自定义服务拦截器</h3>
 
 <p><strong>使用场景</strong>：单模块调试时，可能会有需要 mock 其他模块提供的服务，TheRouter 允许自定义其他模块的实现。   </p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Interceptor</span> <span class="n">interceptor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Interceptor</span><span class="o">()</span> <span class="o">{</span>
@@ -156,18 +161,19 @@ A无需关心，<code>IUserService</code>这个接口服务是谁提供的，他
 <span class="o">};</span>
 <span class="n">TheRouter</span><span class="o">.</span><span class="na">getRouterInject</span><span class="o">().</span><span class="na">addInterceptor</span><span class="o">(</span><span class="n">interceptor</span><span class="o">);</span>
 </code></pre></div>
-<h3>3.0 服务缓存</h3>
+<h3>3. 服务缓存</h3>
 
 <p>服务提供方运行对提供的服务做配置，对于无状态的服务，尽可能使用缓存方式减少对象创建次数，而有状态的服务，则每次创建新对象保证多次调用有不会互相污染状态（例如订单状态管理、商品销售状态等服务）。      </p>
 
-<p>声明服务缓存只需要在 @ServiceProvider的方法上新增额外注解即可，例如下面示例代码：  </p>
+<p>声明服务缓存只需要在<strong>接口协议</strong>上新增额外注解即可，例如下面示例代码：  </p>
 
 <ul>
 <li><strong>Singleton</strong> 表示这个对象会被永久缓存，对外部调用方而言相当于这个对象声明成了单例</li>
 <li><strong>NewInstance</strong> 表示每次都会返回新对象<br></li>
 </ul>
 
-<p><strong>注</strong>：<em>如果两个注解同时被添加，则只有<code>Singleton</code>会生效。</em>  </p>
+<p><strong>注</strong>：<em>如果两个注解同时被添加，则只有<code>Singleton</code>会生效。</em><br>
+<strong>注</strong>：<em><code>@Singleton</code>和<code>@NewInstance</code>需要加在接口协议上。</em>  </p>
 <div class="highlight"><pre><code class="language-java" data-lang="java">
 <span class="c1">// 注：如果都不加，默认是LRU+软引用缓存</span>
 <span class="c1">// 如果两个注解同时被添加，则只有Singleton会生效。</span>
@@ -188,7 +194,7 @@ A无需关心，<code>IUserService</code>这个接口服务是谁提供的，他
     <span class="o">};</span>
 <span class="o">}</span>
 </code></pre></div>
-<h3>4.0 在类上注解ServiceProvider</h3>
+<h3>4. 在类上注解ServiceProvider</h3>
 
 <p>从<code>1.1.2-rc7</code>版本开始，<code>ServiceProvider</code>支持给类设置注解。  </p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 服务提供方</span>
@@ -209,6 +215,35 @@ A无需关心，<code>IUserService</code>这个接口服务是谁提供的，他
 <span class="c1">//服务使用方</span>
 <span class="n">TheRouter</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ITestClassAnnotation</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
 </code></pre></div>
+<h3>5. 多参数服务提供者</h3>
+
+<h4>5.1 静态方法作为服务提供者</h4>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 服务提供方</span>
+<span class="nd">@ServiceProvider</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">IUserService</span> <span class="nf">test</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">IUserService</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="nf">getUserInfo</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">str</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
+<span class="o">}</span>
+
+<span class="c1">//服务使用方</span>
+<span class="n">TheRouter</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">IUserService</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"user Info"</span><span class="o">);</span>
+</code></pre></div>
+<h4>5.2 类对象作为服务提供者</h4>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 服务提供方</span>
+<span class="nd">@ServiceProvider</span><span class="o">(</span><span class="n">returnType</span> <span class="o">=</span> <span class="n">ITestClassAnnotation</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">params</span><span class="o">={</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestClassAnnotation</span> <span class="kd">implements</span> <span class="n">ITestClassAnnotation</span><span class="o">,</span> <span class="n">ITest0</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">TestClassAnnotation</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">){}</span>
+<span class="o">}</span>
+
+<span class="c1">//服务使用方</span>
+<span class="n">TheRouter</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ITestClassAnnotation</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"hello"</span><span class="o">)</span>
+</code></pre></div>
+<h3>6. 设置继承的服务实现</h3>
+
 <p>如果你的类有父类实现了接口协议，而你又不想显示声明<code>returnType</code>，例如下面这种场景。我们也提供了一个编译选项可供使用，在<code>gradle.properties</code>文件中加入 <code>USE_EXTENSION=true</code>    </p>
 
 <p><strong>注</strong> ：请 <strong>谨慎</strong> 开启 <code>USE_EXTENSION</code>。当开启后，所有协议判断会使用<code>isAssignableFrom</code>去判断，而不再是<code>equals</code>，对运行时性能会有较大影响。  </p>
@@ -233,6 +268,44 @@ A无需关心，<code>IUserService</code>这个接口服务是谁提供的，他
     
   
     
+    
+
+    
+      <h3>相关推荐：</h3>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    
+    
+    <div class="col">
+      <div class="card shadow-sm">
+        <a href=/docs/2023/05/15/01>
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>TheRouter 使用 KSP 处理注解</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">TheRouter 使用 KSP 处理注解</text></svg>
+        </a>
+
+        <div class="card-body">
+          <p class="card-text">
+            
+              TheRouter 在`1.1.4-rc2`开始，已经将`KSP`能力合并至主分支，不再是单独的功能分支了，下面介绍一下如何使用 `KSP`。  
+
+##...
+            
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href=/docs/2023/05/15/01>
+                <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
+              </a>
+            </div>
+            <small class="text-muted">2 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+    
+  
+    
   
     
   
@@ -255,9 +328,6 @@ A无需关心，<code>IUserService</code>这个接口服务是谁提供的，他
     
     
 
-    
-      <h3>相关推荐：</h3>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     
     
     <div class="col">

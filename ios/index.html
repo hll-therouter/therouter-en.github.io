@@ -1,0 +1,42 @@
+---
+layout: default
+---
+<!-- Main Container -->
+<div id="banners"></div>
+<div class="container">
+  {% for post in site.posts %}
+    {% if post.ios %}
+      {% if post.link %}
+        <a href="{{ post.link }}" title="{{ post.title }}">
+      {% else %}
+        <a href="{{ post.url }}" title="{{ post.title }}">
+      {% endif %}
+      <div class="doc-list">
+        {% if post.author %}
+          <font color="#aaaaaa"> {{ post.author }} 创作于 {{ post.date | date: "%Y-%m-%d" }} </font>
+        {% else %}
+          <font color="#aaaaaa">{% if page.author %} {{ page.author }} {% else %} TheRouter官方 {% endif %} 创作于 {{ post.date | date: "%Y-%m-%d" }} </font>
+        {% endif %}
+        <br>
+        <h2 class="blog-title">
+          {{ post.title }}
+        </h2>
+        <font color="#666666"> 
+          {% if post.description.size > 120 %}
+            {{ post.description | rstrip }}
+          {% else %}
+            {{ post.content | strip_html | truncate: 120 }}
+          {% endif %} 
+        </font>
+        <br>
+        
+        {% if post.tag %}
+        <span class="label label-default">{{ post.tag }}</span> 
+        {% endif %}     
+      </div>
+      </a>
+      <hr>
+    {% endif %}   
+  {% endfor %}
+</div>
+<!--End Main Container -->

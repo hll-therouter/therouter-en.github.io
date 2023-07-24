@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+  <!-- meta data & title -->
+  <meta charset="utf-8">
+  <title>TheRouter 使用 KSP 处理注解</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。">
+  <meta name="author" content="TheRouter">
+  <meta name="keyword"
+      content="TheRouter 使用 KSP 处理注解,android,kotlin,arouter,TheRouter">
+
+  <meta name="keywords"
+      content="TheRouter 使用 KSP 处理注解,android,kotlin,arouter,therouter,studio,优质开发技术">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/animate.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/prism.css">
+
+  <script type="text/javascript" src="http://localhost:4000/js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</head>
+  <div class="container">
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <img src="http://localhost:4000/assets/img/logo/logo4.png" width="170px">
+    </a>
+
+    <ul class="nav nav-pills">
+      
+      <li class="nav-item">
+        
+          <a href="/" class="nav-link header-color" aria-current="page">首页</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          
+            <a href="/doc" class="nav-link active header-color">Android</a>
+           
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/ios" class="nav-link header-color">iOS</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/docs/2022/08/24/01" class="nav-link header-color">社区</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/api/1.1.2" class="nav-link header-color">API文档</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/about" class="nav-link header-color">关于</a>
+         
+      </li>
+      <li class="nav-item"><a href="https://github.com/HuolalaTech/hll-wp-therouter-android" class="nav-link header-color">GitHub</a></li>
+    </ul>
+  </header>
+</div>
+
+
+<!-- End Header -->
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-1.10.2.min.js"></script>
+<script src="http://localhost:4000/js/wow.min.js"></script>
+<script>
+  new WOW().init();
+</script>
+
+  <body>
+  	
+  		<h2 class="blog-title" align="center">TheRouter 使用 KSP 处理注解</h2>
+      <br>
+  	
+    <!-- Main Container -->
+<div class="container">
+	<div class="blog-post">
+		<p>TheRouter 在<code>1.1.4-rc2</code>开始，已经将<code>KSP</code>能力合并至主分支，不再是单独的功能分支了，下面介绍一下如何使用 <code>KSP</code>。  </p>
+
+<h3>什么是KSP</h3>
+
+<p>KSP全称：Kotlin Symbol Processing。<br>
+借助官网的描述：KSP 提供了一种基于 Kotlin 的轻量级的编译期插件 API，其编译速度最快可以达到 kapt 速度的两倍。    </p>
+
+<p>从原理角度讲，<code>Android</code>项目构建过程中，可用的注解处理器总共有三种：APT、KAPT、KSP。<br>
+APT 比较好理解，就是 JDK 提供的注解处理器，通常在 Gradle 项目中不需要引入什么额外插件，只需要在依赖时使用 <code>annotationProcessor &quot;cn.therouter:apt:x.x.x</code>，但是他不支持 Kotlin 注解的解析。<br>
+KAPT 最早是 Kotlin 推出的APT，用于兼容 Kotlin 代码的注解，但是他的实现比较简单粗暴，内部实际上是包了一层APT，他编译时首先处理 Kotlin 的注解解析，如果无法解析，再用APT去解析，所以相当于同一个模块，如果是Java、Kotlin混编时，会执行两遍注解解析。<br>
+KSP 是基于语法分析的注解解析，严格来讲，他不仅仅可以用来做注解解析，还可以做一些基于语法分析的事情，比如自定义的代码语法检查，相当于替代了一部分 lint 可以做的事情。正因为基于语法分析来做的，所以性能必然是比 KAPT 高，毕竟编译期一定会先走一遍语法分析。   </p>
+
+<h3>TheRouter 的 KSP 使用</h3>
+
+<h4>第一步</h4>
+
+<p>在项目中所有使用了注解的模块，对应的<code>build.gradle</code>文件中都需要加入如下依赖，<strong>所有模块都要添加，不能只添加子模块</strong>：  </p>
+
+<p><strong>注意</strong> ，使用<code>KSP</code>以后，如果之前使用了<code>kapt</code>需要将原本的<code>kapt</code>依赖删掉</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// Gradle7.x以下版本，这样加入 KSP插件</span>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="err">'</span><span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">devtools</span><span class="o">.</span><span class="na">ksp</span><span class="err">'</span>
+<span class="c1">// 删除之前的kapt依赖(如有)</span>
+<span class="c1">// apply plugin: 'kotlin-kapt' </span>
+
+<span class="c1">// Gradle7.x及以上版本，提供了新的方式，也这样加入 KSP插件</span>
+<span class="c1">// 当然，也可以继续使用上面那种方式</span>
+<span class="n">plugins</span> <span class="o">{</span>
+    <span class="n">id</span> <span class="s">"com.google.devtools.ksp"</span>
+    <span class="c1">// 删除之前的kapt依赖(如有)</span>
+    <span class="c1">//id 'org.jetbrains.kotlin.kapt'</span>
+<span class="o">}</span>
+
+
+<span class="n">dependencies</span> <span class="o">{</span>
+    <span class="c1">// 从1.1.4-rc2 开始在正式版本支持ksp，此前需要使用beta版本，但用法一致</span>
+    <span class="n">ksp</span> <span class="s">"cn.therouter:apt:1.1.4-rc4"</span>
+    <span class="c1">// 删除之前的kapt依赖(如有)</span>
+    <span class="c1">// kapt "cn.therouter:apt:1.1.4-rc4"</span>
+<span class="o">}</span>
+
+</code></pre></div>
+<h4>第二步</h4>
+
+<p>在项目根目录<code>build.gradle</code>引入 kapt 插件的 classpath : </p>
+
+<p><strong>注意</strong>，版本号需要在KSP官网<a href="https://github.com/google/ksp/releases">https://github.com/google/ksp/releases</a>，找到跟自己项目中 Kotlin 版本号对应的<code>KSP</code>插件版本号。例如，我的 Kotlin 版本号是 <code>1.5.31</code>，所以 KSP 插件的版本号就使用对应的<code>1.5.31-1.0.0</code>  </p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// Gradle7.x以下版本，这样加入 </span>
+<span class="n">buildscript</span> <span class="o">{</span>
+    <span class="n">dependencies</span> <span class="o">{</span>
+        <span class="n">classpath</span> <span class="s">"com.google.devtools.ksp:symbol-processing-gradle-plugin:xxx-xxx"</span>  
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Gradle7.x及以上版本，提供了新的方式，也这样加入  </span>
+<span class="c1">// 当然，也可以继续使用上面那种方式</span>
+<span class="n">plugins</span> <span class="o">{</span>
+    <span class="n">id</span> <span class="s">"com.google.devtools.ksp"</span> <span class="n">version</span> <span class="err">'</span><span class="n">xxx</span><span class="o">-</span><span class="n">xxx</span><span class="err">'</span> <span class="n">apply</span> <span class="kc">false</span>
+<span class="o">}</span>
+
+</code></pre></div>
+	</div>
+  
+  
+  
+    
+  
+    
+    
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    
+
+    
+      <h3>相关推荐：</h3>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    
+    
+    <div class="col">
+      <div class="card shadow-sm">
+        <a href=/docs/2022/08/27/01>
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>跨模块依赖注入</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">跨模块依赖注入</text></svg>
+        </a>
+
+        <div class="card-body">
+          <p class="card-text">
+            
+              模块化能力支持项：  
+
+
+支持跨模块依赖注入
+支持自定义注入项的创建规则，依赖注入可自定义参数
+支持自定义服务拦截，单模块mock调试
+支持注入对象缓存...
+            
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href=/docs/2022/08/27/01>
+                <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
+              </a>
+            </div>
+            <small class="text-muted">11 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+    
+    
+
+    
+    
+    <div class="col">
+      <div class="card shadow-sm">
+        <a href=/docs/2022/08/26/01>
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>业务节点订阅(自动初始化)能力介绍</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">业务节点订阅(自动初始化)能力介绍</text></svg>
+        </a>
+
+        <div class="card-body">
+          <p class="card-text">
+            
+              模块化开发时，可能每个模块都有自己需要初始化的一些代码。以前的做法是把这些代码都在`Application`里声明，但是这样可能随着业务变动每次都需要修改`Application`所在模块。`TheRouter`的单模块自动初始化能力就是为了解决这样的情况，可以只在当前模块声明初始化方法后，将会在业务场景时自动被调用。
+            
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href=/docs/2022/08/26/01>
+                <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
+              </a>
+            </div>
+            <small class="text-muted">6 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+    
+    
+
+    
+    
+    <div class="col">
+      <div class="card shadow-sm">
+        <a href=/docs/2022/08/25/01>
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>动态化能力支持：ActionManager</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">动态化能力支持：ActionManager</text></svg>
+        </a>
+
+        <div class="card-body">
+          <p class="card-text">
+            
+              Action 本质是一个全局的系统回调，主要用于预埋的一系列操作，例如：弹窗、上传日志、清理缓存。 与 Android 系统自带的广播通知类似，你可以在任何地方声明动作与处理方式。并且所有 Action 都是可以被跟踪的，只要你愿意，可以在日志中将所有的动作调用栈输出，以方便调试使用。
+            
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href=/docs/2022/08/25/01>
+                <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
+              </a>
+            </div>
+            <small class="text-muted">5 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+    
+  
+  
+    </div>
+  
+
+</div>
+<!--End Main Container -->
+
+  </body>
+
+  <!-- Footer -->
+<footer> 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3><i class="bi bi-link-45deg bi-footer"></i> 友情链接</h3>
+        <p><a href="https://www.huolala.cn/"> 货拉拉</a></p>
+        <p><a href="https://www.huolala.cn/house_move.html"> 无忧搬家</a></p>
+        <p><a href="https://www.xiaolachuxing.com/"> 小拉出行</a></p>
+      </div>
+      <div class="col-md-4">
+        <h3><i class="bi bi-slack bi-footer"></i> 社区</h3>
+        <p><a href="https://kymjs.com/therouter/wx/"> 官方微信群</a></p>
+        <p><a href="https://github.com/HuolalaTech/hll-wp-therouter-android"> GitHub </a></p>
+        <p><a href="https://juejin.cn/user/1768489241815070/posts"> 技术博客 </a></p> 
+      </div>
+      <div class="col-md-4">
+        <h3><i class="bi bi-postcard-heart bi-footer"></i> 关于</h3>
+        <p><a href="https://juejin.cn/user/1768489241815070/posts"> 货拉拉移动技术团队</a></p>
+        <p><a href="https://kymjs.com"> 开源实验室</a></p>
+      </div>    
+    </div>
+  </div>
+
+  <div class="copyright text center">
+    <p>&copy; Copyright 2023, <a href="#">TheRouter</a>. <br>Theme ported by <a href="https://melvinchng.github.io/" target="_blank">Melvin Ch'ng</a></p>
+  </div>
+</footer>
+</html>

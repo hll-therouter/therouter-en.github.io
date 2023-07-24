@@ -39,8 +39,13 @@
       <li class="nav-item">
         
           
-            <a href="/doc" class="nav-link active header-color">博客</a>
+            <a href="/doc" class="nav-link active header-color">Android</a>
            
+         
+      </li>
+      <li class="nav-item">
+        
+          <a href="/ios" class="nav-link header-color">iOS</a>
          
       </li>
       <li class="nav-item">
@@ -74,8 +79,8 @@
   <body>
   	
   		<h2 class="blog-title" align="center">TheRouter 基础能力介绍</h2>
+      <br>
   	
-    <br>
     <!-- Main Container -->
 <div class="container">
 	<div class="blog-post">
@@ -98,14 +103,14 @@
 
 <p>最新版本号，请访问：(<a href="https://github.com/HuolalaTech/hll-wp-therouter-android/releases">github/releases</a>)</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 项目根目录 build.gradle 引入</span>
-<span class="n">classpath</span> <span class="err">'</span><span class="n">cn</span><span class="o">.</span><span class="na">therouter</span><span class="o">:</span><span class="nl">plugin:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">2</span><span class="err">'</span>
+<span class="n">classpath</span> <span class="err">'</span><span class="n">cn</span><span class="o">.</span><span class="na">therouter</span><span class="o">:</span><span class="nl">plugin:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">4</span><span class="o">-</span><span class="n">rc4</span><span class="err">'</span>
 
 <span class="c1">// app module 中引入</span>
 <span class="n">apply</span> <span class="nl">plugin:</span> <span class="err">'</span><span class="n">therouter</span><span class="err">'</span>
 
 <span class="c1">// 依赖</span>
-<span class="n">kapt</span> <span class="s">"cn.therouter:apt:1.1.2"</span>
-<span class="n">implementation</span> <span class="s">"cn.therouter:router:1.1.2"</span>
+<span class="n">kapt</span> <span class="s">"cn.therouter:apt:1.1.4-rc4"</span>
+<span class="n">implementation</span> <span class="s">"cn.therouter:router:1.1.4-rc4"</span>
 </code></pre></div>
 <h4>1.2 初始化</h4>
 
@@ -115,7 +120,7 @@
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
 <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">attachBaseContext</span><span class="o">(</span><span class="n">Context</span> <span class="n">base</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">TheRouter</span><span class="o">.</span><span class="na">setDebug</span><span class="o">(</span><span class="kc">true</span> <span class="n">or</span> <span class="kc">false</span><span class="o">);</span>
-    <span class="kd">super</span><span class="o">.</span><span class="na">attachBaseContext</span><span class="o">(</span><span class="n">base</span><span class="o">);</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">attachBaseContext</span><span class="o">(</span><span class="n">base</span><span class="o">);</span>  
 <span class="o">}</span>
 </code></pre></div>
 <h4>1.3 页面参数注入</h4>
@@ -256,6 +261,40 @@
     
     <div class="col">
       <div class="card shadow-sm">
+        <a href=/docs/2023/07/21/01>
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>TheRouter 常见问题处理</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">TheRouter 常见问题处理</text></svg>
+        </a>
+
+        <div class="card-body">
+          <p class="card-text">
+            
+              碰到问题，建议先在`GitHub issue`中查看，issue 中整理了一批常见问题，也许就有你要的答案，提问前也请先确认是否有重复的问题。    
+点...
+            
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href=/docs/2023/07/21/01>
+                <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
+              </a>
+            </div>
+            <small class="text-muted">2 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+    
+  
+    
+    
+
+    
+    
+    <div class="col">
+      <div class="card shadow-sm">
         <a href=/docs/2022/12/23/01>
           <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>动态路由 TheRouter 的设计与实践</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">动态路由 TheRouter 的设计与实践</text></svg>
         </a>
@@ -304,7 +343,7 @@
                 <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
               </a>
             </div>
-            <small class="text-muted">5 mins</small>
+            <small class="text-muted">4 mins</small>
           </div>
         </div>
       </div>
@@ -330,41 +369,7 @@
     
 
     
-    
-    <div class="col">
-      <div class="card shadow-sm">
-        <a href=/docs/2022/08/28/01>
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>页面跳转能力介绍</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="5%" y="50%" fill="#eceeef" dy=".3em">页面跳转能力介绍</text></svg>
-        </a>
-
-        <div class="card-body">
-          <p class="card-text">
-            
-              如果一个页面（支持 Activity、Fragment）允许被路由打开，则需要使用注解 @Route 声明路由项，每个页面允许声明多个路由项，也就是一对多的能力，极大降低多端路由统一时的业务影响面。
-            
-          </p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <a href=/docs/2022/08/28/01>
-                <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
-              </a>
-            </div>
-            <small class="text-muted">28 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
+      
   
     </div>
   
