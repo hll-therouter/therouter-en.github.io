@@ -6,7 +6,7 @@ permalink: /doc
 <div id="banners"></div>
 <div class="container">
   {% for post in site.posts %}
-    {% if post.categories[0] == "docs" %}
+    {% if post.android %}
     {% if post.level == 1 %}
       {% if post.link %}
         <a href="{{ post.link }}" title="{{ post.title }}">
@@ -43,7 +43,7 @@ permalink: /doc
   {% endfor %}
 
   {% for post in site.posts %}
-    {% if post.categories[0] == "docs" %}
+    {% if post.android %}
     {% if post.level == 2 %}
       {% if post.link %}
         <a href="{{ post.link }}" title="{{ post.title }}">
@@ -73,7 +73,7 @@ permalink: /doc
   {% endfor %}
 
   {% for post in site.posts %}
-    {% if post.categories[0] == "docs" %}
+    {% if post.android %}
     {% if post.level == 3 %}
       {% if post.link %}
         <a href="{{ post.link }}" title="{{ post.title }}">
@@ -103,7 +103,7 @@ permalink: /doc
   {% endfor %}
 
   {% for post in site.posts %}
-    {% if post.categories[0] == "docs" %}
+    {% if post.android %}
     {% if post.level == 0 %}
       {% if post.link %}
         <a href="{{ post.link }}" title="{{ post.title }}">
