@@ -514,6 +514,9 @@ p.blog-text{
   .services-section .services-group {
     margin-bottom: 50px;
   }
+  .app-icon-group{
+    margin-bottom: 50px;
+  }
   .services-section .services-row-tail {
     margin-top: 0;
   }
@@ -535,6 +538,11 @@ p.blog-text{
 .services-group{
   padding: 10px;
   background:#061F20;
+  color: white;
+}
+.app-icon-group{
+  padding: 10px;
+  background:white;
   color: white;
 }
 .service-icon{
