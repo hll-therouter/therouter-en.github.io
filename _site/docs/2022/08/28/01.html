@@ -38,9 +38,7 @@
       </li>
       <li class="nav-item">
         
-          
-            <a href="/doc" class="nav-link active header-color">Android</a>
-           
+          <a href="/doc" class="nav-link active header-color">Android</a>
          
       </li>
       <li class="nav-item">
@@ -110,7 +108,7 @@
 <li><strong>path</strong>: 路由path 【必传】。<br>
 建议是一个url。path内支持使用正则表达式（为了匹配效率，正则必须包含反双斜杠\），允许多个path对应同一个Activity(Fragment)。</li>
 <li><strong>action</strong>:  自定义事件【可选】。
-一般用来打开目标页面后做一个执行动作，例如自定义页面弹出广告弹窗</li>
+一般用来打开目标页面后做一个执行动作，例如自定义页面弹出广告弹窗。更多介绍，请查看文档<code>ActionManager</code>：<a href="https://therouter.cn/docs/2022/08/25/01">https://therouter.cn/docs/2022/08/25/01</a><br></li>
 <li><strong>description</strong>:  页面描述【可选】。
 会被记录到路由表中，方便后期排查的时候知道每个path或Activity是什么业务</li>
 <li><strong>params</strong>:  页面参数【可选】。
@@ -175,7 +173,7 @@
 
 <p><strong>注：一旦你设置了自定义的InitTask，原框架内路由表初始化任务将不再执行，你需要自己处理找不到路由表时的兜底逻辑</strong>，一种建议的处理方式见如下代码。 </p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 此代码 必须 在 Application.super.onCreate() 之前调用</span>
-<span class="n">RouteMap</span><span class="o">.</span><span class="na">setInitTask</span><span class="o">(</span><span class="k">new</span> <span class="n">RouterMapInitTask</span><span class="o">()</span> <span class="o">{</span>
+<span class="n">RouteMapKt</span><span class="o">.</span><span class="na">setInitTask</span><span class="o">(</span><span class="k">new</span> <span class="n">RouterMapInitTask</span><span class="o">()</span> <span class="o">{</span>
     <span class="cm">/** 
      * 此方法执行在异步
      */</span>
@@ -368,7 +366,7 @@
 
 <p>例如：相对路径转绝对路径，或由于服务端下发的链接无法固定https或http，但客户端代码写死了 https 的 path，就可以用这种方式统一。<br>
 <strong>注</strong>：<em>必须在 TheRouter.build() 方法调用前添加处理器，否则处理器前的所有path不会被修改</em>。  </p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Navigator</span><span class="o">.</span><span class="na">addNavigatorPathFixHandle</span><span class="o">(</span><span class="k">new</span> <span class="n">NavigatorPathFixHandle</span><span class="o">()</span> <span class="o">{</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">NavigatorKt</span><span class="o">.</span><span class="na">addNavigatorPathFixHandle</span><span class="o">(</span><span class="k">new</span> <span class="n">NavigatorPathFixHandle</span><span class="o">()</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="n">String</span> <span class="nf">fix</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">"http://"</span><span class="o">,</span> <span class="s">"https://"</span><span class="o">);</span>
@@ -394,7 +392,7 @@
 <p>例如模块化的时候，首页壳模板组件中开发了一个<code>SplashActivity</code>广告组件作为应用的<code>MainActivity</code>，在闪屏广告结束的时候自动跳转业务首页页面。 
 但是每个业务不同，首页页面的 <code>Path</code> 也不相同，而不希望让每个业务线自己去改这个首页壳模板组件，此时就可以组件中先写占位符<code>https://kymjs.com/splash/to/home</code>，让接入方通过 <code>Path</code> 替换器解决。<br>
 <strong>注</strong>：<em>必须在 TheRouter.build().navigation() 方法调用前添加处理器，否则处理器前的所有跳转不会被替换</em>。  </p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Navigator</span><span class="o">.</span><span class="na">addPathReplaceInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="n">PathReplaceInterceptor</span><span class="o">()</span> <span class="o">{</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">NavigatorKt</span><span class="o">.</span><span class="na">addPathReplaceInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="n">PathReplaceInterceptor</span><span class="o">()</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="n">String</span> <span class="nf">replace</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="s">"https://kymjs.com/splash/to/home"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">path</span><span class="o">))</span> <span class="o">{</span>
@@ -447,7 +445,7 @@
 <p>与前三个处理器不同的点在于，路由的AOP拦截器全局只能有一个。用于实现AOP的能力，在整个TheRouter跳转的过程中，跳转前，目标页是否找到的回调，跳转时，跳转后，都可以做一些自定义的逻辑处理。   </p>
 
 <p><strong>使用场景</strong>：场景很多，最常用的是可以拦截一些跳转，例如debug页面在生产环境不打开，或定制<code>startActivity</code>跳转方法。   </p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Navigator</span><span class="o">.</span><span class="na">setRouterInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="n">RouterInterceptor</span><span class="o">()</span> <span class="o">{</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">NavigatorKt</span><span class="o">.</span><span class="na">setRouterInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="n">RouterInterceptor</span><span class="o">()</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">process</span><span class="o">(</span><span class="n">RouteItem</span> <span class="n">routeItem</span><span class="o">,</span> <span class="n">InterceptorCallback</span> <span class="n">callback</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(!</span><span class="n">TheRouter</span><span class="o">.</span><span class="na">isDebug</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">routeItem</span><span class="o">.</span><span class="na">getClassName</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">"com.kymjs.DebugActivity"</span><span class="o">))</span> <span class="o">{</span>
@@ -560,7 +558,7 @@
                 <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
               </a>
             </div>
-            <small class="text-muted">2 mins</small>
+            <small class="text-muted">4 mins</small>
           </div>
         </div>
       </div>

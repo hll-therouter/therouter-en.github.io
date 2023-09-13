@@ -38,9 +38,7 @@
       </li>
       <li class="nav-item">
         
-          
-            <a href="/doc" class="nav-link active header-color">Android</a>
-           
+          <a href="/doc" class="nav-link active header-color">Android</a>
          
       </li>
       <li class="nav-item">
@@ -104,29 +102,36 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 
 <h3>第一步：接入classpath</h3>
 
-<h4>7.X 以后的新版本 Gradle</h4>
+<h4>8.X 版本 Gradle</h4>
 
-<p>如果是新版本的 Gradle，<code>classpath</code>已经改为用<code>plugins</code>的方式引入，只需要在闭包内加这一句就行了</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter'</span> <span class="n">version</span> <span class="s1">'1.1.4-rc4'</span> <span class="n">apply</span> <span class="kc">false</span>
+<p>由于 8.X 版本的 Gradle，必须使用<code>Java 17</code>的环境了，并且不兼容老<code>JDK</code>编译的<code>class</code>，所以对于新版本需要使用专为<code>Java 17</code>编译的插件。</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter.agp8'</span> <span class="n">version</span> <span class="s1">'1.2.0-rc1'</span> <span class="n">apply</span> <span class="kc">false</span>
 </code></pre></div>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d9a373ad726141a1b77d548e99de3656~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"></p>
+<p><img src="https://therouter.cn/assets/img/image/1.png" class="blog-img"></p>
+
+<h4>7.X 版本 Gradle</h4>
+
+<p>7.X 的 Gradle，<code>classpath</code>已经改为用<code>plugins</code>的方式引入，只需要在闭包内加这一句就行了</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter'</span> <span class="n">version</span> <span class="s1">'1.2.0-rc1'</span> <span class="n">apply</span> <span class="kc">false</span>
+</code></pre></div>
+<p><img src="https://therouter.cn/assets/img/image/2.jpg" class="blog-img"></p>
 
 <h4>6.x 及之前的老版本 Gradle</h4>
 
 <p>对于6.x 及之前的  Gradle，需要手动引入<code>classpath</code>，在 TheRouter 官方 Github 首页也有接入介绍</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">classpath</span> <span class="s2">"cn.therouter:plugin:1.1.4-rc4"</span>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">classpath</span> <span class="s2">"cn.therouter:plugin:1.2.0-rc1"</span>
 </code></pre></div>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e17c86607e14d0888bf2ab30b34d3b1~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img"></p>
+<p><img src="https://therouter.cn/assets/img/image/3.jpg" class="blog-img"></p>
 
 <h3>第二步：引入插件</h3>
 
-<h4>7.X 以后的新版本 Gradle</h4>
+<h4>7.X 及以后版本 Gradle</h4>
 
 <p>找到项目里全部的app模块（一般只会有一个，特殊项目会有多个）。也就是整个工程的所有<code>build.gradle</code>文件里面，只要是有<code>com.android.application</code>这个的模块，都要加上如下代码</p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// 7.X及以上新版本这样写</span>
 <span class="n">id</span> <span class="s1">'therouter'</span>
 </code></pre></div>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5cefce8ad9c243a49bb5445128525b83~tplv-k3u1fbpfcp-zoom-1.image" width=240>   </p>
+<p><img src="https://therouter.cn/assets/img/image/4.jpg" class="blog-img"></p>
 
 <h4>6.x 及之前的老版本 Gradle</h4>
 
@@ -134,7 +139,7 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// 6.X及以下老版本这样写</span>
 <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'therouter'</span>
 </code></pre></div>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a8bfb7c684a40268e3297285b4643e4~tplv-k3u1fbpfcp-zoom-1.image" width=240></p>
+<p><img src="https://therouter.cn/assets/img/image/5.jpg" class="blog-img"></p>
 
 <h3>第三步：引入注解处理器</h3>
 
@@ -145,17 +150,17 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 <p><strong>注：所有的模块都必须引入kapt，否则就有可能造成某些路由表不生成。</strong><br>
 <strong>注：所有APP的模块，如果是需要上线的模块，必须直接或间接在 app 中被依赖，否则最终生成apk会丢失未被依赖的功能。</strong>  </p>
 
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ef8fb789721548b4bc7a11563ecc328b~tplv-k3u1fbpfcp-zoom-1.image" class="blog-img">   </p>
+<p><img src="https://therouter.cn/assets/img/image/6.jpg" class="blog-img"></p>
 
 <p>如果报找不到kapt，可能是因为没有声明kotlin-kapt的插件，参考<code>步骤二</code>里面的截图，接入对应的kapt。<br>
 如果是纯Java工程，需要用Java的APT处理，纯Java就不用声明<code>kotlin-kapt</code>插件了，直接把<code>kapt</code>改成<code>annotationProcessor</code></p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">annotationProcessor</span> <span class="s2">"cn.therouter:apt:1.1.4-rc4"</span>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">annotationProcessor</span> <span class="s2">"cn.therouter:apt:1.2.0-rc1"</span>
 </code></pre></div>
 <h3>第四步：引入路由库</h3>
 
 <p>在需要使用路由功能的模块的<code>build.gradle</code>，(不像kapt，这个是可以使用传递依赖的)，加入如下依赖  </p>
 <div class="highlight"><pre><code class="language-" data-lang="">dependencies {
-    implementation "cn.therouter:router:1.1.4-rc4"
+    implementation "cn.therouter:router:1.2.0-rc1"
 }
 </code></pre></div>
 <h2>使用</h2>
@@ -197,8 +202,9 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 </code></pre></div>
 <h2>AGP 8.X 使用</h2>
 
-<p>由于 AGP 从 7.X 开始，把 <code>TransfromAPI</code> 废弃(会有警告，但还能正常使用)，从 8.0 开始删除了，所以老版本是无法使用的。对于新版本，由于 8.0 的 AGP 还没有正式发布，所以我们也只在 Beta 版本支持，以防止再有什么 API 变动。<br>
-具体版本号及开发进度请关注 <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/releases">release</a> 信息（1.2.0-betaX为AGP8适配版本）     </p>
+<p><em>从1.2.0开始，beta版本已经全部合入rc版本，无需再特殊关注beta版本进度。</em>    </p>
+
+<p>使用时只需注意本文第一步中，classpath引入的不同，需要使用<code>cn.therouter.agp8</code>引入插件。   </p>
 
 	</div>
   
@@ -262,7 +268,7 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
                 <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
               </a>
             </div>
-            <small class="text-muted">2 mins</small>
+            <small class="text-muted">4 mins</small>
           </div>
         </div>
       </div>

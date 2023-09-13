@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-25T17:06:18+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">TheRouter iOS 路由介绍</title><link href="http://localhost:4000/docs/2023/07/24/01" rel="alternate" type="text/html" title="TheRouter iOS 路由介绍" /><published>2023-07-24T00:00:00+08:00</published><updated>2023-07-24T00:00:00+08:00</updated><id>http://localhost:4000/docs/2023/07/24/01</id><content type="html" xml:base="http://localhost:4000/docs/2023/07/24/01">&lt;h2&gt;功能介绍&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-13T14:31:38+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">TheRouter iOS 路由介绍</title><link href="http://localhost:4000/docs/2023/07/24/01" rel="alternate" type="text/html" title="TheRouter iOS 路由介绍" /><published>2023-07-24T00:00:00+08:00</published><updated>2023-07-24T00:00:00+08:00</updated><id>http://localhost:4000/docs/2023/07/24/01</id><content type="html" xml:base="http://localhost:4000/docs/2023/07/24/01">&lt;h2&gt;功能介绍&lt;/h2&gt;
 
 &lt;p&gt;TheRouter 是货拉拉打造的一款同时支持 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android&quot;&gt;Android&lt;/a&gt; 及 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-ios&quot;&gt;iOS&lt;/a&gt; 的轻量级路由中间件，在iOS端吸取了其他其他语言的特性，支持&lt;a href=&quot;https://juejin.cn/post/6999484997782470669&quot;&gt;注解&lt;/a&gt;功能，极大提升了路由在iOS端的使用体感。摒弃了传统 iOSer 的 target-action 或 protocol 理念，向更广的后台或 Android 应用对齐。&lt;/p&gt;
 
@@ -121,9 +121,7 @@ TheRouterSelector(test/jump, jumpToTestVC, TestService)
 
 &lt;hr&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Q1: &lt;strong&gt;路由表不生成（或生成的代码有问题编译报错）是什么原因？&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h4&gt;Q1: &lt;strong&gt;路由表不生成（或生成的代码有问题编译报错）是什么原因？&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;p&gt;如共用&lt;code&gt;KSP&lt;/code&gt;与&lt;code&gt;ViewBinding&lt;/code&gt;，会发生丢失问题，可使用&lt;code&gt;KAPT&lt;/code&gt;。&lt;br&gt;
 其他场景请按照以下步骤排查：   &lt;/p&gt;
@@ -138,36 +136,155 @@ TheRouterSelector(test/jump, jumpToTestVC, TestService)
 
 &lt;hr&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Q2：&lt;strong&gt;kotlin使用&lt;code&gt;@Autowired&lt;/code&gt;注解编译不通过&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h4&gt;Q2：&lt;strong&gt;kotlin使用&lt;code&gt;@Autowired&lt;/code&gt;注解编译不通过&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;p&gt;查看 GitHub Issue：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/issues/6&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/issues/6&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Q3：&lt;strong&gt;使用Gradle 8.X，编译报错&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h4&gt;Q3：&lt;strong&gt;使用Gradle 8.X，编译报错&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/issues/22&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/issues/22&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Q4：&lt;strong&gt;从 ARouter 迁移 TheRouter 时通过 Bundle 传递的参数不能正确获取&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h4&gt;Q4：&lt;strong&gt;从 ARouter 迁移 TheRouter 时通过 Bundle 传递的参数不能正确获取&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/issues/29&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/issues/29&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Q5：&lt;strong&gt;多进程如何使用&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h4&gt;Q5：&lt;strong&gt;多进程如何使用&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://therouter.cn/docs/2022/09/03/01&quot;&gt;https://therouter.cn/docs/2022/09/03/01&lt;/a&gt;&lt;/p&gt;
 
+&lt;hr&gt;
+
+&lt;h4&gt;Q6：&lt;strong&gt;同一个服务名有多个服务提供方，如何使用&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;请查看文档 【1.3 服务提供方】章节的内容：&lt;a href=&quot;https://therouter.cn/docs/2022/08/27/01&quot;&gt;https://therouter.cn/docs/2022/08/27/01&lt;/a&gt;   &lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Q7：多进程使用 TheRouter&lt;/h4&gt;
+
+&lt;p&gt;TheRouter 路由支持多进程，但默认只会在主进程执行初始化逻辑。如果使用了多进程，可以先关闭&lt;code&gt;TheRouter&lt;/code&gt;的自动初始化，然后手动在&lt;code&gt;Application&lt;/code&gt;的&lt;code&gt;onCreate()&lt;/code&gt;中执行初始化功能。   &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;attachBaseContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;base:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attachBaseContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;theRouterUseAutoInit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;： &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1、多进程&lt;code&gt;ServiceProvider&lt;/code&gt;，TheRouter 支持跨进程获取数据，但获取的数据本身需要支持跨进程，可以理解为&lt;code&gt;TheRouter&lt;/code&gt;本质是个链接两个进程的通道，要将数据从一个进程传递到另一个进程，这个数据本身需要能够被另一个进程接收的到。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;2、&lt;code&gt;FlowTask&lt;/code&gt;的跨进程依赖暂不支持，预计支持版本在&lt;code&gt;1.2.2&lt;/code&gt;。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;3、&lt;code&gt;ActionManager&lt;/code&gt;的跨进程响应暂不支持，预计支持版本在&lt;code&gt;1.2.2&lt;/code&gt;。&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Q8：自定义Log输出&lt;/h4&gt;
+
+&lt;p&gt;默认情况下，&lt;code&gt;TheRouter&lt;/code&gt;会在&lt;code&gt;debug&lt;/code&gt;模式下，将&lt;code&gt;log&lt;/code&gt;打印到控制台，在&lt;code&gt;release&lt;/code&gt;模式下不做任何输出。&lt;br&gt;
+如果你希望采集线上日志信息，可以自定义&lt;code&gt;release&lt;/code&gt;场景下的日志输出方式：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 这一步建议放在Application.onCreate()之前，否则可能会在赋值之前就有部分日志已经执行了默认逻辑。&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logCat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;  
+        &lt;span class=&quot;c1&quot;&gt;// 执行上报日志的逻辑&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+
+&lt;h4&gt;Q9：判断String，是否为路由path&lt;/h4&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 判断是否为路由落地页path&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isRouterPath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;  
+
+&lt;span class=&quot;c1&quot;&gt;// 判断是否为 Action&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isRouterAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+
+&lt;h4&gt;Q10：导出路由历史记录&lt;/h4&gt;
+
+&lt;p&gt;如果需要记录用户历史操作信息，用于排查错误时回放，可以直接使用历史记录导出功能：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// level共8个状态可选&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NONE&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 不导出任何数据&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTIVITY&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//仅导出Activity的路由操作&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FRAGMENT&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//仅导出Fragment的路由操作&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PAGE&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 导出 Fragment + Activity的路由操作&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTION&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 导出 ActionManager 的操作记录&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SERVICE_PROVIDER&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 导出 ServiceProvider的记录&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FLOW_TASK&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 导出 FlowTaskExecutor 的历史记录&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ALL&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 导出全部记录&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 8种状态可互相叠加，例如&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;level&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTIVITY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTION&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FLOW_TASK&lt;/span&gt;
+
+&lt;span class=&quot;nf&quot;&gt;export&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;forEach&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'\n'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'\n'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+
+&lt;h4&gt;Q11：导入导出 Intent 对象到路由&lt;/h4&gt;
+
+&lt;p&gt;有一些特殊的业务场景可能必须使用&lt;code&gt;Intent&lt;/code&gt;对象作为参数，例如通知栏点击以后，系统只提供了&lt;code&gt;Intent&lt;/code&gt;参数，或者用于替代&lt;code&gt;startActivityForResult()&lt;/code&gt;的新 API &lt;code&gt;ActivityResultLauncher&lt;/code&gt; 。&lt;br&gt;
+TheRouter 也支持这样的使用场景：  &lt;/p&gt;
+
+&lt;p&gt;导入 Intent：  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withXxxxx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;导出 Intent：  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 注：导出Intent时，需要url有对应的落地页，否则Intent不会附带withXXX()的参数信息&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withXxxxx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createIntent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+
+&lt;h4&gt;Q12：插件化项目集成&lt;/h4&gt;
+
+&lt;p&gt;TheRouter 的路由表是完全动态化的，所以允许动态加载插件路由表。
+现有市面上插件化框架较多，具体可参考使用的插件化方案，当插件被加载时分别调用如下代码&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 在异步线程执行&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 初始化插件内的依赖注入&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouterServiceProvideInjecter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;trojan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 初始化插件内的FlowTask&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouterServiceProvideInjecter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addFlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;digraph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 初始化插件内的路由表&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TheRouterServiceProvideInjecter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;initDefaultRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+
+&lt;h4&gt;Q13：Flutter/RN/WEEX 等混编项目集成&lt;/h4&gt;
+
+&lt;p&gt;TheRouter 的路由表是完全动态化的，所以允许动态加载跨平台项目的路由表。&lt;/p&gt;
+
+&lt;p&gt;可以直接将路由表配置到&lt;code&gt;/assets/RouteMap.json&lt;/code&gt;文件中。&lt;br&gt;
+如果路由表的 &lt;code&gt;url&lt;/code&gt; 是具备规律的，可简单使用正则表达式一次性加载。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://kymjs.com/flutter/\\S*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;className&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;com.therouter.FlutterActivity&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;action&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;params&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;......&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;添加其他路由表&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;......&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;hr&gt;</content><author><name></name></author><category term="框架简介" /><summary type="html">碰到问题，建议先在GitHub issue中查看，issue 中整理了一批常见问题，也许就有你要的答案，提问前也请先确认是否有重复的问题。 点击查看： TheRouter Issue</summary></entry><entry><title type="html">TheRouter 使用 KSP 处理注解</title><link href="http://localhost:4000/docs/2023/05/15/01" rel="alternate" type="text/html" title="TheRouter 使用 KSP 处理注解" /><published>2023-05-15T00:00:00+08:00</published><updated>2023-05-15T00:00:00+08:00</updated><id>http://localhost:4000/docs/2023/05/15/01</id><content type="html" xml:base="http://localhost:4000/docs/2023/05/15/01">&lt;p&gt;TheRouter 在&lt;code&gt;1.1.4-rc2&lt;/code&gt;开始，已经将&lt;code&gt;KSP&lt;/code&gt;能力合并至主分支，不再是单独的功能分支了，下面介绍一下如何使用 &lt;code&gt;KSP&lt;/code&gt;。  &lt;/p&gt;
 
 &lt;h3&gt;什么是KSP&lt;/h3&gt;
@@ -250,29 +367,36 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 
 &lt;h3&gt;第一步：接入classpath&lt;/h3&gt;
 
-&lt;h4&gt;7.X 以后的新版本 Gradle&lt;/h4&gt;
+&lt;h4&gt;8.X 版本 Gradle&lt;/h4&gt;
 
-&lt;p&gt;如果是新版本的 Gradle，&lt;code&gt;classpath&lt;/code&gt;已经改为用&lt;code&gt;plugins&lt;/code&gt;的方式引入，只需要在闭包内加这一句就行了&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cn.therouter'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.1.4-rc4'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+&lt;p&gt;由于 8.X 版本的 Gradle，必须使用&lt;code&gt;Java 17&lt;/code&gt;的环境了，并且不兼容老&lt;code&gt;JDK&lt;/code&gt;编译的&lt;code&gt;class&lt;/code&gt;，所以对于新版本需要使用专为&lt;code&gt;Java 17&lt;/code&gt;编译的插件。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cn.therouter.agp8'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.2.0-rc1'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d9a373ad726141a1b77d548e99de3656~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/1.png&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+
+&lt;h4&gt;7.X 版本 Gradle&lt;/h4&gt;
+
+&lt;p&gt;7.X 的 Gradle，&lt;code&gt;classpath&lt;/code&gt;已经改为用&lt;code&gt;plugins&lt;/code&gt;的方式引入，只需要在闭包内加这一句就行了&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cn.therouter'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.2.0-rc1'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/2.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h4&gt;6.x 及之前的老版本 Gradle&lt;/h4&gt;
 
 &lt;p&gt;对于6.x 及之前的  Gradle，需要手动引入&lt;code&gt;classpath&lt;/code&gt;，在 TheRouter 官方 Github 首页也有接入介绍&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cn.therouter:plugin:1.1.4-rc4&quot;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cn.therouter:plugin:1.2.0-rc1&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e17c86607e14d0888bf2ab30b34d3b1~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/3.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h3&gt;第二步：引入插件&lt;/h3&gt;
 
-&lt;h4&gt;7.X 以后的新版本 Gradle&lt;/h4&gt;
+&lt;h4&gt;7.X 及以后版本 Gradle&lt;/h4&gt;
 
 &lt;p&gt;找到项目里全部的app模块（一般只会有一个，特殊项目会有多个）。也就是整个工程的所有&lt;code&gt;build.gradle&lt;/code&gt;文件里面，只要是有&lt;code&gt;com.android.application&lt;/code&gt;这个的模块，都要加上如下代码&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 7.X及以上新版本这样写&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'therouter'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5cefce8ad9c243a49bb5445128525b83~tplv-k3u1fbpfcp-zoom-1.image&quot; width=240&gt;   &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/4.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h4&gt;6.x 及之前的老版本 Gradle&lt;/h4&gt;
 
@@ -280,7 +404,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 6.X及以下老版本这样写&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'therouter'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a8bfb7c684a40268e3297285b4643e4~tplv-k3u1fbpfcp-zoom-1.image&quot; width=240&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/5.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h3&gt;第三步：引入注解处理器&lt;/h3&gt;
 
@@ -291,17 +415,17 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 &lt;p&gt;&lt;strong&gt;注：所有的模块都必须引入kapt，否则就有可能造成某些路由表不生成。&lt;/strong&gt;&lt;br&gt;
 &lt;strong&gt;注：所有APP的模块，如果是需要上线的模块，必须直接或间接在 app 中被依赖，否则最终生成apk会丢失未被依赖的功能。&lt;/strong&gt;  &lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ef8fb789721548b4bc7a11563ecc328b~tplv-k3u1fbpfcp-zoom-1.image&quot; class=&quot;blog-img&quot;&gt;   &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/6.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;如果报找不到kapt，可能是因为没有声明kotlin-kapt的插件，参考&lt;code&gt;步骤二&lt;/code&gt;里面的截图，接入对应的kapt。&lt;br&gt;
 如果是纯Java工程，需要用Java的APT处理，纯Java就不用声明&lt;code&gt;kotlin-kapt&lt;/code&gt;插件了，直接把&lt;code&gt;kapt&lt;/code&gt;改成&lt;code&gt;annotationProcessor&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;annotationProcessor&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cn.therouter:apt:1.1.4-rc4&quot;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;annotationProcessor&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cn.therouter:apt:1.2.0-rc1&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;第四步：引入路由库&lt;/h3&gt;
 
 &lt;p&gt;在需要使用路由功能的模块的&lt;code&gt;build.gradle&lt;/code&gt;，(不像kapt，这个是可以使用传递依赖的)，加入如下依赖  &lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;dependencies {
-    implementation &quot;cn.therouter:router:1.1.4-rc4&quot;
+    implementation &quot;cn.therouter:router:1.2.0-rc1&quot;
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;使用&lt;/h2&gt;
@@ -343,8 +467,9 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;AGP 8.X 使用&lt;/h2&gt;
 
-&lt;p&gt;由于 AGP 从 7.X 开始，把 &lt;code&gt;TransfromAPI&lt;/code&gt; 废弃(会有警告，但还能正常使用)，从 8.0 开始删除了，所以老版本是无法使用的。对于新版本，由于 8.0 的 AGP 还没有正式发布，所以我们也只在 Beta 版本支持，以防止再有什么 API 变动。&lt;br&gt;
-具体版本号及开发进度请关注 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/releases&quot;&gt;release&lt;/a&gt; 信息（1.2.0-betaX为AGP8适配版本）     &lt;/p&gt;</content><author><name></name></author><category term="入门教程" /><summary type="html">TheRouter是货拉拉开源的路由框架，针对 Android 平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。 Github: https://github.com/HuolalaTech/hll-wp-therouter-android/ 官网：http://therouter.cn/</summary></entry><entry><title type="html">Android Studio 插件，TheRouter 跳转辅助工具</title><link href="http://localhost:4000/docs/2022/09/29/01" rel="alternate" type="text/html" title="Android Studio 插件，TheRouter 跳转辅助工具" /><published>2022-09-29T00:00:00+08:00</published><updated>2022-09-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/29/01">&lt;p&gt;开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。   &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;从1.2.0开始，beta版本已经全部合入rc版本，无需再特殊关注beta版本进度。&lt;/em&gt;    &lt;/p&gt;
+
+&lt;p&gt;使用时只需注意本文第一步中，classpath引入的不同，需要使用&lt;code&gt;cn.therouter.agp8&lt;/code&gt;引入插件。   &lt;/p&gt;</content><author><name></name></author><category term="入门教程" /><summary type="html">TheRouter是货拉拉开源的路由框架，针对 Android 平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。 Github: https://github.com/HuolalaTech/hll-wp-therouter-android/ 官网：http://therouter.cn/</summary></entry><entry><title type="html">Android Studio 插件，TheRouter 跳转辅助工具</title><link href="http://localhost:4000/docs/2022/09/29/01" rel="alternate" type="text/html" title="Android Studio 插件，TheRouter 跳转辅助工具" /><published>2022-09-29T00:00:00+08:00</published><updated>2022-09-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/29/01">&lt;p&gt;开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。   &lt;/p&gt;
 
 &lt;iframe width=&quot;384px&quot; height=&quot;319px&quot; src=&quot;https://plugins.jetbrains.com/embeddable/card/20047&quot;&gt;&lt;/iframe&gt;
 
@@ -434,7 +559,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 &lt;p&gt;如果项目中使用了ARouter的IProvider.init()方法，可能需要手动处理初始化逻辑。&lt;br&gt;
 如下图：  &lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7f2cc2b3509f41ccaa11dc9617088033~tplv-k3u1fbpfcp-watermark.image?&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterTransfer.png&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
 
 &lt;h3&gt;注意事项&lt;/h3&gt;
 
@@ -1023,101 +1148,4 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 对于现有的路由框架，我们也在最大限度支持平滑迁移，目前已完成&lt;code&gt;ARouter&lt;/code&gt;的一键迁移工具，其他框架的迁移仍在开发中。你也可以在&lt;code&gt;Github&lt;/code&gt; &lt;code&gt;issue&lt;/code&gt;中提出需求，我们评估后会尽快支持，也欢迎任何人提供 &lt;code&gt;Pull Requests&lt;/code&gt;。  &lt;/p&gt;
 
 &lt;p&gt;更多问题请加群沟通：&lt;br&gt;
-&lt;img src=&quot;https://kymjs.com/therouter/wx/therouter_wx.jpg&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;</content><author><name></name></author><category term="news" /><summary type="html">TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。 Github 项目地址与使用文档详见 https://github.com/HuolalaTech/hll-wp-therouter-android。</summary></entry><entry><title type="html">路由的高阶使用</title><link href="http://localhost:4000/docs/2022/09/03/01" rel="alternate" type="text/html" title="路由的高阶使用" /><published>2022-09-03T00:00:00+08:00</published><updated>2022-09-03T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/03/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/03/01">&lt;h3&gt;多进程使用 TheRouter&lt;/h3&gt;
-
-&lt;p&gt;TheRouter支持多进程，但默认只会在主进程执行初始化逻辑。如果使用了多进程，可以先关闭&lt;code&gt;TheRouter&lt;/code&gt;的自动初始化，然后手动在&lt;code&gt;Application&lt;/code&gt;的&lt;code&gt;onCreate()&lt;/code&gt;中执行初始化功能。   &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;attachBaseContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;base:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attachBaseContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;theRouterUseAutoInit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：关于多进程&lt;code&gt;ServiceProvider&lt;/code&gt;，TheRouter 支持跨进程获取数据，但获取的数据本身需要支持跨进程，可以理解为&lt;code&gt;TheRouter&lt;/code&gt;本质是个链接两个进程的通道，要将数据从一个进程传递到另一个进程，这个数据本身需要能够被另一个进程接收的到。     &lt;/p&gt;
-
-&lt;h3&gt;自定义Log输出&lt;/h3&gt;
-
-&lt;p&gt;默认情况下，&lt;code&gt;TheRouter&lt;/code&gt;会在&lt;code&gt;debug&lt;/code&gt;模式下，将&lt;code&gt;log&lt;/code&gt;打印到控制台，在&lt;code&gt;release&lt;/code&gt;模式下不做任何输出。&lt;br&gt;
-如果你希望采集线上日志信息，可以自定义&lt;code&gt;release&lt;/code&gt;场景下的日志输出方式：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 这一步建议放在Application.onCreate()之前，否则可能会在赋值之前就有部分日志已经执行了默认逻辑。&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logCat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;  
-        &lt;span class=&quot;c1&quot;&gt;// 执行上报日志的逻辑&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;判断String，是否为路由path&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 判断是否为路由落地页path&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isRouterPath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;  
-
-&lt;span class=&quot;c1&quot;&gt;// 判断是否为 Action&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isRouterAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;导出路由历史记录&lt;/h3&gt;
-
-&lt;p&gt;如果需要记录用户历史操作信息，用于排查错误时回放，可以直接使用历史记录导出功能：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// level共8个状态可选&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NONE&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 不导出任何数据&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTIVITY&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//仅导出Activity的路由操作&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FRAGMENT&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//仅导出Fragment的路由操作&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PAGE&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 导出 Fragment + Activity的路由操作&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTION&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 导出 ActionManager 的操作记录&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SERVICE_PROVIDER&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 导出 ServiceProvider的记录&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FLOW_TASK&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 导出 FlowTaskExecutor 的历史记录&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ALL&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 导出全部记录&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 8种状态可互相叠加，例如&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;level&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTIVITY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACTION&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FLOW_TASK&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;export&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;forEach&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'\n'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'\n'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;导入导出 Intent 对象&lt;/h3&gt;
-
-&lt;p&gt;有一些特殊的业务场景可能必须使用&lt;code&gt;Intent&lt;/code&gt;对象作为参数，例如通知栏点击以后，系统只提供了&lt;code&gt;Intent&lt;/code&gt;参数。TheRouter 也支持这样的使用场景：  &lt;/p&gt;
-
-&lt;p&gt;导入 Intent：  &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withXxxxx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;navigation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;导出 Intent：  &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 注：导出Intent时，需要url有对应的落地页，否则Intent不会附带withXXX()的参数信息&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withXxxxx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createIntent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;插件化项目集成&lt;/h3&gt;
-
-&lt;p&gt;TheRouter的路由表是完全动态化的，所以允许动态加载插件路由表。
-现有市面上插件化框架较多，具体可参考使用的插件化方案，当插件被加载时分别调用如下代码&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 在异步线程执行&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 初始化插件内的依赖注入&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;TheRouterServiceProvideInjecter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;trojan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 初始化插件内的FlowTask&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;TheRouterServiceProvideInjecter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addFlowTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TheRouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;digraph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 初始化插件内的路由表&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;TheRouterServiceProvideInjecter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;initDefaultRouteMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;Flutter/RN/WEEX等混编项目集成&lt;/h3&gt;
-
-&lt;p&gt;TheRouter的路由表是完全动态化的，所以允许动态加载跨平台项目的路由表。&lt;/p&gt;
-
-&lt;p&gt;可以直接将路由表配置到/assets/RouteMap.json文件中。&lt;br&gt;
-如果路由表的url是具备规律的，可简单使用正则表达式一次性加载&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://kymjs.com/flutter/\\S*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;className&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;com.therouter.FlutterActivity&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;action&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;params&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;......&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="特殊场景处理" /><summary type="html">多进程使用 TheRouter</summary></entry></feed>
+&lt;img src=&quot;https://kymjs.com/therouter/wx/therouter_wx.jpg&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;</content><author><name></name></author><category term="news" /><summary type="html">TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。 Github 项目地址与使用文档详见 https://github.com/HuolalaTech/hll-wp-therouter-android。</summary></entry><entry><title type="html">路由的高阶使用</title><link href="http://localhost:4000/docs/2022/09/03/01" rel="alternate" type="text/html" title="路由的高阶使用" /><published>2022-09-03T00:00:00+08:00</published><updated>2022-09-03T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/03/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/03/01">&lt;p&gt;文档已迁移，请访问：  &lt;a href=&quot;https://therouter.cn/docs/2023/07/21/01&quot;&gt;https://therouter.cn/docs/2023/07/21/01&lt;/a&gt;   &lt;/p&gt;</content><author><name></name></author><category term="特殊场景处理" /><summary type="html">文档已迁移，请访问： https://therouter.cn/docs/2023/07/21/01</summary></entry></feed>

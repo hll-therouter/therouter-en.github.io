@@ -38,9 +38,7 @@
       </li>
       <li class="nav-item">
         
-          
-            <a href="/doc" class="nav-link active header-color">Android</a>
-           
+          <a href="/doc" class="nav-link active header-color">Android</a>
          
       </li>
       <li class="nav-item">
@@ -92,10 +90,13 @@
 
 <h3>Action 用途</h3>
 
-<p><code>Action</code> 本质是一个全局的系统回调，主要用于预埋的一系列操作，例如：弹窗、上传日志、清理缓存。
-与 Android 系统自带的广播通知类似，你可以在任何地方声明动作与处理方式。并且所有<code>Action</code>都是可以被跟踪的，只要你愿意，可以在日志中将所有的动作调用栈输出，以方便调试使用。</p>
+<p><code>Action</code> 本质是一个全局的系统回调，主要用于预埋的一系列操作，例如：弹窗、上传日志、清理缓存。</p>
 
 <p>当用户执行某些操作（打开某个页面、H5点击某个按钮、动态页面配置的点击事件）时，将会自动触发，执行预埋的 Action 逻辑。</p>
+
+<p>在Android上，有很多能力可以实现类似的功能，比如<code>广播</code>、<code>EventBus</code>、<code>Flow</code>、<code>LiveData</code>等等实现观察者模式的框架。但是全都有个严重的问题：通知是不可追溯的，也就是通常说的消息泛滥。当消息多了以后，你很难知道哪个消息是在哪里发出的，有哪些地方接收了这个消息。   </p>
+
+<p>与 Android 系统自带的广播通知类似，你可以在任何地方声明动作与处理方式。只不过在 TheRouter 内，所有<code>Action</code>都是可以被跟踪的，只要你愿意，可以在日志中将所有的动作调用栈输出，以方便调试使用。在开发期，可以直接通过 <code>IDE</code> 插件，在消息的发出和接收位置直接跳转。</p>
 
 <h4>用途与响应流程</h4>
 
