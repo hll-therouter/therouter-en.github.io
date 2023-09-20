@@ -92,10 +92,11 @@
 
 <hr>
 
-<h4>Q1: <strong>路由表不生成（或生成的代码有问题编译报错）是什么原因？</strong></h4>
+<h4>Q1: <strong>路由表不生成（或生成的代码有问题编译报错）</strong></h4>
 
-<p>如共用<code>KSP</code>与<code>ViewBinding</code>，会发生丢失问题，可使用<code>KAPT</code>。<br>
-其他场景请按照以下步骤排查：   </p>
+<p>(注：1.2.0-rc5版本已修复：<code>KSP</code>与<code>ViewBinding</code>共用不生成路由表的问题)  </p>
+
+<p>请按照以下步骤排查：   </p>
 
 <ol>
 <li>plugin 加了吗？plugin 必须加且只能加在 app 模块里。<br></li>
