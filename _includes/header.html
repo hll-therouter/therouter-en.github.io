@@ -14,14 +14,14 @@
         {% endif %} 
       </li>
       <li class="nav-item">
-        {% if page.android or page.url == "/doc" %}
+        {% if page.android or page.url == "/doc" or page.url == "/doc/" %}
           <a href="/doc" class="nav-link active header-color">Android</a>
         {% else %}
           <a href="/doc" class="nav-link header-color">Android</a>
         {% endif %} 
       </li>
       <li class="nav-item">
-        {% if page.ios or page.url == "/ios" %}
+        {% if page.ios or page.url == "/ios/" or page.url == "/ios" %}
           <a href="/ios" class="nav-link active header-color">iOS</a>
         {% else %}
           <a href="/ios" class="nav-link header-color">iOS</a>
