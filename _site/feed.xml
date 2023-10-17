@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-26T11:37:26+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">TheRouterSwift iOS 路由介绍</title><link href="http://localhost:4000/docs/2023/09/26/01" rel="alternate" type="text/html" title="TheRouterSwift iOS 路由介绍" /><published>2023-09-26T00:00:00+08:00</published><updated>2023-09-26T00:00:00+08:00</updated><id>http://localhost:4000/docs/2023/09/26/01</id><content type="html" xml:base="http://localhost:4000/docs/2023/09/26/01">&lt;h2&gt;背景&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-17T15:29:54+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">TheRouterSwift iOS 路由介绍</title><link href="http://localhost:4000/docs/2023/09/26/01" rel="alternate" type="text/html" title="TheRouterSwift iOS 路由介绍" /><published>2023-09-26T00:00:00+08:00</published><updated>2023-09-26T00:00:00+08:00</updated><id>http://localhost:4000/docs/2023/09/26/01</id><content type="html" xml:base="http://localhost:4000/docs/2023/09/26/01">&lt;h2&gt;背景&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;随着社区对支持Swift的需求日益增多，Swift5.0二进制库也具有更好的稳定性和兼容性表现，货拉拉技术团队根据社区反馈及内部讨论，决定开源内部业务使用的Swift版本路由组件，与2023年8月份已发布的Objective-C版本路由组件组成一个完整解决方案。&lt;/li&gt;
@@ -67,17 +66,17 @@ TheRouter一个用于模块间解耦和通信，基于Swift协议进行动态懒
 
 &lt;h2&gt;使用介绍预览&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://wx4.sinaimg.cn/mw690/c3e0c9b1gy1hi9tutxf4eg20gf0zku11.gif&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/image/therouter_ios1.gif&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h2&gt;如何集成使用&lt;/h2&gt;
 
-&lt;h3&gt;&lt;a href=&quot;https://cocoapods.org&quot;&gt;CocoaPods&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;CocoaPods&lt;/h3&gt;
 
 &lt;p&gt;Add the following entry in your Podfile:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;   &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'TheRouter'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.1.0'&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;   pod 'TheRouter', '1.1.0'
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Swift限制版本&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt; &lt;span class=&quot;no&quot;&gt;Swift5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;above&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt; Swift5.0 or above
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;TheRouter 使用方式&lt;/h2&gt;
 
@@ -86,7 +85,7 @@ TheRouter一个用于模块间解耦和通信，基于Swift协议进行动态懒
 &lt;/ol&gt;
 
 &lt;p&gt;鉴于已经实现了自动注册能力，开发者无需自己添加路由，只需要进行如下操作即可&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;/// 实现TheRouterable协议
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;/// 实现TheRouterable协议
 extension TheRouterController: TheRouterable {
 
     static var patternString: [String] {
@@ -121,7 +120,7 @@ TheRouter.logcat { url, logType, errorMsg in
 &lt;h4&gt;OC 注解的形式&lt;/h4&gt;
 
 &lt;p&gt;这里列举了OC使用注解的方式，Swift因为其缺乏动态性，是不支持注解的。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Objective-C&quot; data-lang=&quot;Objective-C&quot;&gt;//使用注解
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;//使用注解
 @page(@&quot;home/main&quot;)
 - (UIViewController *)homePage{
     // Do stuff...
@@ -130,7 +129,7 @@ TheRouter.logcat { url, logType, errorMsg in
 &lt;h4&gt;Swift 注册形式&lt;/h4&gt;
 
 &lt;p&gt;Swift 中，我们都知道 Swift 是不支持注解的，那么 Swift 动态注册路由该怎么解决呢，我们使用 runtime 遍历工程里的方式找到遵循了路由协议的类进行自动注册。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;public class func registerRouterMap(_ registerClassPrifxArray: [String], _ urlPath: String, _ userInfo: [String: Any]) -&amp;gt; Any? {
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;public class func registerRouterMap(_ registerClassPrifxArray: [String], _ urlPath: String, _ userInfo: [String: Any]) -&amp;gt; Any? {
 
         let expectedClassCount = objc_getClassList(nil, 0)
         let allClasses = UnsafeMutablePointer&amp;lt;AnyClass&amp;gt;.allocate(capacity: Int(expectedClassCount))
@@ -193,7 +192,7 @@ TheRouter.logcat { url, logType, errorMsg in
 &lt;h4&gt;路由注册的懒加载&lt;/h4&gt;
 
 &lt;p&gt;采用动态注册有一个不好的情况就是在启动时就去动态注册，在 TheRouter 中注册的时机被延后了，放在了 App 第一次通过 TheRouter.openUrl()时进行注册，会判断路由是否加载完毕，未加载完毕进行加载，然后打开路由。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;@discardableResult
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;@discardableResult
 public class func openURL(_ urlString: String, userInfo: [String: Any] = [String: Any](), handler: complateHandler = nil) -&amp;gt; Any? {
     if urlString.isEmpty {
         return nil
@@ -231,7 +230,7 @@ public class func openCacheRouter(_ uriTuple: (String, [String: Any]), handler: 
 &lt;h4&gt;如何让 OC 类也享受到 Swift 路由&lt;/h4&gt;
 
 &lt;p&gt;这是一个 OC 类的界面，实现路由的跳转需要继承 OC 类，并实现 TheRouterAble 协议即可&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;@interface TheRouterBController : UIViewController
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;@interface TheRouterBController : UIViewController
 @property (nonatomic, strong) UILabel *desLabel;
 @end
 
@@ -268,7 +267,7 @@ public class TheRouterControllerB: TheRouterBController, TheRouterable {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;同时支持手动单个注册&lt;/h4&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;// 模型模式
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;// 模型模式
 TheRouter.addRouterItem(RouteItem(path: &quot;scheme://router/demo?&amp;amp;desc=简单注册,直接调用TheRouter.addRouterItem()注册即可&quot;, className: &quot;TheRouter_Example.TheRouterController&quot;, desc: &quot;简单注册,直接调用TheRouter&quot;, params: [&quot;key1&quot;: 1]))
 // 字典模式
 TheRouter.addRouterItem([&quot;scheme://router/demo?&amp;amp;desc=简单注册,直接调用TheRouter.addRouterItem()注册即可&quot;: &quot;TheRouter_Example.TheRouterController&quot;])
@@ -278,18 +277,18 @@ TheRouter.addRouterItem(&quot;scheme://router/demo?&amp;amp;desc=简单注册&qu
 TheRouter.addRouterItem(TheRouterApi.patternString, classString: TheRouterApi.routerClass)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;同时支持手动批量注册&lt;/h4&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;TheRouter.addRouterItem([&quot;scheme://router/demo&quot;: &quot;TheRouter_Example.TheRouterController&quot;,
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;TheRouter.addRouterItem([&quot;scheme://router/demo&quot;: &quot;TheRouter_Example.TheRouterController&quot;,
                     &quot;scheme://router/demo1&quot;: &quot;TheRouter_Example.TheRouterControllerA&quot;])
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;移除&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;TheRouter.removeRouter(TheRouterViewCApi.patternString)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;TheRouter.removeRouter(TheRouterViewCApi.patternString)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;打开&lt;/h3&gt;
 
 &lt;p&gt;声明了不同的方法，主要用于明显的区分，内部统一调用 openURL&lt;/p&gt;
 
 &lt;p&gt;便利构造器链式打开路由&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;let model = TheRouterModel.init(name: &quot;AKyS&quot;, age: 18)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;let model = TheRouterModel.init(name: &quot;AKyS&quot;, age: 18)
 TheRouterBuilder.build(&quot;scheme://router/demo&quot;)
     .withInt(key: &quot;intValue&quot;, value: 2)
     .withString(key: &quot;stringValue&quot;, value: &quot;2222&quot;)
@@ -300,19 +299,19 @@ TheRouterBuilder.build(&quot;scheme://router/demo&quot;)
     .navigation()
 
 TheRouterBuilder.build(&quot;scheme://router/demo&quot;)
-.withInt(key: &quot;intValue&quot;, value: 2)
-.withString(key: &quot;stringValue&quot;, value: &quot;sdsd&quot;)
-.withFloat(key: &quot;floatValue&quot;, value: 3.1415)
-.withBool(key: &quot;boolValue&quot;, value: false)
-.withDouble(key: &quot;doubleValue&quot;, value: 2.0)
-.withAny(key: &quot;any&quot;, value: model)
-.navigation { params, instance in
+    .withInt(key: &quot;intValue&quot;, value: 2)
+    .withString(key: &quot;stringValue&quot;, value: &quot;sdsd&quot;)
+    .withFloat(key: &quot;floatValue&quot;, value: 3.1415)
+    .withBool(key: &quot;boolValue&quot;, value: false)
+    .withDouble(key: &quot;doubleValue&quot;, value: 2.0)
+    .withAny(key: &quot;any&quot;, value: model)
+    .navigation { params, instance in
 
-}
+    }
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;打开路由常用方式&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;public class TheRouterApi: CustomRouterInfo {
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;public class TheRouterApi: CustomRouterInfo {
 
     public static var patternString = &quot;scheme://router/demo&quot;
     public static var routerClass = &quot;TheRouter_Example.TheRouterController&quot;
@@ -334,7 +333,7 @@ public class TheRouterAApi: CustomRouterInfo {
 
 TheRouter.openURL(TheRouterCApi.init().requiredURL)
 TheRouter.openWebURL(&quot;https://xxxxxxxx&quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;
 @discardableResult
 public class func openWebURL(_ uriTuple: (String, [String: Any])) -&amp;gt; Any? {
     return TheRouter.openURL(uriTuple)
@@ -347,10 +346,10 @@ public class func openWebURL(_ urlString: String,
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;元祖形式传入路由与追加参数&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;TheRouter.openURL((&quot;scheme://router/demo1?id=2&amp;amp;value=3&amp;amp;name=AKyS&amp;amp;desc=直接调用TheRouter.addRouterItem()注册即可，支持单个注册，批量注册，动态注册，懒加载动态注册&quot;, [&quot;descs&quot;: &quot;追加参数&quot;]))
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;TheRouter.openURL((&quot;scheme://router/demo1?id=2&amp;amp;value=3&amp;amp;name=AKyS&amp;amp;desc=直接调用TheRouter.addRouterItem()注册即可，支持单个注册，批量注册，动态注册，懒加载动态注册&quot;, [&quot;descs&quot;: &quot;追加参数&quot;]))
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;参数传递方式&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;let clouse = { (qrResult: String, qrStatus: Bool) in
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;let clouse = { (qrResult: String, qrStatus: Bool) in
     print(&quot;\(qrResult) \(qrStatus)&quot;)
     self.view.makeToast(&quot;\(qrResult) \(qrStatus)&quot;)
 }
@@ -358,14 +357,14 @@ let model = TheRouterModel.init(name: &quot;AKyS&quot;, age: 18)
 TheRouter.openURL((&quot;scheme://router/demo?id=2&amp;amp;value=3&amp;amp;name=AKyS&quot;, [&quot;model&quot;: model, &quot;clouse&quot;: clouse]))
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;全局失败映射&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;TheRouter.globalOpenFailedHandler { info in
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;TheRouter.globalOpenFailedHandler { info in
    debugPrint(info)
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;拦截&lt;/h3&gt;
 
 &lt;p&gt;比如在未登录情况下统一拦截：跳转消息列表之前先去登录，登录成功之后跳转到消息列表等。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;let login = TheRouterLoginApi.templateString
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;let login = TheRouterLoginApi.templateString
  TheRouter.addRouterInterceptor([login], priority: 0) { (info) -&amp;gt; Bool in
        if LALoginManger.shared.isLogin {
              return true
@@ -378,7 +377,7 @@ TheRouter.openURL((&quot;scheme://router/demo?id=2&amp;amp;value=3&amp;amp;name=
 &lt;p&gt;登录成功之后删除拦截器即可。&lt;/p&gt;
 
 &lt;h3&gt;路由 Path 与类正确安全校验&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;// MARK: - 客户端强制校验，是否匹配
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;// MARK: - 客户端强制校验，是否匹配
 public static func routerForceRecheck() {
     let patternArray = Set(pagePathMap.keys)
     let apiPathArray = Set(apiArray)
@@ -399,7 +398,7 @@ public static func routerForceRecheck() {
 &lt;p&gt;在进行 classes 本地校验时遇到了类名不匹配问题。&lt;/p&gt;
 
 &lt;p&gt;排查原因： 是因为为了避免路由在启动时就注册，影响启动速度，采用了懒加载的方式即第一次打开路由界面的时候才先进行注册然后跳转。但是在我们动态注册之前，某个类因为添加了 KVO (Key-Value Observing 键值监听)，这个类在遍历时 className 修改为了 NSKVONotifying_xxx。需要我们进行特殊处理，如下&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;/// 对于KVO监听，动态创建子类，需要特殊处理
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;/// 对于KVO监听，动态创建子类，需要特殊处理
 public let NSKVONotifyingPrefix = &quot;NSKVONotifying_&quot;
 
 if fullName.hasPrefix(NSKVONotifyingPrefix) {
@@ -416,7 +415,7 @@ if fullName.hasPrefix(NSKVONotifyingPrefix) {
 &lt;h3&gt;重定向功能&lt;/h3&gt;
 
 &lt;p&gt;定义路由下发模型数据结构&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;public struct TheRouterInfo {
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;public struct TheRouterInfo {
     public init() {}
 
     public var targetPath: String = &quot;&quot;
@@ -429,21 +428,21 @@ if fullName.hasPrefix(NSKVONotifyingPrefix) {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;通过远端下发重定向数据，原本跳转到白色界面的业务逻辑改为跳转到黄色界面&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;let relocationMap = [&quot;routerType&quot;: 1, &quot;targetPath&quot;: &quot;scheme://router/demo1&quot;, &quot;orginPath&quot;: &quot;scheme://router/demo&quot;] as NSDictionary
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;let relocationMap = [&quot;routerType&quot;: 1, &quot;targetPath&quot;: &quot;scheme://router/demo1&quot;, &quot;orginPath&quot;: &quot;scheme://router/demo&quot;] as NSDictionary
 TheRouterManager.addRelocationHandle(routerMapList: [relocationMap])
 TheRouter.openURL(&quot;scheme://router/demo?desc=跳转白色界面被重定向到了黄色界面&quot;)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;重定向恢复&lt;/h3&gt;
 
 &lt;p&gt;在业务中，通常会进行业务调整，那么重定向之后需要恢复的话，就需要移除重定向&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;let relocationMap = [&quot;routerType&quot;: 4, &quot;targetPath&quot;: &quot;scheme://router/demo&quot;, &quot;orginPath&quot;: &quot;scheme://router/demo&quot;] as NSDictionary
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;let relocationMap = [&quot;routerType&quot;: 4, &quot;targetPath&quot;: &quot;scheme://router/demo&quot;, &quot;orginPath&quot;: &quot;scheme://router/demo&quot;] as NSDictionary
 TheRouterManager.addRelocationHandle(routerMapList: [relocationMap])
 TheRouter.openURL(&quot;scheme://router/demo?desc=跳转白色界面被重定向到了黄色界面之后，根据下发数据又恢复到跳转白色界面&quot;)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;路由 Path 动态修复&lt;/h3&gt;
 
 &lt;p&gt;在实际开发中，开发人员因为马虎写错了路由 Path，上线之后无法进行正常的业务跳转，此时就需要通过远端下发路由进行匹配跳转了。scheme://router/demo3 是正确 path,但是本地写错的路由 path 为 scheme://router/demo33，那么需要新增一个 path 进行映射。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;let relocationMap = [&quot;routerType&quot;: 2, &quot;className&quot;: &quot;TheRouter_Example.TheRouterControllerC&quot;, &quot;path&quot;: &quot;scheme://router/demo33&quot;] as NSDictionary
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;let relocationMap = [&quot;routerType&quot;: 2, &quot;className&quot;: &quot;TheRouter_Example.TheRouterControllerC&quot;, &quot;path&quot;: &quot;scheme://router/demo33&quot;] as NSDictionary
 TheRouterManager.addRelocationHandle(routerMapList: [relocationMap])
 let value = TheRouterCApi.init().requiredURL
 TheRouter.openURL(value)
@@ -451,7 +450,7 @@ TheRouter.openURL(value)
 &lt;h3&gt;路由适配不同的 Android-Path&lt;/h3&gt;
 
 &lt;p&gt;在实际开发中，一旦使用 URI 这种方式，牵扯到双端，就可以存在双端不一致的问题，那么如何解决呢，可以通过本地新增多路由 path 解决，也可以通过远端下发新路由解决。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;public class TheRouterControllerB: TheRouterBController, TheRouterable {
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;public class TheRouterControllerB: TheRouterBController, TheRouterable {
 
     public static var patternString: [String] {
         [&quot;scheme://router/demo2&quot;,
@@ -464,7 +463,7 @@ TheRouter.openURL(value)
         return vc
     }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;let relocationMap = [&quot;routerType&quot;: 2, &quot;className&quot;: &quot;TheRouter_Example.TheRouterControllerD&quot;, &quot;path&quot;: &quot;scheme://router/demo5&quot;] as NSDictionary
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;let relocationMap = [&quot;routerType&quot;: 2, &quot;className&quot;: &quot;TheRouter_Example.TheRouterControllerD&quot;, &quot;path&quot;: &quot;scheme://router/demo5&quot;] as NSDictionary
 TheRouterManager.addRelocationHandle(routerMapList: [relocationMap])
 TheRouter.openURL(&quot;scheme://router/demo2Android?desc=demo5是Android一个界面的path,为了双端统一，我们动态增加一个path,这样远端下发时demo5也就能跳转了&quot;)
 
@@ -472,7 +471,7 @@ TheRouter.openURL(&quot;scheme://router/demo2Android?desc=demo5是Android一个�
 &lt;h2&gt;服务的动态注册与调用&lt;/h2&gt;
 
 &lt;h3&gt;如何声明服务及实现服务&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;@objc
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;@objc
 public protocol AppConfigServiceProtocol: TheRouterServiceProtocol {
     // 打开小程序
     func openMiniProgram(info: [String: Any])
@@ -494,13 +493,13 @@ final class ConfigModuleService: NSObject, AppConfigServiceProtocol {
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;如何使用服务&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;/// 使用方式
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;/// 使用方式
  if let appConfigService = TheRouter.fetchService(AppConfigServiceProtocol.self){
      appConfigService.openMiniProgram(info: [:])
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;服务使用了runtime动态注册，所以你不用担心服务没有注册的问题。只需像上述案例一样使用即可。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;public class func registerServices() {
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;public class func registerServices() {
 
     let expectedClassCount = objc_getClassList(nil, 0)
     let allClasses = UnsafeMutablePointer&amp;lt;AnyClass&amp;gt;.allocate(capacity: Int(expectedClassCount))
@@ -522,14 +521,14 @@ final class ConfigModuleService: NSObject, AppConfigServiceProtocol {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;路由远端调用本地服务：服务接口下发，MQTT,JSBridge&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;let dict = [&quot;ivar1&quot;: [&quot;key&quot;:&quot;value&quot;]]
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;let dict = [&quot;ivar1&quot;: [&quot;key&quot;:&quot;value&quot;]]
 let url = &quot;scheme://services?protocol=AppConfigLAServiceProtocol&amp;amp;method=openMiniProgramWithInfo:&amp;amp;resultType=0&quot;
 TheRouter.openURL((url, dict))
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;是否考虑Swift5.9 Macros？&lt;/h2&gt;
 
 &lt;p&gt;从目前的实现方式来看，懒加载加上动态注册，已经解决了注册时的性能问题。即使需要遍历全工程的类，然后处理相关逻辑，也不会超过0.2s。之所以能够通过Class取得path，因为给类声明了静态变量。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;/// 实现TheRouterable协议
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clike&quot; data-lang=&quot;clike&quot;&gt;/// 实现TheRouterable协议
 extension TheRouterController: TheRouterable {
 
     static var patternString: [String] {
@@ -556,10 +555,7 @@ extension TheRouterController: TheRouterable {
 
 &lt;h2&gt;交流沟通群&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://z1.ax1x.com/2023/09/26/pPHSD5F.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;</content><author><name></name></author><category term="框架简介" /><summary type="html">背景 随着社区对支持Swift的需求日益增多，Swift5.0二进制库也具有更好的稳定性和兼容性表现，货拉拉技术团队根据社区反馈及内部讨论，决定开源内部业务使用的Swift版本路由组件，与2023年8月份已发布的Objective-C版本路由组件组成一个完整解决方案。 TheRouter开源团队将把重心放在维护和升级Swift版本的TheRouter上。同时也会持续支持Objective-C版本的易用性，并欢迎社区贡献。 对于使用Objective-C版本TheRouter的用户，建议将版本固定为1.0.0版以确保稳定性。 ## Features TheRouter一个用于模块间解耦和通信，基于Swift协议进行动态懒加载注册路由与打开路由的工具。同时支持通过Service-Protocol寻找对应的模块，并用 protocol进行依赖注入和模块通信。 1. 页面导航跳转能力：支持常规vc或Storyboard的push/present/popToTaget/windowNavRoot/modalDismissBeforePush跳转能力； 2. 路由自动注册能力：懒加载方式动态注册路由，仅当第一次调用OpenURL时进行动态注册； 3. 路由映射文件导出：支持将工程中的路由映射关系导出为文档，支持JSON、Plist格式，方便开发者进行双端的汇总比对、记录等； 4. 服务自动注册能力：动态注册服务，使用runtime方式自动注入； 5. 硬编码消除：将注册的path转为静态字符串常量供业务使用； 6. 动态化能力：支持添加重定向，移除重定向、动态添加路由、动态移除路由、拦截器、错误path修复等； 7. 链式编程：支持链式编程方式拼接URL与参数； 8. 适配Objective-C：OC类可以在Swift中使用继承的方式遵循协议来进行动态注册； 9. 服务调用：支持本地服务调用与远端服务调用；</summary></entry><entry><title type="html">TheRouter iOS 路由介绍</title><link href="http://localhost:4000/docs/2023/07/24/01" rel="alternate" type="text/html" title="TheRouter iOS 路由介绍" /><published>2023-07-24T00:00:00+08:00</published><updated>2023-07-24T00:00:00+08:00</updated><id>http://localhost:4000/docs/2023/07/24/01</id><content type="html" xml:base="http://localhost:4000/docs/2023/07/24/01">&lt;h2&gt;功能介绍&lt;/h2&gt;
-=======
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-26T11:05:38+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TheRouter - 移动端模块化解决方案</title><subtitle>TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。</subtitle><entry><title type="html">TheRouter iOS 路由介绍</title><link href="http://localhost:4000/docs/2023/07/24/01" rel="alternate" type="text/html" title="TheRouter iOS 路由介绍" /><published>2023-07-24T00:00:00+08:00</published><updated>2023-07-24T00:00:00+08:00</updated><id>http://localhost:4000/docs/2023/07/24/01</id><content type="html" xml:base="http://localhost:4000/docs/2023/07/24/01">&lt;h2&gt;功能介绍&lt;/h2&gt;
->>>>>>> e9478c3 (修改header)
+&lt;p&gt;&lt;img src=&quot;/assets/wx/wx_ios_group.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;</content><author><name></name></author><category term="框架简介" /><summary type="html">背景 随着社区对支持Swift的需求日益增多，Swift5.0二进制库也具有更好的稳定性和兼容性表现，货拉拉技术团队根据社区反馈及内部讨论，决定开源内部业务使用的Swift版本路由组件，与2023年8月份已发布的Objective-C版本路由组件组成一个完整解决方案。 TheRouter开源团队将把重心放在维护和升级Swift版本的TheRouter上。同时也会持续支持Objective-C版本的易用性，并欢迎社区贡献。 对于使用Objective-C版本TheRouter的用户，建议将版本固定为1.0.0版以确保稳定性。 ## Features TheRouter一个用于模块间解耦和通信，基于Swift协议进行动态懒加载注册路由与打开路由的工具。同时支持通过Service-Protocol寻找对应的模块，并用 protocol进行依赖注入和模块通信。 1. 页面导航跳转能力：支持常规vc或Storyboard的push/present/popToTaget/windowNavRoot/modalDismissBeforePush跳转能力； 2. 路由自动注册能力：懒加载方式动态注册路由，仅当第一次调用OpenURL时进行动态注册； 3. 路由映射文件导出：支持将工程中的路由映射关系导出为文档，支持JSON、Plist格式，方便开发者进行双端的汇总比对、记录等； 4. 服务自动注册能力：动态注册服务，使用runtime方式自动注入； 5. 硬编码消除：将注册的path转为静态字符串常量供业务使用； 6. 动态化能力：支持添加重定向，移除重定向、动态添加路由、动态移除路由、拦截器、错误path修复等； 7. 链式编程：支持链式编程方式拼接URL与参数； 8. 适配Objective-C：OC类可以在Swift中使用继承的方式遵循协议来进行动态注册； 9. 服务调用：支持本地服务调用与远端服务调用；</summary></entry><entry><title type="html">TheRouter iOS 路由介绍</title><link href="http://localhost:4000/docs/2023/07/24/01" rel="alternate" type="text/html" title="TheRouter iOS 路由介绍" /><published>2023-07-24T00:00:00+08:00</published><updated>2023-07-24T00:00:00+08:00</updated><id>http://localhost:4000/docs/2023/07/24/01</id><content type="html" xml:base="http://localhost:4000/docs/2023/07/24/01">&lt;h2&gt;功能介绍&lt;/h2&gt;
 
 &lt;p&gt;TheRouter 是货拉拉打造的一款同时支持 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android&quot;&gt;Android&lt;/a&gt; 及 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-ios&quot;&gt;iOS&lt;/a&gt; 的轻量级路由中间件，在iOS端吸取了其他其他语言的特性，支持&lt;a href=&quot;https://juejin.cn/post/6999484997782470669&quot;&gt;注解&lt;/a&gt;功能，极大提升了路由在iOS端的使用体感。摒弃了传统 iOSer 的 target-action 或 protocol 理念，向更广的后台或 Android 应用对齐。&lt;/p&gt;
 
@@ -1037,7 +1033,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 
 &lt;p&gt;&lt;em&gt;从1.2.0开始，beta版本已经全部合入rc版本，无需再特殊关注beta版本进度。&lt;/em&gt;    &lt;/p&gt;
 
-&lt;p&gt;使用时只需注意本文第一步中，classpath引入的不同，需要使用&lt;code&gt;cn.therouter.agp8&lt;/code&gt;引入插件。   &lt;/p&gt;</content><author><name></name></author><category term="入门教程" /><summary type="html">TheRouter是货拉拉开源的路由框架，针对 Android 平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。 Github: https://github.com/HuolalaTech/hll-wp-therouter-android/ 官网：http://therouter.cn/</summary></entry><entry><title type="html">Android Studio 插件，TheRouter 跳转辅助工具</title><link href="http://localhost:4000/docs/2022/09/29/01" rel="alternate" type="text/html" title="Android Studio 插件，TheRouter 跳转辅助工具" /><published>2022-09-29T00:00:00+08:00</published><updated>2022-09-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/29/01">&lt;p&gt;开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。   &lt;/p&gt;
+&lt;p&gt;使用时只需注意本文第一步中，classpath引入的不同，需要使用&lt;code&gt;cn.therouter.agp8&lt;/code&gt;引入插件。   &lt;/p&gt;</content><author><name></name></author><category term="入门教程" /><summary type="html">TheRouter是货拉拉开源的路由框架，针对 Android 平台实现组件化、跨模块调用、动态化等功能的集成框架，基本上算当前最先进的路由库了。 Github: https://github.com/HuolalaTech/hll-wp-therouter-android/ 官网：http://therouter.cn/</summary></entry><entry><title type="html">Android Studio 插件，开发必备工具</title><link href="http://localhost:4000/docs/2022/09/29/01" rel="alternate" type="text/html" title="Android Studio 插件，开发必备工具" /><published>2022-09-29T00:00:00+08:00</published><updated>2022-09-29T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/29/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/29/01">&lt;p&gt;开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。   &lt;/p&gt;
 
 &lt;iframe width=&quot;384px&quot; height=&quot;319px&quot; src=&quot;https://plugins.jetbrains.com/embeddable/card/20047&quot;&gt;&lt;/iframe&gt;
 
@@ -1052,7 +1048,14 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
-&lt;h2&gt;使用&lt;/h2&gt;
+&lt;h2&gt;一键迁移工具&lt;/h2&gt;
+
+&lt;p&gt;AndroidStudio 插件的全新版本，已完美支持一键迁移工具，无需再次单独下载额外工具使用。&lt;br&gt;
+下载安装最新插件后，在顶部菜栏即可看到&lt;code&gt;TheRouter&lt;/code&gt;菜单，选择对应路由的一键迁移选项即可使用。   &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin11.png&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;导航快捷跳转&lt;/h2&gt;
 
 &lt;p&gt;安装好插件后打开项目，就可以看到，在项目中所有调用了 &lt;code&gt;TheRouter.build(path)&lt;/code&gt; 的地方，&lt;br&gt;
 还有 &lt;code&gt;@Route(path = &amp;quot;xxxxx&amp;quot;)&lt;/code&gt; 注解的位置，&lt;br&gt;
@@ -1075,7 +1078,21 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 需要开发人工去检查这个&lt;code&gt;path&lt;/code&gt;是不是忘记定义落地页了，还是说手误写错了&lt;code&gt;path&lt;/code&gt;。&lt;br&gt;
 例如这张图：   &lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin3.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;</content><author><name></name></author><category term="辅助工具" /><summary type="html">开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。</summary></entry><entry><title type="html">获取和使用最新版的 TheRouter</title><link href="http://localhost:4000/docs/2022/09/06/01" rel="alternate" type="text/html" title="获取和使用最新版的 TheRouter" /><published>2022-09-06T00:00:00+08:00</published><updated>2022-09-06T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/06/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/06/01">&lt;p&gt;TheRouter 的版本规划分为三种，分别是 &lt;code&gt;稳定版&lt;/code&gt;、&lt;code&gt;预览版&lt;/code&gt;(含 beta 版)、&lt;code&gt;公测版&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin3.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;获取最新版本&lt;/h2&gt;
+
+&lt;p&gt;再也无需时时刻刻关注 TheRouter 版本更新情况了，只需要手动点击菜单，即可实时知晓当前最新版本号。   &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin10.png&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterIdeaPlugin12.png&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;插件开源&lt;/h2&gt;
+
+&lt;p&gt;本插件项目已基于 &lt;code&gt;Apache License 2.0&lt;/code&gt; 协议开源，并上架插件市场，欢迎 star 与下载   &lt;/p&gt;
+
+&lt;p&gt;GitHub：&lt;a href=&quot;https://github.com/kymjs/TheRouterIdeaPlugin&quot;&gt;https://github.com/kymjs/TheRouterIdeaPlugin&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="辅助工具" /><summary type="html">开发了一个用于自动跳转的辅助插件，可以直接从 路由 的声明处查看到哪些地方使用了本次跳转。</summary></entry><entry><title type="html">获取和使用最新版的 TheRouter</title><link href="http://localhost:4000/docs/2022/09/06/01" rel="alternate" type="text/html" title="获取和使用最新版的 TheRouter" /><published>2022-09-06T00:00:00+08:00</published><updated>2022-09-06T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/06/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/06/01">&lt;p&gt;TheRouter 的版本规划分为三种，分别是 &lt;code&gt;稳定版&lt;/code&gt;、&lt;code&gt;预览版&lt;/code&gt;(含 beta 版)、&lt;code&gt;公测版&lt;/code&gt;。&lt;/p&gt;
 
 &lt;h3&gt;稳定版&lt;/h3&gt;
 
@@ -1113,19 +1130,15 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
     &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://s01.oss.sonatype.org/content/groups/staging/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;查看最新公测版本：&lt;a href=&quot;https://s01.oss.sonatype.org/content/groups/staging/cn/therouter/&quot;&gt;https://s01.oss.sonatype.org&lt;/a&gt;  &lt;/p&gt;</content><author><name></name></author><category term="版本介绍" /><summary type="html">TheRouter 的版本规划分为三种，分别是 稳定版、预览版(含 beta 版)、公测版。</summary></entry><entry><title type="html">TheRouter 一键迁移工具</title><link href="http://localhost:4000/docs/2022/09/05/01" rel="alternate" type="text/html" title="TheRouter 一键迁移工具" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/05/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/05/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;，目前仅支持&lt;code&gt;ARouter&lt;/code&gt;，其他路由框架迁移也在开发中：&lt;/p&gt;
+&lt;p&gt;查看最新公测版本：&lt;a href=&quot;https://s01.oss.sonatype.org/content/groups/staging/cn/therouter/&quot;&gt;https://s01.oss.sonatype.org&lt;/a&gt;  &lt;/p&gt;</content><author><name></name></author><category term="版本介绍" /><summary type="html">TheRouter 的版本规划分为三种，分别是 稳定版、预览版(含 beta 版)、公测版。</summary></entry><entry><title type="html">TheRouter 一键迁移工具</title><link href="http://localhost:4000/docs/2022/09/05/01" rel="alternate" type="text/html" title="TheRouter 一键迁移工具" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/05/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/05/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;。&lt;br&gt;
+全新迁移工具已集成到 AndroidStudio 开发插件中，可直接在AS插件市场下载，相关介绍请访问： &lt;a href=&quot;https://therouter.cn/docs/2022/09/29/01&quot;&gt;https://therouter.cn/docs/2022/09/29/01&lt;/a&gt;  &lt;/p&gt;
 
-&lt;p&gt;（GitHub下载，70M左右，请耐心等待）  &lt;/p&gt;
-
-&lt;p&gt;当前版本：1.1.1 (2022-10-09更新)&lt;/p&gt;
+&lt;p&gt;旧版本图形界面可使用：1.1.1 (2022-10-09更新)&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Mac OS 迁移工具下载：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Mac.zip&lt;/a&gt; &lt;/li&gt;
-&lt;li&gt;Windows 迁移工具下载：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Windows 迁移工具下载：&lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android/wiki/uploads/file/TheRouterTransfer-Windows.zip&lt;/a&gt;&lt;br&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;p&gt;如果项目中使用了ARouter的IProvider.init()方法，可能需要手动处理初始化逻辑。&lt;br&gt;
-如下图：  &lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/image/TheRouterTransfer.png&quot; class=&quot;blog-img&quot;/&gt;&lt;/p&gt;
 
@@ -1182,7 +1195,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
     all*.exclude group: 'com.alibaba', module: 'arouter-api'
     all*.exclude group: 'com.alibaba', module: 'arouter-annotation'
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="迁移工具" /><summary type="html">TheRouter提供了图形化界面的迁移工具，可以一键从其他路由迁移到TheRouter，目前仅支持ARouter，其他路由框架迁移也在开发中：</summary></entry><entry><title type="html">Android 动态路由框架：TheRouter 开源</title><link href="http://localhost:4000/docs/2022/09/04/01" rel="alternate" type="text/html" title="Android 动态路由框架：TheRouter 开源" /><published>2022-09-04T00:00:00+08:00</published><updated>2022-09-04T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/04/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/04/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。&lt;br&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="迁移工具" /><summary type="html">TheRouter提供了图形化界面的迁移工具，可以一键从其他路由迁移到TheRouter。 全新迁移工具已集成到 AndroidStudio 开发插件中，可直接在AS插件市场下载，相关介绍请访问： https://therouter.cn/docs/2022/09/29/01 旧版本图形界面可使用：1.1.1 (2022-10-09更新)</summary></entry><entry><title type="html">Android 动态路由框架：TheRouter 开源</title><link href="http://localhost:4000/docs/2022/09/04/01" rel="alternate" type="text/html" title="Android 动态路由框架：TheRouter 开源" /><published>2022-09-04T00:00:00+08:00</published><updated>2022-09-04T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/04/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/04/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。&lt;br&gt;
 Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android&lt;/a&gt;。    &lt;/p&gt;
 
 &lt;p&gt;TheRouter 核心功能具备如下能力：    &lt;/p&gt;
