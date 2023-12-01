@@ -106,21 +106,21 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 <h4>8.X 版本 Gradle</h4>
 
 <p>由于 8.X 版本的 Gradle，必须使用<code>Java 17</code>的环境了，并且不兼容老<code>JDK</code>编译的<code>class</code>，所以对于新版本需要使用专为<code>Java 17</code>编译的插件。</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter.agp8'</span> <span class="n">version</span> <span class="s1">'1.2.0-rc1'</span> <span class="n">apply</span> <span class="kc">false</span>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter.agp8'</span> <span class="n">version</span> <span class="s1">'1.2.1'</span> <span class="n">apply</span> <span class="kc">false</span>
 </code></pre></div>
 <p><img src="https://therouter.cn/assets/img/image/1.png" class="blog-img"></p>
 
 <h4>7.X 版本 Gradle</h4>
 
 <p>7.X 的 Gradle，<code>classpath</code>已经改为用<code>plugins</code>的方式引入，只需要在闭包内加这一句就行了</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter'</span> <span class="n">version</span> <span class="s1">'1.2.0-rc1'</span> <span class="n">apply</span> <span class="kc">false</span>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter'</span> <span class="n">version</span> <span class="s1">'1.2.1'</span> <span class="n">apply</span> <span class="kc">false</span>
 </code></pre></div>
 <p><img src="https://therouter.cn/assets/img/image/2.jpg" class="blog-img"></p>
 
 <h4>6.x 及之前的老版本 Gradle</h4>
 
 <p>对于6.x 及之前的  Gradle，需要手动引入<code>classpath</code>，在 TheRouter 官方 Github 首页也有接入介绍</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">classpath</span> <span class="s2">"cn.therouter:plugin:1.2.0-rc1"</span>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">classpath</span> <span class="s2">"cn.therouter:plugin:1.2.1"</span>
 </code></pre></div>
 <p><img src="https://therouter.cn/assets/img/image/3.jpg" class="blog-img"></p>
 
@@ -155,13 +155,13 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 
 <p>如果报找不到kapt，可能是因为没有声明kotlin-kapt的插件，参考<code>步骤二</code>里面的截图，接入对应的kapt。<br>
 如果是纯Java工程，需要用Java的APT处理，纯Java就不用声明<code>kotlin-kapt</code>插件了，直接把<code>kapt</code>改成<code>annotationProcessor</code></p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">annotationProcessor</span> <span class="s2">"cn.therouter:apt:1.2.0-rc1"</span>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">annotationProcessor</span> <span class="s2">"cn.therouter:apt:1.2.1"</span>
 </code></pre></div>
 <h3>第四步：引入路由库</h3>
 
 <p>在需要使用路由功能的模块的<code>build.gradle</code>，(不像kapt，这个是可以使用传递依赖的)，加入如下依赖  </p>
 <div class="highlight"><pre><code class="language-" data-lang="">dependencies {
-    implementation "cn.therouter:router:1.2.0-rc1"
+    implementation "cn.therouter:router:1.2.1"
 }
 </code></pre></div>
 <h2>使用</h2>
@@ -203,7 +203,7 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 </code></pre></div>
 <h2>AGP 8.X 使用</h2>
 
-<p><em>从1.2.0开始，beta版本已经全部合入rc版本，无需再特殊关注beta版本进度。</em>    </p>
+<p><em>从1.2.1开始，beta版本已经全部合入rc版本，无需再特殊关注beta版本进度。</em>    </p>
 
 <p>使用时只需注意本文第一步中，classpath引入的不同，需要使用<code>cn.therouter.agp8</code>引入插件。   </p>
 
@@ -290,8 +290,7 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
         <div class="card-body">
           <p class="card-text">
             
-              碰到问题，建议先在`GitHub issue`中查看，issue 中整理了一批常见问题，也许就有你要的答案，提问前也请先确认是否有重复的问题。    
-点...
+              如无法解决你的问题，建议登记应用，获取优先技术支持 [https://github.com/HuolalaTech/hll-wp-therouter-an...
             
           </p>
           <div class="d-flex justify-content-between align-items-center">
