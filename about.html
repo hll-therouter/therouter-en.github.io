@@ -2,7 +2,6 @@
 layout: default
 permalink: /about
 ---
-
 <!-- Main Container -->
 
 <div class="row container-kamn">
@@ -13,161 +12,157 @@ permalink: /about
 <div class="container">   
   <div class="row">
     <div class="side-left col-sm-4 col-md-4">
-      <h3 class="lead"> TheRouter 的四大能力 </h3><hr>
-      <p>Navigator：</p>
+      <h3 class="lead"> TheRouter boasts four key capabilities: </h3><hr>
+      <p>Navigator:</p>
       <ul>
-      <li>支持 Activity、Fragment、ViewController</li>
-      <li>支持 Path 与页面多对一关系或一对一关系，可用于解决多端path统一问题</li>
-      <li>页面 Path 支持正则表达式声明</li>
-      <li>支持 JSON、plist 格式路由表导出</li>
-      <li>支持动态下发 JSON 路由表，降级任意页面为H5</li>
-      <li>支持任意 Object 跨模块传递（无需序列化，且能保证对象类型）</li>
-      <li>支持页面跳转拦截处理</li>
-      <li>支持自定义页面参数解析方式（例如将 JSON 解析为对象）</li>
-      <li>支持使用路由跳转到第三方 SDK 中的 Activity (Fragment)</li>
+        <li>Support Activity, Fragment, ViewController</li>
+        <li>Page paths support declaration using regular expressions.</li>
+        <li>Supports exporting route tables in JSON and plist formats.</li>
+        <li>Supports dynamic delivery of JSON route tables, degrading any page to H5.</li>
+        <li>Supports interception handling of page navigation.</li>
+        <li>Supports custom parsing of page parameters (e.g., parsing JSON into objects).</li>
+        <li>Supports navigating to Activity (Fragment) in third-party SDKs using routes.</li>
       </ul>
 
-      <p>ServiceProvider：</p>
+      <p>ServiceProvider:</p>
       <ul>
-      <li>支持跨模块依赖注入</li>
-      <li>支持自定义注入项的创建规则，依赖注入可自定义参数</li>
-      <li>支持自定义服务拦截，单模块 mock 调试</li>
-      <li>支持注入对象缓存，多次注入 只会 new 一次对象</li>
+        <li>Supports cross-module dependency injection.</li>
+        <li>Supports custom creation rules for injection items.</li>
+        <li>Supports custom service interception and single-module mock debugging.</li>
+        <li>Supports injection object caching, with only one new object created for multiple injections.</li>
       </ul>
 
-      <p>FlowTaskExecutor：</p>
+      <p>FlowTaskExecutor:</p>
       <ul>
-      <li>支持单模块独立初始化</li>
-      <li>支持懒加载初始化</li>
-      <li>独立初始化允许多任务依赖(参考 Gradle Task)</li>
-      <li>支持编译期循环引用检测</li>
-      <li>支持自定义业务初始化时机，可以用于解决隐私合规问题</li>
+        <li>Supports independent initialization of a single module.</li>
+        <li>Supports lazy loading initialization.</li>
+        <li>Independent initialization allows multiple task dependencies (similar to Gradle Task).</li>
+        <li>Supports compile-time circular reference detection.</li>
+        <li>Supports custom business initialization timing, addressing privacy compliance.</li>
       </ul>
 
-      <p>ActionManager：</p>
+      <p>ActionManager:</p>
       <ul>
-      <li>支持全局回调配置</li>
-      <li>支持优先级响应与中断响应</li>
-      <li>支持记录调用路径，解决调试期观察者模式无法追踪 Observable 的问题 </li>
+        <li>Supports global callback configuration.</li>
+        <li>Supports priority response and interrupt response.</li>
+        <li>Supports recording call paths for debugging Observables in observer mode.</li>
       </ul>
 
     </div>
     <div class="col-sm-8 col-md-8">
-        <h3> 关于 TheRouter </h3><hr>
-        <p>TheRouter 是由货拉拉技术开源的，可同时用于 Android/iOS 模块化开发的一整套解决方案框架。具有高动态性、远端下发，双端一致性等优势，不仅能对常规的模块依赖解耦、页面跳转，同时提供了模块化过程中常见问题的解决办法。
-        </p>
-        <h4 class="lead"id="anchor1"> 为什么要使用 TheRouter </h4><hr>
-        <p>
-          路由是现如今移动端开发中必不可少的功能，尤其是企业级APP，可以用于将Intent页面跳转的强依赖关系解耦，同时减少跨团队开发的互相依赖问题。
-        </p>
-        <p>对于大型 APP 开发，基本都会选用模块化(或组件化)方式开发，对于模块间解耦要求更高。 </p>
-        <p>TheRouter 是一整套完全面向模块化开发的解决方案，支持Android、iOS，不仅能对常规的模块依赖解耦，页面跳转，动态下发，远端执行，同时提供了模块化过程中常见问题的解决办法。完美解决了模块化开发后由于组件内无法获取外部模块生命周期与业务流程，造成每次初始化与关联依赖调用都需要跨模块修改代码的问题。</p>
+      <h3> About TheRouter </h3><hr>
+      <p>TheRouter is an open-source solution framework developed by Huolala Technology, suitable for Android/iOS modular development. It has advantages such as high dynamism, remote delivery, and dual-end consistency. It not only decouples regular module dependencies and page navigation but also provides solutions to common problems in the modularization process.
+      </p>
+      <h4 class="lead" id="anchor1"> Why Use TheRouter </h4><hr>
+      <p>Routing is an indispensable function in modern mobile development, especially for enterprise-level apps. It can decouple the strong dependency relationship of Intent page navigation and reduce the mutual dependency issues between teams in cross-team development.
+      </p>
+      <p>TheRouter is a complete set of solutions dedicated to modular development, supporting both Android and iOS. It not only decouples regular module dependencies and page navigation but also provides solutions to common problems in the modularization process. It perfectly solves the problem of unable to obtain external module lifecycle and business processes within the component, resulting in the need to modify code across modules for each initialization and dependent call.</p>
 
-<br>
-        <h4>与其他路由对比</h4>
-        
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>功能</th>
-              <th>TheRouter</th>
-              <th>ARouter</th>
-              <th>WMRouter</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>依赖注入</td>
-              <td>✔️</td>
-              <td>✔️</td>
-              <td>✔️</td>
-            </tr>
-            <tr>
-              <td>加载路由表</td>
-              <td>无运行时扫描<br>无反射</td>
-              <td>运行时扫描dex(新版本改为反射)<br>反射实例类<br>性能损耗大</td>
-              <td>运行时读文件<br>反射实例类<br>性能损耗中</td>
-            </tr>
-            <tr>
-              <td>注解正则表达式</td>
-              <td>✔️</td>
-              <td>✖️</td>
-              <td>✔️</td>
-            </tr>
-            <tr>
-              <td>Activity指定拦截器</td>
-              <td>✔️（四大拦截器可根据业务定制）</td>
-              <td>✖️</td>
-              <td>✔️</td>
-            </tr>
-            <tr>
-              <td>路由文档</td>
-              <td>✔️（路由文档支持添加注释描述）</td>
-              <td>✔️</td>
-              <td>✖️</td>
-            </tr>
-            <tr>
-              <td>动态注册路由表</td>
-              <td>✔️</td>
-              <td>✔️</td>
-              <td>✖️</td>
-            </tr>
-            <tr>
-              <td>支持 APT/KAPT 增量编译</td>
-              <td>✔️</td>
-              <td>✔️（开启文档生成则无法增量编译）</td>
-              <td>✖️</td>
-            </tr>
-            <tr>
-              <td>支持 KSP 编译</td>
-              <td>✔️</td>
-              <td>✖️</td>
-              <td>✖️</td>
-            </tr>
-            <tr>
-              <td>支持 AGP8</td>
-              <td>✔️</td>
-              <td>Gradle 7.x 以后无法使用</td>
-              <td>Gradle 7.x 以后无法使用</td>
-            </tr>
-            <tr>
-              <td>plugin支持增量编译</td>
-              <td>✔️</td>
-              <td>✖️</td>
-              <td>✖️</td>
-            </tr>
-            <tr>
-              <td>多 Path 对应同一页面（低成本实现双端path统一）</td>
-              <td>✔️</td>
-              <td>✖️</td>
-              <td>✖️</td>
-            </tr>
-            <tr>
-              <td>远端路由表下发</td>
-              <td>✔️</td>
-              <td>✖️</td>
-              <td>✖️</td>
-            </tr>
-            <tr>
-              <td>支持单模块独立初始化</td>
-              <td>✔️</td>
-              <td>✖️</td>
-              <td>✖️</td>
-            </tr>
-            <tr>
-              <td>支持使用路由打开第三方 SDK 页面</td>
-              <td>✔️</td>
-              <td>✖️</td>
-              <td>✖️</td>
-            </tr>
-            <tr>
-              <td>对热修复支持（例如tinker）</td>
-              <td>✔️(未改变的代码多次构建无变动)</td>
-              <td>✖️(多次构建apt产物会发生变化，生成无意义补丁)</td>
-              <td>✖️(多次构建apt产物会发生变化，生成无意义补丁)</td>
-            </tr>
-          </tbody>
-        </table>
+      <br>
+      <h4>Comparison with Other Routers</h4>
+      
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>TheRouter</th>
+            <th>ARouter</th>
+            <th>WMRouter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dependency Injection</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+          </tr>
+          <tr>
+            <td>Load Route Table</td>
+            <td>No runtime scanning<br>No reflection</td>
+            <td>Runtime scanning dex (changed to reflection in new versions)<br>Reflects instance classes<br>High performance loss</td>
+            <td>Runtime file reading<br>Reflects instance classes<br>Moderate performance loss</td>
+          </tr>
+          <tr>
+            <td>Annotation Regular Expression</td>
+            <td>✔️</td>
+            <td>✖️</td>
+            <td>✔️</td>
+          </tr>
+          <tr>
+            <td>Activity-Specific Interceptors</td>
+            <td>✔️ (Four interceptors can be customized based on business needs)</td>
+            <td>✖️</td>
+            <td>✔️</td>
+          </tr>
+          <tr>
+            <td>Route Documentation</td>
+            <td>✔️ (Route documentation supports adding descriptive comments)</td>
+            <td>✔️</td>
+            <td>✖️</td>
+          </tr>
+          <tr>
+            <td>Dynamic Registration of Route Tables</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✖️</td>
+          </tr>
+          <tr>
+            <td>Supports APT/KAPT Incremental Compilation</td>
+            <td>✔️</td>
+            <td>✔️ (Cannot incrementally compile with document generation enabled)</td>
+            <td>✖️</td>
+          </tr>
+          <tr>
+            <td>Supports KSP Compilation</td>
+            <td>✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+          </tr>
+          <tr>
+            <td>Supports AGP8</td>
+            <td>✔️</td>
+            <td>Not supported after Gradle 7.x</td>
+            <td>Not supported after Gradle 7.x</td>
+          </tr>
+          <tr>
+            <td>Plugin Supports Incremental Compilation</td>
+            <td>✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+          </tr>
+          <tr>
+            <td>Multiple Paths Correspond to the Same Page (Low-cost Implementation of Dual-End Path Unification)</td>
+            <td>✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+          </tr>
+          <tr>
+            <td>Remote Route Table Delivery</td>
+            <td>✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+          </tr>
+          <tr>
+            <td>Supports Independent Initialization of a Single Module</td>
+            <td>✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+          </tr>
+          <tr>
+            <td>Supports Opening Third-Party SDK Pages with Routes</td>
+            <td>✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+          </tr>
+          <tr>
+            <td>Supports Hot Fix (e.g., Tinker)</td>
+            <td>✔️ (Unchanged code is built multiple times without changes)</td>
+            <td>✖️ (Apt products change with multiple builds, generating meaningless patches)</td>
+            <td>✖️ (Apt products change with multiple builds, generating meaningless patches)</td>
+          </tr>
+        </tbody>
+      </table>
     </div>  
   </div>    
 </div>  

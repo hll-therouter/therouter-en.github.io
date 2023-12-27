@@ -14,7 +14,7 @@ permalink: /doc
     {% if page.title != post.title %}
 
     {% if i == 0 %}
-      <h3>相关推荐：</h3>
+      <h3>Related Recommendations:</h3>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     {% elsif i == 3 %}
       {% break %}
@@ -37,7 +37,7 @@ permalink: /doc
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <a href={{ post.url }}>
-                <button type="button" class="btn btn-sm btn-outline-secondary">阅读</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Read</button>
               </a>
             </div>
             <small class="text-muted">{{ post.content.size | divided_by: 1200 | plus:1 }} mins</small>
