@@ -15,11 +15,11 @@ permalink: /doc
       {% endif %}
       <div class="doc-list">
         <span class="entry-date date published">
-          <font color="#aaaaaa"> 置顶消息 </font>
+          <font color="#aaaaaa"> TopMessage </font>
         </span>
         <br>
 
-        <font class="kymjs-post-tag-top">置顶：</font>
+        <font class="kymjs-post-tag-top">TOP：</font>
         <font class="kymjs-index-title">{{ post.title }}</font>
         <br>
 
@@ -53,23 +53,23 @@ permalink: /doc
         {% elsif post.categories[0]=="session" %}
         <font class="kymjs-post-tag-session">Session</font>
         {% elsif post.categories[0]=="docs" %}
-          <font class="kymjs-post-tag-code">文档</font>
+          <font class="kymjs-post-tag-code">doc</font>
         {% elsif post.categories[0]=="news" %}
-          <font class="kymjs-post-tag-news">资讯</font>
+          <font class="kymjs-post-tag-news">news</font>
         {% elsif post.categories[0]=="note" %}
-          <font class="kymjs-post-tag-note">笔记</font>
+          <font class="kymjs-post-tag-note">note</font>
         {% elsif post.categories[0]=="pay" %}
-          <font class="kymjs-post-tag-payforreading">付费</font>
+          <font class="kymjs-post-tag-payforreading">pay</font>
         {% elsif post.categories[0]=="tools" %}
-          <font class="kymjs-post-tag-stickies">工具</font>
+          <font class="kymjs-post-tag-stickies">tools</font>
         {% elsif post.categories[0]=="manager" %}
           <font class="kymjs-post-tag-manager">Leader</font>
         {% endif %}
         <time datetime="{{ post.date | date_to_xmlschema }}">
           {% if post.author %}
-            <font color="#aaaaaa"> {{ post.author }} 创作于 {{ post.date | date: "%Y-%m-%d" }} </font>
+            <font color="#aaaaaa"> {{ post.author }} Created in {{ post.date | date: "%Y-%m-%d" }} </font>
           {% else %}
-            <font color="#aaaaaa">{% if page.author %} {{ page.author }} {% else %} TheRouter官方 {% endif %} 创作于 {{ post.date | date: "%Y-%m-%d" }} </font>
+            <font color="#aaaaaa">{% if page.author %} {{ page.author }} {% else %} TheRouter {% endif %} Created in {{ post.date | date: "%Y-%m-%d" }} </font>
           {% endif %}
         </time>
         </span>
