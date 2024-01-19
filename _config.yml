@@ -1,11 +1,11 @@
-title: TheRouter - 移动端模块化解决方案
+title: TheRouter - APP Modular Solution
 email: kymjs123@gmail.com
-description: TheRouter 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。 
+description: TheRouter A cross-platform dynamic routing framework for Android and iOS. 
 baseurl: "" 
 url: ""
 permalink: /docs/:year/:month/:day/:title 
 
-company_name: 货拉拉移动技术团队
+company_name: LaLaMove
 
 markdown: redcarpet
 redcarpet:
