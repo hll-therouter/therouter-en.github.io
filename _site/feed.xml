@@ -711,13 +711,13 @@ TheRouterSelector(test/jump, jumpToTestVC, TestService)
 
 &lt;h4&gt;Q5：&lt;strong&gt;多进程如何使用&lt;/strong&gt;&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://therouter.cn/docs/2022/09/03/01&quot;&gt;https://therouter.cn/docs/2022/09/03/01&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://en.therouter.cn/docs/2022/09/03/01&quot;&gt;https://en.therouter.cn/docs/2022/09/03/01&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr&gt;
 
 &lt;h4&gt;Q6：&lt;strong&gt;同一个服务名有多个服务提供方，如何使用&lt;/strong&gt;&lt;/h4&gt;
 
-&lt;p&gt;请查看文档 【1.3 服务提供方】章节的内容：&lt;a href=&quot;https://therouter.cn/docs/2022/08/27/01&quot;&gt;https://therouter.cn/docs/2022/08/27/01&lt;/a&gt;   &lt;/p&gt;
+&lt;p&gt;请查看文档 【1.3 服务提供方】章节的内容：&lt;a href=&quot;https://en.therouter.cn/docs/2022/08/27/01&quot;&gt;https://en.therouter.cn/docs/2022/08/27/01&lt;/a&gt;   &lt;/p&gt;
 
 &lt;hr&gt;
 
@@ -844,7 +844,7 @@ TheRouter 也支持这样的使用场景：  &lt;/p&gt;
 
 &lt;h4&gt;Q14：我的项目使用的Gradle8.x（或AGP8），引入插件失败&lt;/h4&gt;
 
-&lt;p&gt;请完整查看接入文档&lt;a href=&quot;https://therouter.cn/docs/2022/11/23/01&quot;&gt;https://therouter.cn/docs/2022/11/23/01&lt;/a&gt;，并仔细阅读【第一步：接入classpath】   &lt;/p&gt;
+&lt;p&gt;请完整查看接入文档&lt;a href=&quot;https://en.therouter.cn/docs/2022/11/23/01&quot;&gt;https://en.therouter.cn/docs/2022/11/23/01&lt;/a&gt;，并仔细阅读【第一步：接入classpath】   &lt;/p&gt;
 
 &lt;hr&gt;</content><author><name></name></author><category term="框架简介" /><summary type="html">如无法解决你的问题，建议登记应用，获取优先技术支持 https://github.com/HuolalaTech/hll-wp-therouter-android/issues/57</summary></entry><entry><title type="html">TheRouter 使用 KSP 处理注解</title><link href="http://localhost:4000/docs/2023/05/15/01" rel="alternate" type="text/html" title="TheRouter 使用 KSP 处理注解" /><published>2023-05-15T00:00:00+08:00</published><updated>2023-05-15T00:00:00+08:00</updated><id>http://localhost:4000/docs/2023/05/15/01</id><content type="html" xml:base="http://localhost:4000/docs/2023/05/15/01">&lt;p&gt;TheRouter 在&lt;code&gt;1.1.4-rc2&lt;/code&gt;开始，已经将&lt;code&gt;KSP&lt;/code&gt;能力合并至主分支，不再是单独的功能分支了，下面介绍一下如何使用 &lt;code&gt;KSP&lt;/code&gt;。  &lt;/p&gt;
 
@@ -914,13 +914,13 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 
 &lt;h2&gt;开始之前&lt;/h2&gt;
 
-&lt;p&gt;如果你的项目之前使用过其他路由，建议使用迁移工具一键迁移： &lt;a href=&quot;https://therouter.cn/docs/2022/09/05/01&quot;&gt;https://therouter.cn/docs/2022/09/05/01&lt;/a&gt;   &lt;/p&gt;
+&lt;p&gt;如果你的项目之前使用过其他路由，建议使用迁移工具一键迁移： &lt;a href=&quot;https://en.therouter.cn/docs/2022/09/05/01&quot;&gt;https://en.therouter.cn/docs/2022/09/05/01&lt;/a&gt;   &lt;/p&gt;
 
 &lt;p&gt;如果你的是新项目，请先记住一点：&lt;strong&gt;plugin、apt、router 三个依赖的版本号必须保持一致&lt;/strong&gt;，请继续往下看接入步骤。   &lt;/p&gt;
 
 &lt;h2&gt;查看最新版本&lt;/h2&gt;
 
-&lt;p&gt;TheRouter 的版本分为两种，稳定版和 rc版，一般不追求新功能我们就用稳定版就行，可以在官网看到最新的版本号和各种版本的说明：&lt;a href=&quot;https://therouter.cn/docs/2022/09/06/01&quot;&gt;https://therouter.cn/docs/2022/09/06/01&lt;/a&gt;  &lt;/p&gt;
+&lt;p&gt;TheRouter 的版本分为两种，稳定版和 rc版，一般不追求新功能我们就用稳定版就行，可以在官网看到最新的版本号和各种版本的说明：&lt;a href=&quot;https://en.therouter.cn/docs/2022/09/06/01&quot;&gt;https://en.therouter.cn/docs/2022/09/06/01&lt;/a&gt;  &lt;/p&gt;
 
 &lt;h2&gt;接入&lt;/h2&gt;
 
@@ -933,21 +933,21 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 &lt;p&gt;由于 8.X 版本的 Gradle，必须使用&lt;code&gt;Java 17&lt;/code&gt;的环境了，并且不兼容老&lt;code&gt;JDK&lt;/code&gt;编译的&lt;code&gt;class&lt;/code&gt;，所以对于新版本需要使用专为&lt;code&gt;Java 17&lt;/code&gt;编译的插件。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cn.therouter.agp8'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.2.1'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/1.png&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://en.therouter.cn/assets/img/image/1.png&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h4&gt;7.X 版本 Gradle&lt;/h4&gt;
 
 &lt;p&gt;7.X 的 Gradle，&lt;code&gt;classpath&lt;/code&gt;已经改为用&lt;code&gt;plugins&lt;/code&gt;的方式引入，只需要在闭包内加这一句就行了&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cn.therouter'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.2.1'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/2.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://en.therouter.cn/assets/img/image/2.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h4&gt;6.x 及之前的老版本 Gradle&lt;/h4&gt;
 
 &lt;p&gt;对于6.x 及之前的  Gradle，需要手动引入&lt;code&gt;classpath&lt;/code&gt;，在 TheRouter 官方 Github 首页也有接入介绍&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cn.therouter:plugin:1.2.1&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/3.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://en.therouter.cn/assets/img/image/3.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h3&gt;第二步：引入插件&lt;/h3&gt;
 
@@ -957,7 +957,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 7.X及以上新版本这样写&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'therouter'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/4.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://en.therouter.cn/assets/img/image/4.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h4&gt;6.x 及之前的老版本 Gradle&lt;/h4&gt;
 
@@ -965,18 +965,18 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 6.X及以下老版本这样写&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'therouter'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/5.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://en.therouter.cn/assets/img/image/5.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;h3&gt;第三步：引入注解处理器&lt;/h3&gt;
 
-&lt;p&gt;最新版的 TheRouter 已经支持&lt;code&gt;KSP&lt;/code&gt;解析，如果你都不知道&lt;code&gt;KSP&lt;/code&gt;是什么，那么就继续往下看，使用&lt;code&gt;kapt&lt;/code&gt;吧。如果你希望使用&lt;code&gt;KSP&lt;/code&gt;，可以看文档：&lt;a href=&quot;https://therouter.cn/docs/2023/05/15/01&quot;&gt;使用 KSP 处理注解&lt;/a&gt;。  &lt;/p&gt;
+&lt;p&gt;最新版的 TheRouter 已经支持&lt;code&gt;KSP&lt;/code&gt;解析，如果你都不知道&lt;code&gt;KSP&lt;/code&gt;是什么，那么就继续往下看，使用&lt;code&gt;kapt&lt;/code&gt;吧。如果你希望使用&lt;code&gt;KSP&lt;/code&gt;，可以看文档：&lt;a href=&quot;https://en.therouter.cn/docs/2023/05/15/01&quot;&gt;使用 KSP 处理注解&lt;/a&gt;。  &lt;/p&gt;
 
 &lt;p&gt;TheRouter 的注解处理依赖&lt;code&gt;kapt&lt;/code&gt;执行，所以要在项目里面手动引入，否则无法处理注解。  &lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;注：所有的模块都必须引入kapt，否则就有可能造成某些路由表不生成。&lt;/strong&gt;&lt;br&gt;
 &lt;strong&gt;注：所有APP的模块，如果是需要上线的模块，必须直接或间接在 app 中被依赖，否则最终生成apk会丢失未被依赖的功能。&lt;/strong&gt;  &lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://therouter.cn/assets/img/image/6.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://en.therouter.cn/assets/img/image/6.jpg&quot; class=&quot;blog-img&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;如果报找不到kapt，可能是因为没有声明kotlin-kapt的插件，参考&lt;code&gt;步骤二&lt;/code&gt;里面的截图，接入对应的kapt。&lt;br&gt;
 如果是纯Java工程，需要用Java的APT处理，纯Java就不用声明&lt;code&gt;kotlin-kapt&lt;/code&gt;插件了，直接把&lt;code&gt;kapt&lt;/code&gt;改成&lt;code&gt;annotationProcessor&lt;/code&gt;&lt;/p&gt;
@@ -1128,7 +1128,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;查看最新公测版本：&lt;a href=&quot;https://s01.oss.sonatype.org/content/groups/staging/cn/therouter/&quot;&gt;https://s01.oss.sonatype.org&lt;/a&gt;  &lt;/p&gt;</content><author><name></name></author><category term="版本介绍" /><summary type="html">TheRouter 的版本规划分为三种，分别是 稳定版、预览版(含 beta 版)、公测版。</summary></entry><entry><title type="html">TheRouter 一键迁移工具</title><link href="http://localhost:4000/docs/2022/09/05/01" rel="alternate" type="text/html" title="TheRouter 一键迁移工具" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/05/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/05/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt;提供了图形化界面的迁移工具，可以一键从其他路由迁移到&lt;code&gt;TheRouter&lt;/code&gt;。&lt;br&gt;
-全新迁移工具已集成到 AndroidStudio 开发插件中，可直接在AS插件市场下载，相关介绍请访问： &lt;a href=&quot;https://therouter.cn/docs/2022/09/29/01&quot;&gt;https://therouter.cn/docs/2022/09/29/01&lt;/a&gt;  &lt;/p&gt;
+全新迁移工具已集成到 AndroidStudio 开发插件中，可直接在AS插件市场下载，相关介绍请访问： &lt;a href=&quot;https://en.therouter.cn/docs/2022/09/29/01&quot;&gt;https://en.therouter.cn/docs/2022/09/29/01&lt;/a&gt;  &lt;/p&gt;
 
 &lt;p&gt;旧版本图形界面可使用：1.1.1 (2022-10-09更新)&lt;/p&gt;
 
@@ -1151,7 +1151,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;ARouter 的 Provider.init 部分，建议改为懒加载方式，在服务方法被调用时自己主动调用init方法。    &lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;如果使用了 ARouter 拦截器部分，需要自己手动处理拦截器的逻辑，ARouter的拦截器全部可以用 TheRouter 的拦截器替换，具体逻辑请参考：TheRouter页面跳转：【&lt;a href=&quot;https://therouter.cn/docs/2022/08/28/01&quot;&gt;第三部分&lt;/a&gt;】自定义处理器。    &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果使用了 ARouter 拦截器部分，需要自己手动处理拦截器的逻辑，ARouter的拦截器全部可以用 TheRouter 的拦截器替换，具体逻辑请参考：TheRouter页面跳转：【&lt;a href=&quot;https://en.therouter.cn/docs/2022/08/28/01&quot;&gt;第三部分&lt;/a&gt;】自定义处理器。    &lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;ARouter 封装了大量 Bundle 传参的操作，例如&lt;code&gt;withBooleanArray()&lt;/code&gt;这种。我们认为这样的封装是冗余的。如果你使用到了对应方法，在TheRouter内可以直接通过对Bundle对象调用对应的方法。例如：    &lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// ARouter &lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;ARouter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
@@ -1192,7 +1192,7 @@ Github: &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android
     all*.exclude group: 'com.alibaba', module: 'arouter-api'
     all*.exclude group: 'com.alibaba', module: 'arouter-annotation'
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="迁移工具" /><summary type="html">TheRouter提供了图形化界面的迁移工具，可以一键从其他路由迁移到TheRouter。 全新迁移工具已集成到 AndroidStudio 开发插件中，可直接在AS插件市场下载，相关介绍请访问： https://therouter.cn/docs/2022/09/29/01 旧版本图形界面可使用：1.1.1 (2022-10-09更新)</summary></entry><entry><title type="html">Android 动态路由框架：TheRouter 开源</title><link href="http://localhost:4000/docs/2022/09/04/01" rel="alternate" type="text/html" title="Android 动态路由框架：TheRouter 开源" /><published>2022-09-04T00:00:00+08:00</published><updated>2022-09-04T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/04/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/04/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。&lt;br&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><author><name></name></author><category term="迁移工具" /><summary type="html">TheRouter提供了图形化界面的迁移工具，可以一键从其他路由迁移到TheRouter。 全新迁移工具已集成到 AndroidStudio 开发插件中，可直接在AS插件市场下载，相关介绍请访问： https://en.therouter.cn/docs/2022/09/29/01 旧版本图形界面可使用：1.1.1 (2022-10-09更新)</summary></entry><entry><title type="html">Android 动态路由框架：TheRouter 开源</title><link href="http://localhost:4000/docs/2022/09/04/01" rel="alternate" type="text/html" title="Android 动态路由框架：TheRouter 开源" /><published>2022-09-04T00:00:00+08:00</published><updated>2022-09-04T00:00:00+08:00</updated><id>http://localhost:4000/docs/2022/09/04/01</id><content type="html" xml:base="http://localhost:4000/docs/2022/09/04/01">&lt;p&gt;&lt;code&gt;TheRouter&lt;/code&gt; 是一个 Kotlin 编写，用于 Android 模块化开发的一整套解决方案框架。&lt;br&gt;
 Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/HuolalaTech/hll-wp-therouter-android&quot;&gt;https://github.com/HuolalaTech/hll-wp-therouter-android&lt;/a&gt;。    &lt;/p&gt;
 
 &lt;p&gt;TheRouter 核心功能具备如下能力：    &lt;/p&gt;
@@ -1390,7 +1390,7 @@ Github 项目地址与使用文档详见 &lt;a href=&quot;https://github.com/Huo
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;3.5 高级用法&lt;/h4&gt;
 
-&lt;p&gt;TheRouter同时支持更多页面跳转能力，详情可参考项目文档【&lt;a href=&quot;https://therouter.cn/docs/2022/08/28/01&quot;&gt;https://therouter.cn/docs/2022/08/28/01&lt;/a&gt;】：    &lt;/p&gt;
+&lt;p&gt;TheRouter同时支持更多页面跳转能力，详情可参考项目文档【&lt;a href=&quot;https://en.therouter.cn/docs/2022/08/28/01&quot;&gt;https://en.therouter.cn/docs/2022/08/28/01&lt;/a&gt;】：    &lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;为第三方库里面的页面添加路由表，达到对某些页面降级替换的目的；&lt;br&gt;&lt;/li&gt;

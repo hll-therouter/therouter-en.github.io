@@ -89,13 +89,13 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 
 <h2>开始之前</h2>
 
-<p>如果你的项目之前使用过其他路由，建议使用迁移工具一键迁移： <a href="https://therouter.cn/docs/2022/09/05/01">https://therouter.cn/docs/2022/09/05/01</a>   </p>
+<p>如果你的项目之前使用过其他路由，建议使用迁移工具一键迁移： <a href="https://en.therouter.cn/docs/2022/09/05/01">https://en.therouter.cn/docs/2022/09/05/01</a>   </p>
 
 <p>如果你的是新项目，请先记住一点：<strong>plugin、apt、router 三个依赖的版本号必须保持一致</strong>，请继续往下看接入步骤。   </p>
 
 <h2>查看最新版本</h2>
 
-<p>TheRouter 的版本分为两种，稳定版和 rc版，一般不追求新功能我们就用稳定版就行，可以在官网看到最新的版本号和各种版本的说明：<a href="https://therouter.cn/docs/2022/09/06/01">https://therouter.cn/docs/2022/09/06/01</a>  </p>
+<p>TheRouter 的版本分为两种，稳定版和 rc版，一般不追求新功能我们就用稳定版就行，可以在官网看到最新的版本号和各种版本的说明：<a href="https://en.therouter.cn/docs/2022/09/06/01">https://en.therouter.cn/docs/2022/09/06/01</a>  </p>
 
 <h2>接入</h2>
 
@@ -108,21 +108,21 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 <p>由于 8.X 版本的 Gradle，必须使用<code>Java 17</code>的环境了，并且不兼容老<code>JDK</code>编译的<code>class</code>，所以对于新版本需要使用专为<code>Java 17</code>编译的插件。</p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter.agp8'</span> <span class="n">version</span> <span class="s1">'1.2.1'</span> <span class="n">apply</span> <span class="kc">false</span>
 </code></pre></div>
-<p><img src="https://therouter.cn/assets/img/image/1.png" class="blog-img"></p>
+<p><img src="https://en.therouter.cn/assets/img/image/1.png" class="blog-img"></p>
 
 <h4>7.X 版本 Gradle</h4>
 
 <p>7.X 的 Gradle，<code>classpath</code>已经改为用<code>plugins</code>的方式引入，只需要在闭包内加这一句就行了</p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">id</span> <span class="s1">'cn.therouter'</span> <span class="n">version</span> <span class="s1">'1.2.1'</span> <span class="n">apply</span> <span class="kc">false</span>
 </code></pre></div>
-<p><img src="https://therouter.cn/assets/img/image/2.jpg" class="blog-img"></p>
+<p><img src="https://en.therouter.cn/assets/img/image/2.jpg" class="blog-img"></p>
 
 <h4>6.x 及之前的老版本 Gradle</h4>
 
 <p>对于6.x 及之前的  Gradle，需要手动引入<code>classpath</code>，在 TheRouter 官方 Github 首页也有接入介绍</p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">classpath</span> <span class="s2">"cn.therouter:plugin:1.2.1"</span>
 </code></pre></div>
-<p><img src="https://therouter.cn/assets/img/image/3.jpg" class="blog-img"></p>
+<p><img src="https://en.therouter.cn/assets/img/image/3.jpg" class="blog-img"></p>
 
 <h3>第二步：引入插件</h3>
 
@@ -132,7 +132,7 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// 7.X及以上新版本这样写</span>
 <span class="n">id</span> <span class="s1">'therouter'</span>
 </code></pre></div>
-<p><img src="https://therouter.cn/assets/img/image/4.jpg" class="blog-img"></p>
+<p><img src="https://en.therouter.cn/assets/img/image/4.jpg" class="blog-img"></p>
 
 <h4>6.x 及之前的老版本 Gradle</h4>
 
@@ -140,18 +140,18 @@ Github: <a href="https://github.com/HuolalaTech/hll-wp-therouter-android/">https
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// 6.X及以下老版本这样写</span>
 <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'therouter'</span>
 </code></pre></div>
-<p><img src="https://therouter.cn/assets/img/image/5.jpg" class="blog-img"></p>
+<p><img src="https://en.therouter.cn/assets/img/image/5.jpg" class="blog-img"></p>
 
 <h3>第三步：引入注解处理器</h3>
 
-<p>最新版的 TheRouter 已经支持<code>KSP</code>解析，如果你都不知道<code>KSP</code>是什么，那么就继续往下看，使用<code>kapt</code>吧。如果你希望使用<code>KSP</code>，可以看文档：<a href="https://therouter.cn/docs/2023/05/15/01">使用 KSP 处理注解</a>。  </p>
+<p>最新版的 TheRouter 已经支持<code>KSP</code>解析，如果你都不知道<code>KSP</code>是什么，那么就继续往下看，使用<code>kapt</code>吧。如果你希望使用<code>KSP</code>，可以看文档：<a href="https://en.therouter.cn/docs/2023/05/15/01">使用 KSP 处理注解</a>。  </p>
 
 <p>TheRouter 的注解处理依赖<code>kapt</code>执行，所以要在项目里面手动引入，否则无法处理注解。  </p>
 
 <p><strong>注：所有的模块都必须引入kapt，否则就有可能造成某些路由表不生成。</strong><br>
 <strong>注：所有APP的模块，如果是需要上线的模块，必须直接或间接在 app 中被依赖，否则最终生成apk会丢失未被依赖的功能。</strong>  </p>
 
-<p><img src="https://therouter.cn/assets/img/image/6.jpg" class="blog-img"></p>
+<p><img src="https://en.therouter.cn/assets/img/image/6.jpg" class="blog-img"></p>
 
 <p>如果报找不到kapt，可能是因为没有声明kotlin-kapt的插件，参考<code>步骤二</code>里面的截图，接入对应的kapt。<br>
 如果是纯Java工程，需要用Java的APT处理，纯Java就不用声明<code>kotlin-kapt</code>插件了，直接把<code>kapt</code>改成<code>annotationProcessor</code></p>

@@ -84,7 +84,7 @@
 <div class="container">
 	<div class="blog-post">
 		<p><code>TheRouter</code>提供了图形化界面的迁移工具，可以一键从其他路由迁移到<code>TheRouter</code>。<br>
-全新迁移工具已集成到 AndroidStudio 开发插件中，可直接在AS插件市场下载，相关介绍请访问： <a href="https://therouter.cn/docs/2022/09/29/01">https://therouter.cn/docs/2022/09/29/01</a>  </p>
+全新迁移工具已集成到 AndroidStudio 开发插件中，可直接在AS插件市场下载，相关介绍请访问： <a href="https://en.therouter.cn/docs/2022/09/29/01">https://en.therouter.cn/docs/2022/09/29/01</a>  </p>
 
 <p>旧版本图形界面可使用：1.1.1 (2022-10-09更新)</p>
 
@@ -107,7 +107,7 @@
 
 <ol>
 <li><p>ARouter 的 Provider.init 部分，建议改为懒加载方式，在服务方法被调用时自己主动调用init方法。    </p></li>
-<li><p>如果使用了 ARouter 拦截器部分，需要自己手动处理拦截器的逻辑，ARouter的拦截器全部可以用 TheRouter 的拦截器替换，具体逻辑请参考：TheRouter页面跳转：【<a href="https://therouter.cn/docs/2022/08/28/01">第三部分</a>】自定义处理器。    </p></li>
+<li><p>如果使用了 ARouter 拦截器部分，需要自己手动处理拦截器的逻辑，ARouter的拦截器全部可以用 TheRouter 的拦截器替换，具体逻辑请参考：TheRouter页面跳转：【<a href="https://en.therouter.cn/docs/2022/08/28/01">第三部分</a>】自定义处理器。    </p></li>
 <li><p>ARouter 封装了大量 Bundle 传参的操作，例如<code>withBooleanArray()</code>这种。我们认为这样的封装是冗余的。如果你使用到了对应方法，在TheRouter内可以直接通过对Bundle对象调用对应的方法。例如：    </p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// ARouter </span>
 <span class="n">ARouter</span><span class="o">.</span><span class="na">getInstance</span><span class="o">()</span>
